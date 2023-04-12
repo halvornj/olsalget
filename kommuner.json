@@ -1,0 +1,6 @@
+{
+  "kommuner": [
+    { "navn": "Oslo", "ordinaryTime": "09-20", "specialTime": "09-18" },
+    { "navn": "Trondheim", "ordinaryTime": "09-20", "specialTime": "09-18" }
+  ]
+}
