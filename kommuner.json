@@ -1,6 +1,15 @@
-{
-  "kommuner": [
-    { "navn": "Oslo", "ordinaryTime": "09-20", "specialTime": "09-18" },
-    { "navn": "Trondheim", "ordinaryTime": "09-20", "specialTime": "09-18" }
-  ]
-}
+[
+  {
+    "kommuneNavn": "Oslo",
+    "Electionday": "09-20",
+    "dayBeforeForstejuledag": "09-18",
+    "dayBeforeForstenyttarsdag": "09-18",
+    "dayBeforeForstepinsedag": "09-18",
+    "dayBeforeGrunnlovsdag": "09-20",
+    "dayBeforeKristihimmelfartsdag": "09-20",
+    "dayBeforeOffentlighoytidsdag": "09-20",
+    "dayBeforeSkjertorsdag": "09-18",
+    "default": "09-20",
+    "sat": "09-18"
+  }
+]
