@@ -2,14 +2,16 @@
   {
     "kommuneNavn": "Oslo",
     "Electionday": "09-20",
-    "dayBeforeForstejuledag": "09-18",
-    "dayBeforeForstenyttarsdag": "09-18",
-    "dayBeforeForstepinsedag": "09-18",
-    "dayBeforeGrunnlovsdag": "09-20",
-    "dayBeforeKristihimmelfartsdag": "09-20",
-    "dayBeforeOffentlighoytidsdag": "09-20",
-    "dayBeforeSkjertorsdag": "09-18",
+    "Forstejuledag": "09-18",
+    "Forstenyttarsdag": "09-18",
+    "Forstepinsedag": "09-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "standard",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "09-18",
+    "Forstepaskedag": "09-18",
     "default": "09-20",
-    "sat": "09-18"
+    "sat": "09-18",
+    "Palmesondag": "standard"
   }
 ]

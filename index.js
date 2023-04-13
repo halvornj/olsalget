@@ -31,10 +31,6 @@ async function geoLocDone(kommuneNavn) {
   var hoytider = hoytiderJson.data;
   hoytider.shift();
   console.log(hoytider);
-  var today = new Date().toISOString().slice(0, 10);
-  var tomorrow = new Date(Date.now() + 86400000);
-
-  tomorrow = tomorrow.toISOString().slice(0, 10);
 
   const kommuner = await fetch("kommuner.json");
   var kommuneData = await kommuner.json();
@@ -43,33 +39,53 @@ async function geoLocDone(kommuneNavn) {
     (kommune) => kommune.kommuneNavn === kommuneNavn
   )[0];
   console.log(kommuneData);
+  var timesToday = findSalesTimes(kommuneData, hoytider);
+  console.log(timesToday);
+  document.getElementById("content").innerHTML = timesToday;
+}
 
-  hoytider.forEach((hoytid) => {
-    switch (hoytid.date.slice(0, 10)) {
-      case today:
-        document.getElementById(
-          "content"
-        ).innerHTML = `<h1>Det selges ikke alkohol i dag!</h1>`;
-        break;
-      case tomorrow:
-        var timeString = hoytid.description.replace("ø", "o");
-        timeString = timeString.description.replace("æ", "e");
-        timeString = timeString.description.replace("å", "a");
-        timeString = timeString.description.replace(" ", "");
-        timeString = "dayBefore" + timeString;
-        times = kommuneData.timeString.split("-");
-        document.getElementById(
-          "content"
-        ).innerHTML = `<h1>i dag selges det alkohol fra ${times[0]} til ${times[1]}</h1>`;
-        break;
-      default:
-        var times = kommuneData.default.split("-");
-        document.getElementById(
-          "content"
-        ).innerHTML = `<h1>Det selges alkohol fra ${times[0]} til ${times[1]}</h1>`;
-        break;
+//returns opening times for today as string, e.g."09-20". if closed, returns null
+function findSalesTimes(kommune, hoytider) {
+  var hoytidISOStrings = [];
+  for (var i = 0; i < hoytider.length; i++) {
+    hoytidISOStrings.push(hoytider[i].date.slice(0, 10));
+  }
+  console.log(hoytidISOStrings);
+  var today = new Date();
+  var todayStr = today.toISOString().slice(0, 10);
+  var tomorrow = new Date(Date.now() + 86400000);
+  var tomorrowStr = tomorrow.toISOString().slice(0, 10);
+
+  //logikk
+  //føler myndighetene har litt vage presedens-regler angående dette, men tror dette stemmer
+  if (today.getDay() === 0 || hoytidISOStrings.includes(todayStr)) {
+    //today is sunday or a holiday
+    return null;
+  }
+  for (i = 0; i < hoytider.length; i++) {
+    var hoytid = hoytider[i];
+    if (hoytid.date.slice(0, 10) === tomorrowStr) {
+      //tomorrow is a holiday
+      var hoyTidString = hoytid.description;
+      //this could absolutely be done w/ regex, but i'm too lazy to figure it out
+      hoyTidString = hoyTidString
+        .replace("æ", "e")
+        .replace("ø", "o")
+        .replace("å", "a")
+        .replace(" ", "");
+      if (kommune.hoyTidString === "standard") {
+        if (today.getDay() === 6) {
+          return kommune.sat;
+        }
+        return kommune.default;
+      }
+      return kommune.hoyTidString;
     }
-  });
+  }
+  if (today.getDay() === 6) {
+    return kommune.sat;
+  }
+  return kommune.default;
 }
 
 function main() {
