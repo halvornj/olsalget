@@ -40,29 +40,30 @@ async function geoLocDone(kommuneNavn) {
   )[0];
   console.log(kommuneData);
 
-  var today = new Date();
-  var tomorrow = new Date(Date.now() + 86400000);
+  var today = new Date(Date.now());
 
-  console.log(today);
-  console.log(tomorrow);
-
-  var timesToday = findSalesTimes(kommuneData, hoytider, today, tomorrow);
+  var timesToday = findSalesTimes(kommuneData, hoytider, today);
   console.log(timesToday);
   salesTimes.innerHTML = timesToday;
 }
 
 //returns opening times for today as string, e.g."09-20". if closed, returns null
-function findSalesTimes(kommune, hoytider, today, tomorrow) {
+function findSalesTimes(kommune, hoytider, today) {
+  //today is a Date object reffering to the day we want to find opening hours for
+  var tomorrow = new Date(today.getTime() + 86400000);
+  var todayStr = today.toISOString().slice(0, 10);
+  var tomorrowStr = tomorrow.toISOString().slice(0, 10);
+
   var hoytidISOStrings = [];
   for (var i = 0; i < hoytider.length; i++) {
     hoytidISOStrings.push(hoytider[i].date.slice(0, 10));
   }
 
-  var todayStr = today.toISOString().slice(0, 10);
-  var tomorrowStr = tomorrow.toISOString().slice(0, 10);
-
   //logikk
   //føler myndighetene har litt vage presedens-regler angående dette, men tror dette stemmer
+  console.log(todayStr);
+  console.log(hoytidISOStrings);
+  console.log(today);
   if (today.getDay() === 0 || hoytidISOStrings.includes(todayStr)) {
     //today is sunday or a holiday
     return null;
@@ -92,6 +93,8 @@ function findSalesTimes(kommune, hoytider, today, tomorrow) {
   }
   return kommune.default;
 }
+
+//? todo: maybe add function todayIsHoliday()?
 
 function main() {
   const salesTimes = document.getElementById("salesTimes");
