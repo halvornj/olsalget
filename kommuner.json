@@ -13,5 +13,20 @@
     "default": "09-20",
     "sat": "09-18",
     "Palmesondag": "standard"
+  },
+  {
+    "kommuneNavn": "Trondheim",
+    "Electionday": "none",
+    "Forstejuledag": "09-15",
+    "Forstenyttarsdag": "09-18",
+    "Forstepinsedag": "09-15",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "standard",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "09-18",
+    "Forstepaskedag": "09-15",
+    "default": "09-20",
+    "sat": "09-18",
+    "Palmesondag": "09-18"
   }
 ]

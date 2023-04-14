@@ -5,7 +5,14 @@
 }
 
 body {
+  background-color: #f0f0f0;
   display: flex;
+  /* animation: .5s ease-in entrance; */
+}
+
+@keyframes entrance {
+  0% {transform: scale(0%)}
+  100% {transform: scale(100%)}
 }
 
 #salesTimesContainer {
@@ -13,6 +20,7 @@ body {
   position: fixed;
   justify-content: center;
   align-items: center;
+  flex-flow: column;
   height: 100vh;
   width: 100vw;
 }
@@ -20,4 +28,28 @@ body {
 #salesTimes {
   font-size: 5em;
   position: center;
+  display: block;
+  color: #131313;
+}
+
+button {
+  margin: 5px;
+  display: block;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: .2s;
+}
+
+button:hover {
+  background-color: #dedede;
+  cursor: pointer;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  padding: 10px 15px;
+  width: 230px;
+  margin: none;
 }
