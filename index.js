@@ -39,21 +39,26 @@ async function geoLocDone(kommuneNavn) {
     (kommune) => kommune.kommuneNavn === kommuneNavn
   )[0];
   console.log(kommuneData);
-  var timesToday = findSalesTimes(kommuneData, hoytider);
+
+  var today = new Date();
+  var tomorrow = new Date(Date.now() + 86400000);
+
+  console.log(today);
+  console.log(tomorrow);
+
+  var timesToday = findSalesTimes(kommuneData, hoytider, today, tomorrow);
   console.log(timesToday);
   salesTimes.innerHTML = timesToday;
 }
 
 //returns opening times for today as string, e.g."09-20". if closed, returns null
-function findSalesTimes(kommune, hoytider) {
+function findSalesTimes(kommune, hoytider, today, tomorrow) {
   var hoytidISOStrings = [];
   for (var i = 0; i < hoytider.length; i++) {
     hoytidISOStrings.push(hoytider[i].date.slice(0, 10));
   }
-  console.log(hoytidISOStrings);
-  var today = new Date();
+
   var todayStr = today.toISOString().slice(0, 10);
-  var tomorrow = new Date(Date.now() + 86400000);
   var tomorrowStr = tomorrow.toISOString().slice(0, 10);
 
   //logikk
