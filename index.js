@@ -41,7 +41,7 @@ async function geoLocDone(kommuneNavn) {
   console.log(kommuneData);
   var timesToday = findSalesTimes(kommuneData, hoytider);
   console.log(timesToday);
-  document.getElementById("content").innerHTML = timesToday;
+  salesTimes.innerHTML = timesToday;
 }
 
 //returns opening times for today as string, e.g."09-20". if closed, returns null
@@ -89,7 +89,7 @@ function findSalesTimes(kommune, hoytider) {
 }
 
 function main() {
-  const content = document.getElementById("content");
+  const salesTimes = document.getElementById("salesTimes");
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(geoLocSuccess, geoLocError);
