@@ -1,4 +1,5 @@
-import { Kommune } from "./Kommune.js";
+var KOMMUNE;
+var HOYTIDER;
 
 async function geoLocSuccess(position) {
   console.log("geoLocsuccess");
@@ -31,6 +32,7 @@ async function geoLocDone(kommuneNavn) {
   const hoytiderJson = await hoytiderResponse.json();
   var hoytider = hoytiderJson.data;
   hoytider.shift();
+  HOYTIDER = hoytider;
   console.log(hoytider);
 
   const kommuner = await fetch("kommuner.json");
@@ -40,6 +42,7 @@ async function geoLocDone(kommuneNavn) {
     (kommune) => kommune.kommuneNavn === kommuneNavn
   )[0];
   console.log(kommuneData);
+  KOMMUNE = kommuneData;
 
   var today = new Date(Date.now());
 
@@ -117,3 +120,29 @@ function main() {
   }
 }
 main();
+
+function comingWeek(today) {
+  var weekdays = [
+    "søn: ",
+    "man: ",
+    "tir: ",
+    "ons: ",
+    "tor: ",
+    "fre: ",
+    "lør: ",
+  ];
+  var weekDiv = document.getElementById("comingWeekDiv");
+  weekDiv.style.display = "block";
+  var weekList = document.getElementById("comingWeekList");
+  for (var i = 0; i < 6; i++) {
+    var getForDay = new Date(today.getTime() + i * 86400000);
+    var times = findSalesTimes(KOMMUNE, HOYTIDER, getForDay);
+    var listEl = document.createElement("li");
+    if (times === null) {
+      listEl.innerHTML = weekdays[getForDay.getDay()] + "Stengt";
+    } else {
+      listEl.innerHTML = weekdays[getForDay.getDay()] + times;
+    }
+    weekList.appendChild(listEl);
+  }
+}
