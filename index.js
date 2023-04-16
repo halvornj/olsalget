@@ -22,6 +22,7 @@ function geoLocError() {
 }
 
 async function geoLocDone(kommuneNavn) {
+  //code converges here, so this is where the bulk of the code is
   var year = new Date().getFullYear();
 
   const hoytiderResponse = await fetch(
@@ -44,7 +45,13 @@ async function geoLocDone(kommuneNavn) {
 
   var timesToday = findSalesTimes(kommuneData, hoytider, today);
   console.log(timesToday);
-  salesTimes.innerHTML = timesToday;
+  if (timesToday === null) {
+    salesTimes.innerHTML = "Ølsalget er stengt i dag";
+    //this text is larger than the current other output, so decreases font-size
+    salesTimes.style.fontSize = "2.5em";
+  } else {
+    salesTimes.innerHTML = timesToday;
+  }
 }
 
 //returns opening times for today as string, e.g."09-20". if closed, returns null
