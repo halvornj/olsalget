@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="no">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,20 +10,26 @@
   <body>
     <div id="salesTimesContainer">
       <div id="salesTimes">Loading...</div>
-      <button onclick="alert('Coming soon');">
+<<<<<<< HEAD
+      <div id="comingWeekDiv" style="display: none">
+        <ul id="comingWeekList"></ul>
+      </div>
+      <button onclick="comingWeek(new Date(Date.now()+86400000));">
+=======
+      <button onclick="alert('Coming soon\xAE');">
+>>>>>>> a4785498213b3f51b5c0f355ab927da1cbef38e3
         <a>Hva med de neste 7 dagene?</a>
       </button>
-      <button onclick="alert('Coming soon');">
+      <button onclick="alert('Dra dit');">
         <a>Se tidpunkt hos nabokommuner</a>
       </button>
-      <button onclick="alert('Coming soon');">
+      <button onclick="alert('Coming soon\xAE');">
         <a>Når stenger Vinmonopolet?</a>
       </button>
-      <button onclick="alert('Coming soon');">
+      <button onclick="alert('Se ut vinduet');">
         <a>Er det vær for utepils?</a>
       </button>
     </div>
-
-    <script type="module" src="index.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
