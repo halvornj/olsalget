@@ -33,9 +33,12 @@ body {
 }
 
 button {
-  margin: 5px;
+  margin: .5em;
   display: block;
+  background-color: #E9E9ED;
+  box-shadow: #b5b5b5 3px 3px;
   border-radius: 5px;
+  border: none;
   font-weight: bold;
   transition: .2s;
 }
@@ -43,6 +46,10 @@ button {
 button:hover {
   background-color: #dedede;
   cursor: pointer;
+}
+
+button:active {
+  box-shadow: #b5b5b5 0px 0px;
 }
 
 a {
