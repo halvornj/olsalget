@@ -132,8 +132,10 @@ function comingWeek(today) {
     "lør: ",
   ];
   var weekDiv = document.getElementById("comingWeekDiv");
+  
   weekDiv.style.display = "block";
   var weekList = document.getElementById("comingWeekList");
+  weekList.innerHTML = "";
   for (var i = 0; i < 6; i++) {
     var getForDay = new Date(today.getTime() + i * 86400000);
     var times = findSalesTimes(KOMMUNE, HOYTIDER, getForDay);
