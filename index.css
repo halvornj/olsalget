@@ -49,6 +49,7 @@ button:hover {
 }
 
 button:active {
+  transform: translate(3px, 3px);
   box-shadow: #b5b5b5 0px 0px;
 }
 
@@ -59,4 +60,18 @@ a {
   padding: 10px 15px;
   width: 230px;
   margin: none;
+}
+
+ul {
+  list-style: none;
+  background-color: #E9E9ED;
+  padding: 1vh 1vw;
+  border-radius: .5em;
+  /* Decide between border and shadow. */
+  /* border: .2em solid #afafaf; */
+  box-shadow: #afafaf 3px 3px;
+}
+
+li {
+  text-decoration-line: underline;
 }
