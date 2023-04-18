@@ -54,7 +54,7 @@ async function geoLocDone(kommuneNavn) {
     salesTimes.style.fontSize = "2.5em";
   } else {
     document.getElementById("salesTimesFlavourText").innerHTML =
-      "I dag er ølsalget åpent fra ";
+      `I ${kommuneData.kommuneNavn} er ølsalget åpent fra `;
     salesTimes.innerHTML = timesToday;
   }
 }
