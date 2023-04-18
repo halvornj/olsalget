@@ -1,5 +1,20 @@
 [
   {
+    "kommuneNavn": "Malvik",
+    "Electionday": "none",
+    "Forstejuledag": "08-16",
+    "Forstenyttarsdag": "standard",
+    "Forstepinsedag": "08-16",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "standard",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-16",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "09-18"
+  },
+  {
     "kommuneNavn": "Oslo",
     "Electionday": "09-20",
     "Forstejuledag": "09-18",
@@ -15,6 +30,21 @@
     "Palmesondag": "standard"
   },
   {
+    "kommuneNavn": "Sandnes",
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "standard",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "standard",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "09-18"
+  },
+  {
     "kommuneNavn": "Trondheim",
     "Electionday": "none",
     "Forstejuledag": "09-15",
@@ -27,21 +57,6 @@
     "Forstepaskedag": "09-15",
     "default": "09-20",
     "sat": "09-18",
-    "Palmesondag": "09-18"
-  },
-  {
-    "kommuneNavn": "Sandnes",
-    "Electionday": "none",
-    "Forstejuledag": "08-18",
-    "Forstenyttarsdag": "08-18",
-    "Forstepinsedag": "08-18",
-    "Grunnlovsdag": "standard",
-    "Kristihimmelfartsdag": "standard",
-    "Offentlighoytidsdag": "standard",
-    "Skjertorsdag": "08-18",
-    "Forstepaskedag": "08-18",
-    "default": "08-20",
-    "sat": "08-18",
     "Palmesondag": "09-18"
   }
 ]
