@@ -9,9 +9,10 @@
   </head>
   <body>
     <div id="salesTimesContainer">
+      <div id="salesTimesFlavourText"></div>
       <div id="salesTimes">Loading...</div>
       <div id="comingWeekDiv" style="display: none">
-        <ul id="comingWeekList"></ul>
+        <table id="comingWeekTable"></table>
       </div>
       <button onclick="comingWeek(new Date(Date.now()+86400000));">
         <a>Hva med kommende uke?</a>

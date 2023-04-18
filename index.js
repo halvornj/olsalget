@@ -53,6 +53,8 @@ async function geoLocDone(kommuneNavn) {
     //this text is larger than the current other output, so decreases font-size
     salesTimes.style.fontSize = "2.5em";
   } else {
+    document.getElementById("salesTimesFlavourText").innerHTML =
+      "I dag er ølsalget åpent fra ";
     salesTimes.innerHTML = timesToday;
   }
 }
@@ -122,6 +124,12 @@ function main() {
 main();
 
 function comingWeek(today) {
+  var weekDiv = document.getElementById("comingWeekDiv");
+  //if already visible, hide it on button press
+  if (weekDiv.style.display !== "none") {
+    weekDiv.style.display = "none";
+    return;
+  }
   var weekdays = [
     "søn: ",
     "man: ",
@@ -131,20 +139,24 @@ function comingWeek(today) {
     "fre: ",
     "lør: ",
   ];
-  var weekDiv = document.getElementById("comingWeekDiv");
-  
+
   weekDiv.style.display = "block";
-  var weekList = document.getElementById("comingWeekList");
-  weekList.innerHTML = "";
+  var weekTable = document.getElementById("comingWeekTable");
+  weekTable.innerHTML = "";
   for (var i = 0; i < 6; i++) {
     var getForDay = new Date(today.getTime() + i * 86400000);
     var times = findSalesTimes(KOMMUNE, HOYTIDER, getForDay);
-    var listEl = document.createElement("li");
+    var tableRow = document.createElement("tr");
+    let tableDataDay = document.createElement("td");
+    let tableDataTimes = document.createElement("td");
+    tableDataDay.innerHTML = weekdays[getForDay.getDay()];
     if (times === null) {
-      listEl.innerHTML = weekdays[getForDay.getDay()] + "Stengt";
+      tableDataTimes.innerHTML = "stengt";
     } else {
-      listEl.innerHTML = weekdays[getForDay.getDay()] + times;
+      tableDataTimes.innerHTML = times;
     }
-    weekList.appendChild(listEl);
+    tableRow.appendChild(tableDataDay);
+    tableRow.appendChild(tableDataTimes);
+    weekTable.appendChild(tableRow);
   }
 }
