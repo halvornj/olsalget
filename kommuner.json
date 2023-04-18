@@ -1,5 +1,20 @@
 [
   {
+    "kommuneNavn": "Bergen",
+    "Electionday": "none",
+    "Forstejuledag": "08-15",
+    "Forstenyttarsdag": "08-15",
+    "Forstepinsedag": "08-15",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "standard",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "standard",
+    "Forstepaskedag": "08-15",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "09-18"
+  },
+  {
     "kommuneNavn": "Malvik",
     "Electionday": "none",
     "Forstejuledag": "08-16",
