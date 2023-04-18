@@ -58,6 +58,7 @@ button:hover {
 }
 
 button:active {
+  transform: translate(3px, 3px);
   box-shadow: #b5b5b5 0px 0px;
 }
 
