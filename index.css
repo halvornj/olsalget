@@ -84,3 +84,8 @@ a {
 #comingWeekTable tr {
   border-bottom: 1px solid black;
 }
+
+.naboKommuneButton {
+  padding: 10px 15px;
+  width: 230px;
+}

@@ -2,6 +2,22 @@ var KOMMUNE;
 var HOYTIDER;
 var KOMMUNENUMMER;
 
+const alkoholLoven = {
+  kommuneNavn: "alkoholLoven",
+  Electionday: "none",
+  Forstejuledag: "08-15",
+  Forstenyttarsdag: "standard",
+  Forstepinsedag: "08-15",
+  Grunnlovsdag: "standard",
+  Kristihimmelfartsdag: "standard",
+  Offentlighoytidsdag: "standard",
+  Skjertorsdag: "08-15",
+  Forstepaskedag: "08-15",
+  default: "08-18",
+  sat: "08-15",
+  Palmesondag: "08-15",
+};
+
 async function geoLocSuccess(position) {
   console.log("geoLocsuccess");
   var geoPos = position.coords;
@@ -58,8 +74,9 @@ async function geoLocDone(kommuneNavn) {
     //this text is larger than the current other output, so decreases font-size
     salesTimes.style.fontSize = "2.5em";
   } else {
-    document.getElementById("salesTimesFlavourText").innerHTML =
-      `I ${kommuneData.kommuneNavn} er ølsalget åpent fra `;
+    document.getElementById(
+      "salesTimesFlavourText"
+    ).innerHTML = `I ${kommuneData.kommuneNavn} er ølsalget åpent fra `;
     salesTimes.innerHTML = timesToday;
   }
 }
@@ -72,6 +89,10 @@ function findSalesTimes(kommune, hoytider, today) {
   var todayStr = today.toISOString().slice(0, 10);
   var tomorrowStr = tomorrow.toISOString().slice(0, 10);
 
+  if (!kommune.utvidet) {
+    kommune = alkoholLoven;
+  }
+
   var hoytidISOStrings = [];
   for (var i = 0; i < hoytider.length; i++) {
     hoytidISOStrings.push(hoytider[i].date.slice(0, 10));
@@ -79,8 +100,17 @@ function findSalesTimes(kommune, hoytider, today) {
 
   //logikk
   //føler myndighetene har litt vage presedens-regler angående dette, men tror dette stemmer
-  if (today.getDay() === 0 || hoytidISOStrings.includes(todayStr)) {
-    //today is sunday or a holiday
+  if (today.getDay() === 0) {
+    //today is sunday
+    return null;
+  }
+  if (hoytidISOStrings.includes(todayStr)) {
+    if (todayStr.slice(5, 10) === "01-01") {
+      if (today.getDay() == 6) {
+        return kommune.sat;
+      }
+      return kommune.default;
+    }
     return null;
   }
   for (i = 0; i < hoytider.length; i++) {
