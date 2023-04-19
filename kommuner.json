@@ -16,6 +16,10 @@
     "Palmesondag": "standard"
   },
   {
+    "kommuneNavn": "Frosta",
+    "utvidet": false
+  },
+  {
     "kommuneNavn": "Indre Fosen",
     "utvidet": true,
     "Electionday": "none",
@@ -29,7 +33,7 @@
     "Forstepaskedag": "08-15",
     "default": "08-20",
     "sat": "08-18",
-    "Palmesondag": "standard"
+    "Palmesondag": "08-18"
   },
   {
     "kommuneNavn": "Malvik",
@@ -45,11 +49,44 @@
     "Forstepaskedag": "08-16",
     "default": "08-20",
     "sat": "08-18",
-    "Palmesondag": "standard"
+    "Palmesondag": "08-18"
   },
   {
     "kommuneNavn": "Melhus",
     "utvidet": false
+  },
+  {
+    "kommuneNavn": "Nordre Follo",
+    "utvidet": true,
+    "Electionday": "08-20",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+
+  {
+    "kommuneNavn": "Orkland",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "09-15",
+    "Forstenyttarsdag": "08:30-18:00",
+    "Forstepinsedag": "09-15",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "standard",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08:30-18:00",
+    "Forstepaskedag": "09-15",
+    "default": "08:30-20:00",
+    "sat": "08:30-18:00",
+    "Palmesondag": "08:30-18:00"
   },
   {
     "kommuneNavn": "Oslo",
@@ -65,7 +102,11 @@
     "Forstepaskedag": "09-18",
     "default": "09-20",
     "sat": "09-18",
-    "Palmesondag": "standard"
+    "Palmesondag": "09-18"
+  },
+  {
+    "kommuneNavn": "Ringerike",
+    "utvidet": false
   },
   {
     "kommuneNavn": "Sandnes",
@@ -81,11 +122,27 @@
     "Forstepaskedag": "08-18",
     "default": "08-20",
     "sat": "08-18",
-    "Palmesondag": "standard"
+    "Palmesondag": "08-18"
   },
   {
     "kommuneNavn": "Selbu",
     "utvidet": false
+  },
+  {
+    "kommuneNavn": "Skaun",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "09-18",
+    "Forstenyttarsdag": "09-18",
+    "Forstepinsedag": "09-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "standard",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "09-18",
+    "Forstepaskedag": "09-18",
+    "default": "09-20",
+    "sat": "09-18",
+    "Palmesondag": "09-18"
   },
   {
     "kommuneNavn": "Snåase",
@@ -101,7 +158,7 @@
     "Forstepaskedag": "08-16",
     "default": "08-20",
     "sat": "08-18",
-    "Palmesondag": "standard"
+    "Palmesondag": "08-18"
   },
   {
     "kommuneNavn": "Trondheim",
@@ -118,9 +175,5 @@
     "default": "09-20",
     "sat": "09-18",
     "Palmesondag": "09-18"
-  },
-  {
-    "kommuneNavn": "Ringerike",
-    "utvidet": false
   }
 ]
