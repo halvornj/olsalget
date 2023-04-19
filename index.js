@@ -1,5 +1,22 @@
 var KOMMUNE;
 var HOYTIDER;
+var KOMMUNENUMMER;
+
+const alkoholLoven = {
+  kommuneNavn: "alkoholLoven",
+  Electionday: "none",
+  Forstejuledag: "08-15",
+  Forstenyttarsdag: "standard",
+  Forstepinsedag: "08-15",
+  Grunnlovsdag: "standard",
+  Kristihimmelfartsdag: "standard",
+  Offentlighoytidsdag: "standard",
+  Skjertorsdag: "08-15",
+  Forstepaskedag: "08-15",
+  default: "08-18",
+  sat: "08-15",
+  Palmesondag: "08-15",
+};
 
 async function geoLocSuccess(position) {
   console.log("geoLocsuccess");
@@ -14,6 +31,10 @@ async function geoLocSuccess(position) {
       lon
   );
   const jsonData = await response.json();
+
+  //* SAVE jsonData.kommunenummer for later use
+  KOMMUNENUMMER = jsonData.kommunenummer;
+
   geoLocDone(jsonData.kommunenavn);
 }
 function geoLocError() {
@@ -53,18 +74,24 @@ async function geoLocDone(kommuneNavn) {
     //this text is larger than the current other output, so decreases font-size
     salesTimes.style.fontSize = "2.5em";
   } else {
-    document.getElementById("salesTimesFlavourText").innerHTML =
-      "I dag er ølsalget åpent fra ";
+    document.getElementById(
+      "salesTimesFlavourText"
+    ).innerHTML = `I ${kommuneData.kommuneNavn} er ølsalget åpent fra `;
     salesTimes.innerHTML = timesToday;
   }
 }
 
 //returns opening times for today as string, e.g."09-20". if closed, returns null
+//@param kommune: object containing hoytidsdata for kommune
 function findSalesTimes(kommune, hoytider, today) {
   //today is a Date object reffering to the day we want to find opening hours for
   var tomorrow = new Date(today.getTime() + 86400000);
   var todayStr = today.toISOString().slice(0, 10);
   var tomorrowStr = tomorrow.toISOString().slice(0, 10);
+
+  if (!kommune.utvidet) {
+    kommune = alkoholLoven;
+  }
 
   var hoytidISOStrings = [];
   for (var i = 0; i < hoytider.length; i++) {
@@ -73,11 +100,17 @@ function findSalesTimes(kommune, hoytider, today) {
 
   //logikk
   //føler myndighetene har litt vage presedens-regler angående dette, men tror dette stemmer
-  console.log(todayStr);
-  console.log(hoytidISOStrings);
-  console.log(today);
-  if (today.getDay() === 0 || hoytidISOStrings.includes(todayStr)) {
-    //today is sunday or a holiday
+  if (today.getDay() === 0) {
+    //today is sunday
+    return null;
+  }
+  if (hoytidISOStrings.includes(todayStr)) {
+    if (todayStr.slice(5, 10) === "01-01") {
+      if (today.getDay() == 6) {
+        return kommune.sat;
+      }
+      return kommune.default;
+    }
     return null;
   }
   for (i = 0; i < hoytider.length; i++) {
@@ -123,7 +156,7 @@ function main() {
 }
 main();
 
-function comingWeek(today) {
+function comingWeek(today, kommune) {
   var weekDiv = document.getElementById("comingWeekDiv");
   //if already visible, hide it on button press
   if (weekDiv.style.display !== "none") {
@@ -145,7 +178,12 @@ function comingWeek(today) {
   weekTable.innerHTML = "";
   for (var i = 0; i < 6; i++) {
     var getForDay = new Date(today.getTime() + i * 86400000);
-    var times = findSalesTimes(KOMMUNE, HOYTIDER, getForDay);
+    var times;
+    if (kommune != null) {
+      times = findSalesTimes(kommune, HOYTIDER, getForDay);
+    } else {
+      times = findSalesTimes(KOMMUNE, HOYTIDER, getForDay);
+    }
     var tableRow = document.createElement("tr");
     let tableDataDay = document.createElement("td");
     let tableDataTimes = document.createElement("td");
@@ -159,4 +197,36 @@ function comingWeek(today) {
     tableRow.appendChild(tableDataTimes);
     weekTable.appendChild(tableRow);
   }
+}
+
+async function showNeighbouringMunicipalities() {
+  const response = await fetch(
+    "https://ws.geonorge.no/kommuneinfo/v1/kommuner/" +
+      KOMMUNENUMMER +
+      "/nabokommuner"
+  );
+  const naboKommunerJson = await response.json();
+  console.log(naboKommunerJson);
+  let buttonDiv = document.getElementById("naboKommunerButtonDiv");
+  buttonDiv.innerHTML = "";
+  buttonDiv.style.display = "block";
+  for (i = 0; i < naboKommunerJson.length; i++) {
+    let naboKommuneNavn = naboKommunerJson[i].kommunenavn;
+    let newButton = document.createElement("button");
+    newButton.innerHTML = naboKommuneNavn;
+    newButton.className = "naboKommuneButton";
+    newButton.onclick = () => {
+      getForNeighbour(naboKommuneNavn);
+    };
+    buttonDiv.appendChild(newButton);
+  }
+}
+async function getForNeighbour(kommuneNavn) {
+  const kommuner = await fetch("kommuner.json");
+  var allKommuneData = await kommuner.json();
+  var kommuneData = allKommuneData.filter(
+    (kommune) => kommune.kommuneNavn === kommuneNavn
+  )[0];
+
+  comingWeek(new Date(Date.now() + 86400000), kommuneData);
 }

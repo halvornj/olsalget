@@ -75,12 +75,17 @@ a {
 }
 
 #comingWeekTable td:nth-child(odd) {
-  align-items: right;
   text-align: right;
 }
 #comingWeekTable td {
   padding: 3px;
+  margin: 3px;
 }
 #comingWeekTable tr {
   border-bottom: 1px solid black;
+}
+
+.naboKommuneButton {
+  padding: 10px 15px;
+  width: 230px;
 }

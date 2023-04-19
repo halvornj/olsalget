@@ -1,6 +1,59 @@
 [
   {
+    "kommuneNavn": "Bergen",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-15",
+    "Forstenyttarsdag": "08-15",
+    "Forstepinsedag": "08-15",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "standard",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "standard",
+    "Forstepaskedag": "08-15",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "standard"
+  },
+  {
+    "kommuneNavn": "Indre Fosen",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-15",
+    "Forstenyttarsdag": "08-15",
+    "Forstepinsedag": "08-15",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "standard",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-15",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "standard"
+  },
+  {
+    "kommuneNavn": "Malvik",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-16",
+    "Forstenyttarsdag": "standard",
+    "Forstepinsedag": "08-16",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "standard",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-16",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "standard"
+  },
+  {
+    "kommuneNavn": "Melhus",
+    "utvidet": false
+  },
+  {
     "kommuneNavn": "Oslo",
+    "utvidet": true,
     "Electionday": "09-20",
     "Forstejuledag": "09-18",
     "Forstenyttarsdag": "09-18",
@@ -15,7 +68,44 @@
     "Palmesondag": "standard"
   },
   {
+    "kommuneNavn": "Sandnes",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "standard",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "standard"
+  },
+  {
+    "kommuneNavn": "Selbu",
+    "utvidet": false
+  },
+  {
+    "kommuneNavn": "Snåase",
+    "utvidet": true,
+    "Electionday": "08-20",
+    "Forstejuledag": "08-16",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-16",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "standard",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-16",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "standard"
+  },
+  {
     "kommuneNavn": "Trondheim",
+    "utvidet": true,
     "Electionday": "none",
     "Forstejuledag": "09-15",
     "Forstenyttarsdag": "09-18",
@@ -28,5 +118,9 @@
     "default": "09-20",
     "sat": "09-18",
     "Palmesondag": "09-18"
+  },
+  {
+    "kommuneNavn": "Ringerike",
+    "utvidet": false
   }
 ]
