@@ -73,5 +73,9 @@
     "default": "09-20",
     "sat": "09-18",
     "Palmesondag": "09-18"
+  },
+  {
+    "kommuneNavn": "Ringerike",
+    "utvidet": false
   }
 ]
