@@ -79,9 +79,6 @@ function findSalesTimes(kommune, hoytider, today) {
 
   //logikk
   //føler myndighetene har litt vage presedens-regler angående dette, men tror dette stemmer
-  console.log(todayStr);
-  console.log(hoytidISOStrings);
-  console.log(today);
   if (today.getDay() === 0 || hoytidISOStrings.includes(todayStr)) {
     //today is sunday or a holiday
     return null;
