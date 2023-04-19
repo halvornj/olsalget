@@ -205,7 +205,7 @@ async function showNeighbouringMunicipalities() {
   const response = await fetch(
     "https://ws.geonorge.no/kommuneinfo/v1/kommuner/" +
       KOMMUNENUMMER +
-      "/nabokommuner"
+      "/nabokommuner?sorter=kommunenavn"
   );
   const naboKommunerJson = await response.json();
   console.log(naboKommunerJson);
