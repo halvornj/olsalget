@@ -46,14 +46,16 @@ function geoLocError() {
 async function geoLocDone(kommuneNavn) {
   //code converges here, so this is where the bulk of the code is
   var year = new Date().getFullYear();
-
-  const hoytiderResponse = await fetch(
-    "https://webapi.no/api/v1/holidays/" + year
-  );
-  const hoytiderJson = await hoytiderResponse.json();
-  var hoytider = hoytiderJson.data;
-  hoytider.shift();
-  HOYTIDER = hoytider;
+  if (HOYTIDER === undefined) {
+    const hoytiderResponse = await fetch(
+      "https://webapi.no/api/v1/holidays/" + year
+    );
+    const hoytiderJson = await hoytiderResponse.json();
+    var hoytider = hoytiderJson.data;
+    hoytider.shift();
+    HOYTIDER = hoytider;
+  }
+  var hoytider = HOYTIDER;
   console.log(hoytider);
 
   const kommuner = await fetch("kommuner.json");
@@ -216,17 +218,13 @@ async function showNeighbouringMunicipalities() {
     newButton.innerHTML = naboKommuneNavn;
     newButton.className = "naboKommuneButton";
     newButton.onclick = () => {
+      document.getElementById("comingWeekDiv").style.display = "none";
+      document.getElementById("naboKommunerButtonDiv").style.display = "none";
       getForNeighbour(naboKommuneNavn);
     };
     buttonDiv.appendChild(newButton);
   }
 }
 async function getForNeighbour(kommuneNavn) {
-  const kommuner = await fetch("kommuner.json");
-  var allKommuneData = await kommuner.json();
-  var kommuneData = allKommuneData.filter(
-    (kommune) => kommune.kommuneNavn === kommuneNavn
-  )[0];
-
-  comingWeek(new Date(Date.now() + 86400000), kommuneData);
+  geoLocDone(kommuneNavn);
 }
