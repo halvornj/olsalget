@@ -32,9 +32,23 @@
         <a>Hva med kommende uke?</a>
       </button>
       <button onclick="showNeighbouringMunicipalities();">
-        <a>Se tidpunkt hos nabokommuner</a>
+        <a>Se tidpunkt hos andre kommuner</a>
       </button>
-      <div id="naboKommunerButtonDiv" style="display: none"></div>
+      <div id="velgKommuneDiv" style="display: none">
+        <form
+          id="kommunenavnListeForm"
+          onsubmit="kommunenavnListeFormSubmitted(event, kommunenavnInput.value)"
+        >
+          <input
+            id="kommunenavnInput"
+            name="kommunenavnInput"
+            placeholder="skriv kommunenavn..."
+            list="kommunenavnListe"
+          />
+          <datalist id="kommunenavnListe"> </datalist>
+        </form>
+        <div id="naboKommunerButtonDiv"></div>
+      </div>
       <button onclick="alert('Coming soon\xAE');">
         <a>Når stenger Vinmonopolet?</a>
       </button>

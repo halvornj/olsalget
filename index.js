@@ -1,6 +1,7 @@
 var KOMMUNE;
 var HOYTIDER;
 var KOMMUNENUMMER;
+var KOMMUNER;
 
 const alkoholLoven = {
   kommuneNavn: "alkoholLoven",
@@ -58,8 +59,12 @@ async function geoLocDone(kommuneNavn) {
   var hoytider = HOYTIDER;
   console.log(hoytider);
 
-  const kommuner = await fetch("kommuner.json");
-  var kommuneData = await kommuner.json();
+  if (KOMMUNER === undefined) {
+    const kommuner = await fetch("kommuner.json");
+    var kommuneData = await kommuner.json();
+    KOMMUNER = kommuneData;
+  }
+  var kommuneData = KOMMUNER;
 
   var kommuneData = kommuneData.filter(
     (kommune) => kommune.kommuneNavn === kommuneNavn
@@ -71,7 +76,7 @@ async function geoLocDone(kommuneNavn) {
 
   var timesToday = findSalesTimes(kommuneData, hoytider, today);
   console.log(timesToday);
-  if (timesToday === null) {
+  if (timesToday === undefined || timesToday === null) {
     salesTimes.innerHTML = "Ølsalget er stengt i dag";
     //this text is larger than the current other output, so decreases font-size
     salesTimes.style.fontSize = "2.5em";
@@ -190,7 +195,7 @@ function comingWeek(today, kommune) {
     let tableDataDay = document.createElement("td");
     let tableDataTimes = document.createElement("td");
     tableDataDay.innerHTML = weekdays[getForDay.getDay()];
-    if (times === null) {
+    if (times === undefined || times === null) {
       tableDataTimes.innerHTML = "stengt";
     } else {
       tableDataTimes.innerHTML = times;
@@ -202,6 +207,20 @@ function comingWeek(today, kommune) {
 }
 
 async function showNeighbouringMunicipalities() {
+  let velgKommuneDiv = document.getElementById("velgKommuneDiv");
+  if (velgKommuneDiv.style.display !== "none") {
+    velgKommuneDiv.style.display = "none";
+    return;
+  }
+  velgKommuneDiv.style.display = "block";
+  var kommunenavnListe = document.getElementById("kommunenavnListe");
+  kommunenavnListe.innerHTML = "";
+  for (let i = 0; i < KOMMUNER.length; i++) {
+    let optionEl = document.createElement("option");
+    optionEl.value = KOMMUNER[i].kommuneNavn;
+    kommunenavnListe.appendChild(optionEl);
+  }
+
   const response = await fetch(
     "https://ws.geonorge.no/kommuneinfo/v1/kommuner/" +
       KOMMUNENUMMER +
@@ -211,7 +230,6 @@ async function showNeighbouringMunicipalities() {
   console.log(naboKommunerJson);
   let buttonDiv = document.getElementById("naboKommunerButtonDiv");
   buttonDiv.innerHTML = "";
-  buttonDiv.style.display = "block";
   for (i = 0; i < naboKommunerJson.length; i++) {
     let naboKommuneNavn = naboKommunerJson[i].kommunenavn;
     let newButton = document.createElement("button");
@@ -219,12 +237,20 @@ async function showNeighbouringMunicipalities() {
     newButton.className = "naboKommuneButton";
     newButton.onclick = () => {
       document.getElementById("comingWeekDiv").style.display = "none";
-      document.getElementById("naboKommunerButtonDiv").style.display = "none";
+      document.getElementById("velgKommuneDiv").style.display = "none";
       getForNeighbour(naboKommuneNavn);
     };
     buttonDiv.appendChild(newButton);
   }
 }
 async function getForNeighbour(kommuneNavn) {
+  geoLocDone(kommuneNavn);
+}
+
+function kommunenavnListeFormSubmitted(event, kommuneNavn) {
+  event.preventDefault();
+  kommuneNavn = kommuneNavn[0].toUpperCase() + kommuneNavn.slice(1);
+  document.getElementById("comingWeekDiv").style.display = "none";
+  document.getElementById("velgKommuneDiv").style.display = "none";
   geoLocDone(kommuneNavn);
 }
