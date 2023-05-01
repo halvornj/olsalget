@@ -7,7 +7,7 @@ const alkoholLoven = {
   kommuneNavn: "alkoholLoven",
   Electionday: "none",
   Forstejuledag: "08-15",
-  Forstenyttarsdag: "standard",
+  Forstenyttarsdag: "08-15",
   Forstepinsedag: "08-15",
   Grunnlovsdag: "standard",
   Kristihimmelfartsdag: "standard",
@@ -20,9 +20,7 @@ const alkoholLoven = {
 };
 
 async function geoLocSuccess(position) {
-  console.log("geoLocsuccess");
   var geoPos = position.coords;
-  console.log(geoPos);
   var lat = geoPos.latitude;
   var lon = geoPos.longitude;
   const response = await fetch(
@@ -39,7 +37,6 @@ async function geoLocSuccess(position) {
   geoLocDone(jsonData.kommunenavn);
 }
 function geoLocError() {
-  console.log("geoLocerror");
   alert("Vi fant ikke din posisjon, så vi antar at du er i Oslo");
   geoLocDone("Oslo");
 }
@@ -57,7 +54,6 @@ async function geoLocDone(kommuneNavn) {
     HOYTIDER = hoytider;
   }
   var hoytider = HOYTIDER;
-  console.log(hoytider);
 
   if (KOMMUNER === undefined) {
     const kommuner = await fetch("kommuner.json");
@@ -69,13 +65,11 @@ async function geoLocDone(kommuneNavn) {
   var kommuneData = kommuneData.filter(
     (kommune) => kommune.kommuneNavn === kommuneNavn
   )[0];
-  console.log(kommuneData);
   KOMMUNE = kommuneData;
 
   var today = new Date(Date.now());
 
   var timesToday = findSalesTimes(kommuneData, hoytider, today);
-  console.log(timesToday);
   if (timesToday === undefined || timesToday === null) {
     salesTimes.innerHTML = "Ølsalget er stengt i dag";
     //this text is larger than the current other output, so decreases font-size
@@ -154,7 +148,6 @@ function main() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(geoLocSuccess, geoLocError);
   } else {
-    console.log("geolocation not supported");
     alert(
       "denne nettleseren støtter ikke geolokasjon, så vi antar at du er i Oslo"
     );
@@ -227,7 +220,6 @@ async function showNeighbouringMunicipalities() {
       "/nabokommuner?sorter=kommunenavn"
   );
   const naboKommunerJson = await response.json();
-  console.log(naboKommunerJson);
   let buttonDiv = document.getElementById("naboKommunerButtonDiv");
   buttonDiv.innerHTML = "";
   for (i = 0; i < naboKommunerJson.length; i++) {
