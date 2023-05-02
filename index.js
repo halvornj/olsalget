@@ -70,7 +70,11 @@ async function geoLocDone(kommuneNavn) {
   var today = new Date(Date.now());
 
   var timesToday = findSalesTimes(kommuneData, hoytider, today);
-  if (timesToday === undefined || timesToday === null) {
+  if (
+    timesToday === undefined ||
+    timesToday === null ||
+    timesToday === "stengt"
+  ) {
     salesTimes.innerHTML = "Ølsalget er stengt i dag";
     //this text is larger than the current other output, so decreases font-size
     salesTimes.style.fontSize = "2.5em";
