@@ -214,7 +214,11 @@ async function showNeighbouringMunicipalities() {
   kommunenavnListe.innerHTML = "";
   for (let i = 0; i < KOMMUNER.length; i++) {
     let optionEl = document.createElement("option");
-    optionEl.value = KOMMUNER[i].kommuneNavn;
+    if (KOMMUNER[i].altNavn === undefined) {
+      optionEl.value = KOMMUNER[i].kommuneNavn;
+    } else {
+      optionEl.value = KOMMUNER[i].kommunenavn + "/" + KOMMUNER[i].altNavn;
+    }
     kommunenavnListe.appendChild(optionEl);
   }
 
@@ -245,8 +249,16 @@ async function getForNeighbour(kommuneNavn) {
 
 function kommunenavnListeFormSubmitted(event, kommuneNavn) {
   event.preventDefault();
-  kommuneNavn = kommuneNavn[0].toUpperCase() + kommuneNavn.slice(1);
   document.getElementById("comingWeekDiv").style.display = "none";
   document.getElementById("velgKommuneDiv").style.display = "none";
-  geoLocDone(kommuneNavn);
+  kommuneNavn = kommuneNavn[0].toUpperCase() + kommuneNavn.slice(1);
+  let kommuneNavnArray = kommuneNavn.split("/");
+  for (i = 0; i < KOMMUNER.length; i++) {
+    if (
+      kommuneNavnArray.includes(KOMMUNER[i].kommuneNavn) ||
+      kommuneNavnArray.includes(KOMMUNER[i].altNavn)
+    ) {
+      geoLocDone(KOMMUNER[i].kommuneNavn);
+    }
+  }
 }

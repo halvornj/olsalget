@@ -1,5 +1,21 @@
 [
   {
+    "kommuneNavn": "Alver",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "stengt",
+    "Forstenyttarsdag": "09-16",
+    "Forstepinsedag": "09-16",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "09-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "09-18",
+    "Forstepaskedag": "09-16",
+    "default": "09-20",
+    "sat": "09-18",
+    "Palmesondag": "09-18"
+  },
+  {
     "kommuneNavn": "Arendal",
     "utvidet": true,
     "Electionday": "none",
@@ -80,6 +96,22 @@
     "Palmesondag": "08-18"
   },
   {
+    "kommuneNavn": "Bjørnafjorden",
+    "utvidet": true,
+    "Electionday": "vanlig i Fusa-delen av kommunen, stengt i Os-delen",
+    "Forstejuledag": "08-15 i Fusa /-18 i Os",
+    "Forstenyttarsdag": "08-15 i Fusa /-18 i Os",
+    "Forstepinsedag": "08-15 i Fusa /-18 i Os",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-15 i Fusa /-18 i Os",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
     "kommuneNavn": "Bærum",
     "utvidet": true,
     "Electionday": "standard",
@@ -127,7 +159,22 @@
     "sat": "08-18",
     "Palmesondag": "08-18"
   },
-
+  {
+    "kommuneNavn": "Eidsvoll",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
   {
     "kommuneNavn": "Eigersund",
     "utvidet": false
@@ -152,6 +199,23 @@
     "kommuneNavn": "Frosta",
     "utvidet": false
   },
+  {
+    "kommuneNavn": "Færder",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+
   {
     "kommuneNavn": "Gjøvik",
     "utvidet": true,
@@ -201,9 +265,57 @@
     "Palmesondag": "08-18"
   },
   {
+    "kommuneNavn": "Harstad",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-16",
+    "Forstenyttarsdag": "08-16",
+    "Forstepinsedag": "08-16",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-16",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
     "kommuneNavn": "Haugesund",
     "utvidet": true,
     "Electionday": "08-20",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
+    "kommuneNavn": "Horten",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
+    "kommuneNavn": "Holmestrand",
+    "utvidet": true,
+    "Electionday": "none",
     "Forstejuledag": "08-18",
     "Forstenyttarsdag": "08-18",
     "Forstepinsedag": "08-18",
@@ -285,6 +397,22 @@
     "utvidet": false
   },
   {
+    "kommuneNavn": "Kongsberg",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
     "kommuneNavn": "Kristiansand",
     "utvidet": true,
     "Electionday": "none",
@@ -312,6 +440,38 @@
     "Offentlighoytidsdag": "standard",
     "Skjertorsdag": "08-18",
     "Forstepaskedag": "08-16",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
+    "kommuneNavn": "Lier",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-18",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
+    "kommuneNavn": "Lillehammer",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
     "default": "08-20",
     "sat": "08-18",
     "Palmesondag": "08-18"
@@ -393,6 +553,22 @@
     "utvidet": false
   },
   {
+    "kommuneNavn": "Nittedal",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "08-18",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
     "kommuneNavn": "Nordre Follo",
     "utvidet": true,
     "Electionday": "08-20",
@@ -452,6 +628,22 @@
     "Offentlighoytidsdag": "standard",
     "Skjertorsdag": "08-18",
     "Forstepaskedag": "08-16",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
+    "kommuneNavn": "Rana",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-18",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
     "default": "08-20",
     "sat": "08-18",
     "Palmesondag": "08-18"
