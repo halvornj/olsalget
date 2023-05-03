@@ -128,22 +128,6 @@
     "Palmesondag": "08-18"
   },
   {
-    "kommuneNavn": "Bjørnafjorden",
-    "utvidet": true,
-    "Electionday": "vanlig i Fusa-delen av kommunen, stengt i Os-delen",
-    "Forstejuledag": "08-15 i Fusa /-18 i Os",
-    "Forstenyttarsdag": "08-15 i Fusa /-18 i Os",
-    "Forstepinsedag": "08-15 i Fusa /-18 i Os",
-    "Grunnlovsdag": "standard",
-    "Kristihimmelfartsdag": "08-20",
-    "Offentlighoytidsdag": "standard",
-    "Skjertorsdag": "08-18",
-    "Forstepaskedag": "08-15 i Fusa /-18 i Os",
-    "default": "08-20",
-    "sat": "08-18",
-    "Palmesondag": "08-18"
-  },
-  {
     "kommuneNavn": "Bodø",
     "utvidet": true,
     "Electionday": "none",
