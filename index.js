@@ -217,7 +217,7 @@ async function showNeighbouringMunicipalities() {
     if (KOMMUNER[i].altNavn === undefined) {
       optionEl.value = KOMMUNER[i].kommuneNavn;
     } else {
-      optionEl.value = KOMMUNER[i].kommunenavn + "/" + KOMMUNER[i].altNavn;
+      optionEl.value = KOMMUNER[i].kommuneNavn + "/" + KOMMUNER[i].altNavn;
     }
     kommunenavnListe.appendChild(optionEl);
   }
