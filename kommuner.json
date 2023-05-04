@@ -1,5 +1,38 @@
 [
   {
+    "kommuneNavn": "Aarborte",
+    "altNavn": "Hattfjelldal",
+    "utvidet": true,
+    "Electionday": "standard",
+    "Forstejuledag": "09-18",
+    "Forstenyttarsdag": "09-18",
+    "Forstepinsedag": "09-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "09-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "09-18",
+    "Forstepaskedag": "09-18",
+    "default": "09-20",
+    "sat": "09-18",
+    "Palmesondag": "09-18"
+  },
+  {
+    "kommuneNavn": "Alstahaug",
+    "utvidet": true,
+    "Electionday": "standard",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
     "kommuneNavn": "Alver",
     "utvidet": true,
     "Electionday": "none",
@@ -97,6 +130,7 @@
   },
   {
     "kommuneNavn": "Berlevåg",
+    "altNavn": "Bearalváhki",
     "utvidet": true,
     "Electionday": "none",
     "Forstejuledag": "08-18",
@@ -164,6 +198,22 @@
     "utvidet": false
   },
   {
+    "kommuneNavn": "Bygland",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-18",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
     "kommuneNavn": "Bykle",
     "utvidet": true,
     "Electionday": "none",
@@ -210,6 +260,10 @@
     "default": "08-20",
     "sat": "08-18",
     "Palmesondag": "08-18"
+  },
+  {
+    "kommuneNavn": "Dyrøy",
+    "utvidet": false
   },
   {
     "kommuneNavn": "Eidfjord",
@@ -264,6 +318,38 @@
     "Palmesondag": "08-18"
   },
   {
+    "kommuneNavn": "Etnedal",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "08-18",
+    "Kristihimmelfartsdag": "08-18",
+    "Offentlighoytidsdag": "08-18",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-18",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
+    "kommuneNavn": "Evje og Hornnes",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
     "kommuneNavn": "Fedje",
     "utvidet": true,
     "Electionday": "none",
@@ -278,6 +364,18 @@
     "default": "09-20",
     "sat": "09-18",
     "Palmesondag": "09-18"
+  },
+  {
+    "kommuneNavn": "Flakstad",
+    "utvidet": false
+  },
+  {
+    "kommuneNavn": "Flatanger",
+    "utvidet": false
+  },
+  {
+    "kommuneNavn": "Flå",
+    "utvidet": false
   },
   {
     "kommuneNavn": "Fredrikstad",
@@ -300,6 +398,10 @@
     "utvidet": false
   },
   {
+    "kommuneNavn": "Fyresdal",
+    "utvidet": false
+  },
+  {
     "kommuneNavn": "Færder",
     "utvidet": true,
     "Electionday": "none",
@@ -317,6 +419,7 @@
   },
   {
     "kommuneNavn": "Gamvik",
+    "altNavn": "Gáŋgaviika",
     "utvidet": true,
     "Electionday": "none",
     "Forstejuledag": "09-18",
@@ -330,6 +433,11 @@
     "default": "09-20",
     "sat": "09-18",
     "Palmesondag": "09-18"
+  },
+  {
+    "kommuneNavn": "Gratangen",
+    "altNavn": "Rivttága",
+    "utvidet": false
   },
   {
     "kommuneNavn": "Gjøvik",
@@ -413,6 +521,7 @@
   },
   {
     "kommuneNavn": "Hasvik",
+    "altNavn": "Ákŋoluokta",
     "utvidet": true,
     "Electionday": "none",
     "Forstejuledag": "08-18",
@@ -474,6 +583,14 @@
     "default": "08-20",
     "sat": "08-18",
     "Palmesondag": "08-18"
+  },
+  {
+    "kommuneNavn": "Hyllestad",
+    "utvidet": false
+  },
+  {
+    "kommuneNavn": "Høylandet",
+    "utvidet": false
   },
   {
     "kommuneNavn": "Hå",
@@ -596,6 +713,23 @@
     "utvidet": false
   },
   {
+    "kommuneNavn": "Kvænangen",
+    "altNavn": "Návuona/Naavuonon",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
     "kommuneNavn": "Larvik",
     "utvidet": true,
     "Electionday": "none",
@@ -628,6 +762,22 @@
     "Palmesondag": "08-18"
   },
   {
+    "kommuneNavn": "Lebesby",
+    "utvidet": true,
+    "Electionday": "standard",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
     "kommuneNavn": "Lier",
     "utvidet": true,
     "Electionday": "none",
@@ -645,6 +795,22 @@
   },
   {
     "kommuneNavn": "Lillehammer",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
+    "kommuneNavn": "Lillesand",
     "utvidet": true,
     "Electionday": "none",
     "Forstejuledag": "08-18",
@@ -710,6 +876,7 @@
   },
   {
     "kommuneNavn": "Loppa",
+    "altNavn": "Láhppi",
     "utvidet": true,
     "Electionday": "none",
     "Forstejuledag": "10-18",
@@ -803,6 +970,22 @@
   {
     "kommuneNavn": "Moss",
     "utvidet": false
+  },
+  {
+    "kommuneNavn": "Måsøy",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-16",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-16",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-16",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
   },
   {
     "kommuneNavn": "Namsskogan",
@@ -1004,6 +1187,22 @@
     "default": "06-20",
     "sat": "06-18",
     "Palmesondag": "06-18"
+  },
+  {
+    "kommuneNavn": "Rødøy",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
   },
   {
     "kommuneNavn": "Røst",
@@ -1311,12 +1510,48 @@
     "Palmesondag": "08-18"
   },
   {
+    "kommuneNavn": "Ulvik",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-18",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
     "kommuneNavn": "Unjárga",
     "altNavn": "Nesseby",
     "utvidet": false
   },
   {
     "kommuneNavn": "Utsira",
+    "utvidet": false
+  },
+  {
+    "kommuneNavn": "Valle",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
+    "kommuneNavn": "Vega",
     "utvidet": false
   },
   {
