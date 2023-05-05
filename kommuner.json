@@ -49,6 +49,10 @@
     "Palmesondag": "09-18"
   },
   {
+    "kommuneNavn": "Aremark",
+    "utvidet": false
+  },
+  {
     "kommuneNavn": "Arendal",
     "utvidet": true,
     "Electionday": "none",
@@ -131,6 +135,22 @@
   {
     "kommuneNavn": "Berlevåg",
     "altNavn": "Bearalváhki",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "standard",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "standard"
+  },
+  {
+    "kommuneNavn": "Bindal",
     "utvidet": true,
     "Electionday": "none",
     "Forstejuledag": "08-18",
@@ -266,6 +286,22 @@
     "utvidet": false
   },
   {
+    "kommuneNavn": "Dønna",
+    "utvidet": true,
+    "Electionday": "08-20",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
     "kommuneNavn": "Eidfjord",
     "utvidet": true,
     "Electionday": "none",
@@ -318,6 +354,22 @@
     "Palmesondag": "08-18"
   },
   {
+    "kommuneNavn": "Engerdal",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
     "kommuneNavn": "Etnedal",
     "utvidet": true,
     "Electionday": "none",
@@ -330,6 +382,23 @@
     "Skjertorsdag": "08-18",
     "Forstepaskedag": "08-18",
     "default": "08-18",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
+    "kommuneNavn": "Evenes",
+    "altNavn": "Evenášši",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "08-18",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "08-18",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
     "sat": "08-18",
     "Palmesondag": "08-18"
   },
@@ -609,6 +678,10 @@
     "Palmesondag": "08-18"
   },
   {
+    "kommuneNavn": "Ibestad",
+    "utvidet": false
+  },
+  {
     "kommuneNavn": "Indre Fosen",
     "utvidet": true,
     "Electionday": "none",
@@ -639,6 +712,10 @@
     "default": "08-20",
     "sat": "08-18",
     "Palmesondag": "08-18"
+  },
+  {
+    "kommuneNavn": "Iveland",
+    "utvidet": false
   },
   {
     "kommuneNavn": "Karmøy",
@@ -792,6 +869,10 @@
     "default": "08-20",
     "sat": "08-18",
     "Palmesondag": "08-18"
+  },
+  {
+    "kommuneNavn": "Lierne",
+    "utvidet": false
   },
   {
     "kommuneNavn": "Lillehammer",
@@ -1036,6 +1117,22 @@
     "Palmesondag": "08-18"
   },
   {
+    "kommuneNavn": "Nissedal",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
     "kommuneNavn": "Nome",
     "utvidet": true,
     "Electionday": "none",
@@ -1187,6 +1284,22 @@
     "default": "06-20",
     "sat": "06-18",
     "Palmesondag": "06-18"
+  },
+  {
+    "kommuneNavn": "Rollag",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
   },
   {
     "kommuneNavn": "Rødøy",
