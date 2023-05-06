@@ -109,13 +109,17 @@ function findSalesTimes(kommune, hoytider, today) {
     //today is sunday
     return null;
   }
-  //special jan 1. case
 
+  if (hoytidISOStrings.includes(todayStr)) {
+    return null;
+  }
+
+  //special jan 1. case
   if (tomorrow.slice(5, 10) === "01-01") {
     return kommune.Forstenyttarsdag;
   }
 
-  //handling all holidays
+  //handling day before all holidays
   for (i = 0; i < hoytider.length; i++) {
     var hoytid = hoytider[i];
     if (hoytid.date.slice(0, 10) === tomorrowStr) {
