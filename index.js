@@ -111,11 +111,8 @@ function findSalesTimes(kommune, hoytider, today) {
   }
   //special jan 1. case
 
-  if (todayStr.slice(5, 10) === "01-01") {
-    if (today.getDay() == 6) {
-      return kommune.sat;
-    }
-    return kommune.default;
+  if (tomorrow.slice(5, 10) === "01-01") {
+    return kommune.Forstenyttarsdag;
   }
 
   //handling all holidays
