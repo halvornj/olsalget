@@ -114,6 +114,19 @@ function findSalesTimes(kommune, hoytider, today) {
     return null;
   }
 
+  //fuck lindesnes, all my homies hate lindesnes
+  if (kommune.kommuneNavn === "Lindesnes") {
+    for (i = 0; i < hoytider.length; i++) {
+      if (hoytid.date.slice(0, 10) === tomorrowStr) {
+        if (today.getDay === 6) {
+          return kommune.sat;
+        } else {
+          return kommune.default;
+        }
+      }
+    }
+  }
+
   //special jan 1. case
   if (tomorrow.slice(5, 10) === "01-01") {
     return kommune.Forstenyttarsdag;
