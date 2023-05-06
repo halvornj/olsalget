@@ -103,21 +103,22 @@ function findSalesTimes(kommune, hoytider, today) {
     hoytidISOStrings.push(hoytider[i].date.slice(0, 10));
   }
 
-  //logikk
+  // *logikk
   //føler myndighetene har litt vage presedens-regler angående dette, men tror dette stemmer
   if (today.getDay() === 0) {
     //today is sunday
     return null;
   }
-  if (hoytidISOStrings.includes(todayStr)) {
-    if (todayStr.slice(5, 10) === "01-01") {
-      if (today.getDay() == 6) {
-        return kommune.sat;
-      }
-      return kommune.default;
+  //special jan 1. case
+
+  if (todayStr.slice(5, 10) === "01-01") {
+    if (today.getDay() == 6) {
+      return kommune.sat;
     }
-    return null;
+    return kommune.default;
   }
+
+  //handling all holidays
   for (i = 0; i < hoytider.length; i++) {
     var hoytid = hoytider[i];
     if (hoytid.date.slice(0, 10) === tomorrowStr) {
@@ -138,6 +139,10 @@ function findSalesTimes(kommune, hoytider, today) {
       return kommune.hoyTidString;
     }
   }
+  if (todayStr.slice(5, 10) === "12-23" && kommune.Lillejulaften != undefined) {
+    return kommune.Lillejulaften;
+  }
+
   if (today.getDay() === 6) {
     return kommune.sat;
   }
