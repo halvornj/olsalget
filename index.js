@@ -135,10 +135,8 @@ function findSalesTimes(kommune, hoytider, today) {
   //handling day before all holidays
   for (i = 0; i < hoytider.length; i++) {
     var hoytid = hoytider[i];
-    console.log(hoytid);
+
     if (hoytid.date.slice(0, 10) === tomorrowStr) {
-      console.log("l'chaim");
-      console.log("hoydit: " + hoytid);
       //tomorrow is a holiday
       var hoyTidString = hoytid.description;
       //this could absolutely be done w/ regex, but i'm too lazy to figure it out
@@ -147,14 +145,13 @@ function findSalesTimes(kommune, hoytider, today) {
         .replace("ø", "o")
         .replace("å", "a")
         .replace(" ", "");
-      console.log("hoyTidstring: " + hoyTidString);
+
       if (kommune[hoyTidString] === "standard") {
         if (today.getDay() === 6) {
           return kommune.sat;
         }
         return kommune.default;
       }
-      console.log("get ready for undefined: " + kommune[hoyTidString]);
       return kommune[hoyTidString];
     }
   }
@@ -185,8 +182,6 @@ function main() {
 main();
 
 function comingWeek(today, kommune) {
-  console.log(KOMMUNE);
-  console.log(HOYTIDER);
   var weekDiv = document.getElementById("comingWeekDiv");
   //if already visible, hide it on button press
   if (weekDiv.style.display !== "none") {
