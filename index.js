@@ -103,23 +103,39 @@ function findSalesTimes(kommune, hoytider, today) {
     hoytidISOStrings.push(hoytider[i].date.slice(0, 10));
   }
 
-  //logikk
+  // *logikk
   //føler myndighetene har litt vage presedens-regler angående dette, men tror dette stemmer
   if (today.getDay() === 0) {
     //today is sunday
     return null;
   }
+
   if (hoytidISOStrings.includes(todayStr)) {
-    if (todayStr.slice(5, 10) === "01-01") {
-      if (today.getDay() == 6) {
-        return kommune.sat;
-      }
-      return kommune.default;
-    }
     return null;
   }
+
+  //fuck lindesnes, all my homies hate lindesnes
+  if (kommune.kommuneNavn === "Lindesnes") {
+    for (i = 0; i < hoytider.length; i++) {
+      if (hoytid.date.slice(0, 10) === tomorrowStr) {
+        if (today.getDay === 6) {
+          return kommune.sat;
+        } else {
+          return kommune.default;
+        }
+      }
+    }
+  }
+
+  //special jan 1. case
+  if (tomorrowStr.slice(5, 10) === "01-01") {
+    return kommune.Forstenyttarsdag;
+  }
+
+  //handling day before all holidays
   for (i = 0; i < hoytider.length; i++) {
     var hoytid = hoytider[i];
+
     if (hoytid.date.slice(0, 10) === tomorrowStr) {
       //tomorrow is a holiday
       var hoyTidString = hoytid.description;
@@ -129,15 +145,20 @@ function findSalesTimes(kommune, hoytider, today) {
         .replace("ø", "o")
         .replace("å", "a")
         .replace(" ", "");
-      if (kommune.hoyTidString === "standard") {
+
+      if (kommune[hoyTidString] === "standard") {
         if (today.getDay() === 6) {
           return kommune.sat;
         }
         return kommune.default;
       }
-      return kommune.hoyTidString;
+      return kommune[hoyTidString];
     }
   }
+  if (todayStr.slice(5, 10) === "12-23" && kommune.Lillejulaften != undefined) {
+    return kommune.Lillejulaften;
+  }
+
   if (today.getDay() === 6) {
     return kommune.sat;
   }
