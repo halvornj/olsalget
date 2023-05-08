@@ -259,7 +259,6 @@ async function showNeighbouringMunicipalities() {
       } else if (e.inputType === "insertReplacementText") {
         geoLocDone(e.data);
       }
-      geoLocDone(e.data);
     },
     false
   );
