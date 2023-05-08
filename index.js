@@ -255,8 +255,11 @@ async function showNeighbouringMunicipalities() {
         Object.prototype.toString.call(e).indexOf("InputEvent") > -1;
 
       if (!isInputEvent) {
-        alert("Selected: " + e.target.value);
+        geoLocDone(e.target.value);
+      } else if (e.inputType === "insertReplacementText") {
+        geoLocDone(e.data);
       }
+      geoLocDone(e.data);
     },
     false
   );
