@@ -273,6 +273,7 @@ function kommunenavnListeFormSubmitted(event, kommuneNavn) {
   document.getElementById("comingWeekDiv").style.display = "none";
   document.getElementById("velgKommuneDiv").style.display = "none";
   kommuneNavn = kommuneNavn[0].toUpperCase() + kommuneNavn.slice(1);
+  kommuneNavn = kommuneNavn.trim();
   let kommuneNavnArray = kommuneNavn.split("/");
   for (i = 0; i < KOMMUNER.length; i++) {
     if (
