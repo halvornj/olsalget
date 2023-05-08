@@ -247,13 +247,16 @@ async function showNeighbouringMunicipalities() {
   textInput.addEventListener(
     "input",
     function (e) {
-
       var isInputEvent =
         Object.prototype.toString.call(e).indexOf("InputEvent") > -1;
 
       if (!isInputEvent) {
+        document.getElementById("comingWeekDiv").style.display = "none";
+        document.getElementById("velgKommuneDiv").style.display = "none";
         geoLocDone(e.target.value);
       } else if (e.inputType === "insertReplacementText") {
+        document.getElementById("comingWeekDiv").style.display = "none";
+        document.getElementById("velgKommuneDiv").style.display = "none";
         geoLocDone(e.data);
       }
     },
