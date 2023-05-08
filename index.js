@@ -247,9 +247,6 @@ async function showNeighbouringMunicipalities() {
   textInput.addEventListener(
     "input",
     function (e) {
-      console.log(Object.prototype.toString.call(e));
-      console.log(e);
-      console.log(typeof e);
 
       var isInputEvent =
         Object.prototype.toString.call(e).indexOf("InputEvent") > -1;
