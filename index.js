@@ -243,6 +243,26 @@ async function showNeighbouringMunicipalities() {
     kommunenavnListe.appendChild(optionEl);
   }
 
+  let textInput = document.getElementById("kommunenavnInput");
+  textInput.addEventListener(
+    "input",
+    function (e) {
+      var isInputEvent =
+        Object.prototype.toString.call(e).indexOf("InputEvent") > -1;
+
+      if (!isInputEvent) {
+        document.getElementById("comingWeekDiv").style.display = "none";
+        document.getElementById("velgKommuneDiv").style.display = "none";
+        geoLocDone(e.target.value);
+      } else if (e.inputType === "insertReplacementText") {
+        document.getElementById("comingWeekDiv").style.display = "none";
+        document.getElementById("velgKommuneDiv").style.display = "none";
+        geoLocDone(e.data);
+      }
+    },
+    false
+  );
+
   const response = await fetch(
     "https://ws.geonorge.no/kommuneinfo/v1/kommuner/" +
       KOMMUNENUMMER +
@@ -273,6 +293,8 @@ function kommunenavnListeFormSubmitted(event, kommuneNavn) {
   document.getElementById("comingWeekDiv").style.display = "none";
   document.getElementById("velgKommuneDiv").style.display = "none";
   kommuneNavn = kommuneNavn[0].toUpperCase() + kommuneNavn.slice(1);
+  kommuneNavn = kommuneNavn.trim();
+  var substringMatches = [];
   let kommuneNavnArray = kommuneNavn.split("/");
   for (i = 0; i < KOMMUNER.length; i++) {
     if (
@@ -280,6 +302,17 @@ function kommunenavnListeFormSubmitted(event, kommuneNavn) {
       kommuneNavnArray.includes(KOMMUNER[i].altNavn)
     ) {
       geoLocDone(KOMMUNER[i].kommuneNavn);
+    } else {
+      if (
+        KOMMUNER[i].kommuneNavn.includes(kommuneNavn) ||
+        (KOMMUNER[i].altNavn !== undefined &&
+          KOMMUNER[i].altNavn.includes(kommuneNavn))
+      ) {
+        substringMatches.push(KOMMUNER[i]);
+      }
     }
+  }
+  if (substringMatches.length === 1) {
+    geoLocDone(substringMatches[0].kommuneNavn);
   }
 }
