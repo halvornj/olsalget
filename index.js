@@ -75,7 +75,7 @@ async function geoLocDone(kommuneNavn) {
     timesToday === null ||
     timesToday === "stengt"
   ) {
-    salesTimes.innerHTML = "Ølsalget er stengt i dag";
+    salesTimes.innerHTML = `I ${kommuneData.kommuneNavn} er Ølsalget stengt i dag`;
     //this text is larger than the current other output, so decreases font-size
     salesTimes.style.fontSize = "2.5em";
   } else {
