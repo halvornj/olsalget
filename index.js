@@ -62,28 +62,29 @@ async function geoLocDone(kommuneNavn) {
   }
   var kommuneData = KOMMUNER;
 
-  var kommuneData = kommuneData.filter(
+  var lokalKommuneData = kommuneData.find(
     (kommune) => kommune.kommuneNavn === kommuneNavn
-  )[0];
-  KOMMUNE = kommuneData;
+  );
+  KOMMUNE = lokalKommuneData;
 
   var today = new Date(Date.now());
 
-  var timesToday = findSalesTimes(kommuneData, hoytider, today);
+  var timesToday = findSalesTimes(lokalKommuneData, hoytider, today);
   if (
     timesToday === undefined ||
     timesToday === null ||
     timesToday === "stengt"
   ) {
-    salesTimes.innerHTML = "Ølsalget er stengt i dag";
+    salesTimes.innerHTML = `I ${lokalKommuneData.kommuneNavn} er Ølsalget stengt i dag`;
     //this text is larger than the current other output, so decreases font-size
     salesTimes.style.fontSize = "2.5em";
   } else {
     document.getElementById(
       "salesTimesFlavourText"
-    ).innerHTML = `I ${kommuneData.kommuneNavn} er ølsalget åpent fra `;
+    ).innerHTML = `I ${lokalKommuneData.kommuneNavn} er ølsalget åpent fra `;
     salesTimes.innerHTML = timesToday;
   }
+  createSearchField(kommuneData);
 }
 
 //returns opening times for today as string, e.g."09-20". if closed, returns null
@@ -224,21 +225,19 @@ function comingWeek(today, kommune) {
   }
 }
 
-async function showNeighbouringMunicipalities() {
+async function createSearchField(kommuneData) {
   let velgKommuneDiv = document.getElementById("velgKommuneDiv");
-  if (velgKommuneDiv.style.display !== "none") {
-    velgKommuneDiv.style.display = "none";
+  var kommunenavnListe = document.getElementById("kommunenavnListe");
+  if (kommunenavnListe.innerHTML != "") {
     return;
   }
-  velgKommuneDiv.style.display = "block";
-  var kommunenavnListe = document.getElementById("kommunenavnListe");
-  kommunenavnListe.innerHTML = "";
-  for (let i = 0; i < KOMMUNER.length; i++) {
+  for (let i = 0; i < kommuneData.length; i++) {
     let optionEl = document.createElement("option");
-    if (KOMMUNER[i].altNavn === undefined) {
-      optionEl.value = KOMMUNER[i].kommuneNavn;
+    if (kommuneData[i].altNavn === undefined) {
+      optionEl.value = kommuneData[i].kommuneNavn;
     } else {
-      optionEl.value = KOMMUNER[i].kommuneNavn + "/" + KOMMUNER[i].altNavn;
+      optionEl.value =
+        kommuneData[i].kommuneNavn + "/" + kommuneData[i].altNavn;
     }
     kommunenavnListe.appendChild(optionEl);
   }
@@ -251,38 +250,13 @@ async function showNeighbouringMunicipalities() {
         Object.prototype.toString.call(e).indexOf("InputEvent") > -1;
 
       if (!isInputEvent) {
-        document.getElementById("comingWeekDiv").style.display = "none";
-        document.getElementById("velgKommuneDiv").style.display = "none";
         geoLocDone(e.target.value);
       } else if (e.inputType === "insertReplacementText") {
-        document.getElementById("comingWeekDiv").style.display = "none";
-        document.getElementById("velgKommuneDiv").style.display = "none";
         geoLocDone(e.data);
       }
     },
     false
   );
-
-  const response = await fetch(
-    "https://ws.geonorge.no/kommuneinfo/v1/kommuner/" +
-      KOMMUNENUMMER +
-      "/nabokommuner?sorter=kommunenavn"
-  );
-  const naboKommunerJson = await response.json();
-  let buttonDiv = document.getElementById("naboKommunerButtonDiv");
-  buttonDiv.innerHTML = "";
-  for (i = 0; i < naboKommunerJson.length; i++) {
-    let naboKommuneNavn = naboKommunerJson[i].kommunenavn;
-    let newButton = document.createElement("button");
-    newButton.innerHTML = naboKommuneNavn;
-    newButton.className = "naboKommuneButton";
-    newButton.onclick = () => {
-      document.getElementById("comingWeekDiv").style.display = "none";
-      document.getElementById("velgKommuneDiv").style.display = "none";
-      getForNeighbour(naboKommuneNavn);
-    };
-    buttonDiv.appendChild(newButton);
-  }
 }
 async function getForNeighbour(kommuneNavn) {
   geoLocDone(kommuneNavn);
@@ -290,8 +264,6 @@ async function getForNeighbour(kommuneNavn) {
 
 function kommunenavnListeFormSubmitted(event, kommuneNavn) {
   event.preventDefault();
-  document.getElementById("comingWeekDiv").style.display = "none";
-  document.getElementById("velgKommuneDiv").style.display = "none";
   kommuneNavn = kommuneNavn[0].toUpperCase() + kommuneNavn.slice(1);
   kommuneNavn = kommuneNavn.trim();
   var substringMatches = [];
@@ -315,4 +287,5 @@ function kommunenavnListeFormSubmitted(event, kommuneNavn) {
   if (substringMatches.length === 1) {
     geoLocDone(substringMatches[0].kommuneNavn);
   }
+  event.target[0].value = "";
 }

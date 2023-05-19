@@ -34,12 +34,9 @@
         <table id="comingWeekTable"></table>
       </div>
       <button onclick="comingWeek(new Date(Date.now()+86400000));">
-        <a>Hva med kommende uke?</a>
+        Hva med kommende uke?
       </button>
-      <button onclick="showNeighbouringMunicipalities();">
-        <a>Se tidpunkt hos andre kommuner</a>
-      </button>
-      <div id="velgKommuneDiv" style="display: none">
+      <div id="velgKommuneDiv" style="display: block">
         <form
           id="kommunenavnListeForm"
           onsubmit="kommunenavnListeFormSubmitted(event, kommunenavnInput.value)"
@@ -51,16 +48,13 @@
             list="kommunenavnListe"
             autocomplete="off"
           />
-          <datalist id="kommunenavnListe"> </datalist>
+          <datalist id="kommunenavnListe"></datalist>
         </form>
-        <div id="naboKommunerButtonDiv"></div>
       </div>
       <button onclick="alert('Coming soon\xAE');">
-        <a>Når stenger Vinmonopolet?</a>
+        Når stenger Vinmonopolet?
       </button>
-      <button onclick="alert('Se ut vinduet');">
-        <a>Er det vær for utepils?</a>
-      </button>
+      <button onclick="alert('Se ut vinduet');">Er det vær for utepils?</button>
     </div>
     <script src="index.js"></script>
   </body>
