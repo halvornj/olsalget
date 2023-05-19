@@ -287,5 +287,6 @@ function kommunenavnListeFormSubmitted(event, kommuneNavn) {
   if (substringMatches.length === 1) {
     geoLocDone(substringMatches[0].kommuneNavn);
   }
+  document.getElementById("comingWeekDiv").style.display = "none";
   event.target[0].value = "";
 }
