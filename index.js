@@ -251,8 +251,10 @@ async function createSearchField(kommuneData) {
 
       if (!isInputEvent) {
         geoLocDone(e.target.value);
+        e.target.value = "";
       } else if (e.inputType === "insertReplacementText") {
         geoLocDone(e.data);
+        e.target.value = "";
       }
     },
     false
