@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="no">
   <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -63,8 +67,41 @@
       <button onclick="alert('Se ut vinduet');">Er det vær for utepils?</button>
     </div>
     <div class="footer">
-      <column>1</column>
-      <column>2</column>
+      <column><iframe>1</iframe></column>
+      <column>
+        <column class="contactInfo" id="contactInfo">
+          <a style="font-size: calc(16px + 1vw)" href="mailto:halvor@njastad.no"
+            >halvor@njastad.no</a
+          ><br />
+          <a href="https://github.com/halvornj/olsalget" target="_blank"
+            ><i
+              class="fa fa-github"
+              style="font-size: 2em"
+              aria-hidden="true"
+            ></i
+          ></a>
+        </column>
+        <column>
+          <div id="donate-button-container">
+            <div id="donate-button"></div>
+            <script
+              src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js"
+              charset="UTF-8"
+            ></script>
+            <script>
+              PayPal.Donation.Button({
+                env: "production",
+                hosted_button_id: "9MU23U23JKRW6",
+                image: {
+                  src: "/icons/PP_logo.png",
+                  alt: "Donate with PayPal button",
+                  title: "PayPal - The safer, easier way to pay online!",
+                },
+              }).render("#donate-button");
+            </script>
+          </div>
+        </column>
+      </column>
     </div>
     <script src="index.js"></script>
   </body>
