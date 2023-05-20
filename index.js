@@ -30,7 +30,6 @@ async function geoLocSuccess(position) {
       lon
   );
   const jsonData = await response.json();
-
   //* SAVE jsonData.kommunenummer for later use
   KOMMUNENUMMER = jsonData.kommunenummer;
 
@@ -43,6 +42,7 @@ function geoLocError() {
 
 async function geoLocDone(kommuneNavn) {
   //code converges here, so this is where the bulk of the code is
+  if(kommuneNavn === "") return; //Hotfix for at denne funksjonen kjører dobbelt etter stedsnavnsøk hvor andre funksjonskall kaller med tomt navn
   var year = new Date().getFullYear();
   if (HOYTIDER === undefined) {
     const hoytiderResponse = await fetch(
@@ -228,9 +228,10 @@ function comingWeek(today, kommune) {
 async function createSearchField(kommuneData) {
   let velgKommuneDiv = document.getElementById("velgKommuneDiv");
   var kommunenavnListe = document.getElementById("kommunenavnListe");
-  if (kommunenavnListe.innerHTML != "") {
+  if (kommunenavnListe.innerHTML != "" && kommunenavnListe.children.length == kommuneData.length) { //La til andre setning siden dersom lengden er lik, og tidligere kommuneData fra stedsnavn API'en har fjernet duplikater vet vi at innholdet er lik
     return;
   }
+  kommunenavnListe.innerHTML = ""; //Tømmer listen og fyller inn alle options i datalisten igjen dersom tidligere liste ikke er lik listen som skal inn
   for (let i = 0; i < kommuneData.length; i++) {
     let optionEl = document.createElement("option");
     if (kommuneData[i].altNavn === undefined) {
@@ -248,7 +249,6 @@ async function createSearchField(kommuneData) {
     function (e) {
       var isInputEvent =
         Object.prototype.toString.call(e).indexOf("InputEvent") > -1;
-
       if (!isInputEvent) {
         geoLocDone(e.target.value);
         e.target.value = "";
@@ -265,6 +265,7 @@ async function getForNeighbour(kommuneNavn) {
 }
 
 function kommunenavnListeFormSubmitted(event, kommuneNavn) {
+  //Write here: Search for cityname through placename if cityname doesn't exist
   event.preventDefault();
   kommuneNavn = kommuneNavn[0].toUpperCase() + kommuneNavn.slice(1);
   kommuneNavn = kommuneNavn.trim();
@@ -275,7 +276,9 @@ function kommunenavnListeFormSubmitted(event, kommuneNavn) {
       kommuneNavnArray.includes(KOMMUNER[i].kommuneNavn) ||
       kommuneNavnArray.includes(KOMMUNER[i].altNavn)
     ) {
-      geoLocDone(KOMMUNER[i].kommuneNavn);
+      document.getElementById("comingWeekDiv").style.display = "none";
+      event.target[0].value = "";
+      return geoLocDone(KOMMUNER[i].kommuneNavn);
     } else {
       if (
         KOMMUNER[i].kommuneNavn.includes(kommuneNavn) ||
@@ -285,9 +288,36 @@ function kommunenavnListeFormSubmitted(event, kommuneNavn) {
         substringMatches.push(KOMMUNER[i]);
       }
     }
-  }
+  } 
   if (substringMatches.length === 1) {
-    geoLocDone(substringMatches[0].kommuneNavn);
+    document.getElementById("comingWeekDiv").style.display = "none";
+    event.target[0].value = "";
+    return geoLocDone(substringMatches[0].kommuneNavn);
+  } 
+  if (substringMatches.length < 1) {
+    fetch("https://ws.geonorge.no/stedsnavn/v1/sted?sok="+
+      kommuneNavn
+      +"&navneobjekttype=bydel&navneobjekttype=berg&navneobjekttype=tettsted&navneobjekttype=bygdelagBygd&navneobjekttype=boligfelt&navneobjekttype=tettbebyggelse&navneobjekttype=by&navneobjekttype=innsjø&utkoordsys=4258&treffPerSide=500&side=1&filtrer=navn.kommuner.kommunenavn")
+      //+"&utkoordsys=4258&treffPerSide=500&side=1&filtrer=navn.kommuner.kommunenavn")
+    .then(res => res.json())
+    .then(res => {
+      if(res.navn.length == 0) return false; //Slepper all prosessering dersom det ikke finnes et sted med dette navnet
+      console.log(res.navn); 
+      let stedsKommuner = res.navn.map(kommune => kommune.kommuner[0].kommunenavn); //Filtrerer ut bare kommunenavn
+      stedsKommuner = stedsKommuner.filter(function(kommune, pos) {
+        return stedsKommuner.indexOf(kommune) == pos; // Fjerner duplikatKommuner
+      });
+      stedsKommuner = KOMMUNER.filter(kommune => stedsKommuner.includes(kommune.kommuneNavn)) //Filtrerer ned til kommuner som eksisterer i JSON fila
+      console.log(stedsKommuner);
+      if(stedsKommuner.length == 0) return false; //Dersom kommunen som stedet befinner seg i er filtrert unna siden kommunen ikke finnes i JSON fila enda, ikke ødelegg nettsiden
+      if(stedsKommuner.length == 1) return geoLocDone(stedsKommuner[0].kommuneNavn); //Dersom det bare er en kommune med dette stedet, gi tidene til den kommunen
+      document.getElementById(
+        "salesTimesFlavourText"
+      ).innerHTML = `Hvilken kommune som inneholder ${kommuneNavn} leter du etter?` //Setter teksten så brukeren skal kanksje vite å søke etter kommunen. La denne FØR createSearchField fordi den tar litt tid, og den tiden kan brukes av brukeren til å lese
+      salesTimes.innerHTML = "";
+      return createSearchField(stedsKommuner); //Lar brukeren velge hvilken Kommune som inneholder det spesifikke stedet de leter etter
+      //geoLocDone(res.navn[0].kommuner[0].kommunenavn)
+    });
   }
   document.getElementById("comingWeekDiv").style.display = "none";
   event.target[0].value = "";
