@@ -118,6 +118,7 @@ function findSalesTimes(kommune, hoytider, today) {
   //fuck lindesnes, all my homies hate lindesnes
   if (kommune.kommuneNavn === "Lindesnes") {
     for (i = 0; i < hoytider.length; i++) {
+      var hoytid = hoytider[i];
       if (hoytid.date.slice(0, 10) === tomorrowStr) {
         if (today.getDay === 6) {
           return kommune.sat;
@@ -250,11 +251,15 @@ async function createSearchField(kommuneData) {
         Object.prototype.toString.call(e).indexOf("InputEvent") > -1;
 
       if (!isInputEvent) {
+        //handling for all chromium browsers
         geoLocDone(e.target.value);
         e.target.value = "";
+        document.getElementById("comingWeekDiv").style.display = "none";
       } else if (e.inputType === "insertReplacementText") {
+        //handling for firefox, where event has a fucking inputType for this
         geoLocDone(e.data);
         e.target.value = "";
+        document.getElementById("comingWeekDiv").style.display = "none";
       }
     },
     false
@@ -292,7 +297,3 @@ function kommunenavnListeFormSubmitted(event, kommuneNavn) {
   document.getElementById("comingWeekDiv").style.display = "none";
   event.target[0].value = "";
 }
-
-window.onresize(evt => {
-  if(document.getElementById("contactInfo").innerWidth < "100px")
-})
