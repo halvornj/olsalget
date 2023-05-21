@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
-import org.json.*;
 
 import java.io.File;
 
@@ -65,8 +64,14 @@ public class Main {
             String jsonString = responseReader.readLine();
             System.out.println(jsonString);
 
+            // no need to construct an actual JSON object, we're just interrested in ID and
+            // lat/lon
             connection.disconnect();
-            // TODO
+
+            for (int i = 0; i < jsonString.length(); i++) {
+
+            }
+
             return null;
         } catch (Exception e) {
             e.printStackTrace();
