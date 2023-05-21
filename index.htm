@@ -67,21 +67,21 @@
       <button onclick="alert('Se ut vinduet');">Er det vær for utepils?</button>
     </div>
     <div class="footer">
-      <column><iframe>1</iframe></column>
-      <column>
+      <column class="advertisement"><iframe>1</iframe></column>
+      <column id="rightColumn">
         <column class="contactInfo" id="contactInfo">
-          <a style="font-size: calc(16px + 1vw)" href="mailto:halvor@njastad.no"
-            >halvor@njastad.no</a
-          ><br />
-          <a href="https://github.com/halvornj/olsalget" target="_blank"
-            ><i
-              class="fa fa-github"
-              style="font-size: 2em"
-              aria-hidden="true"
-            ></i
-          ></a>
+          <div style="display: flex; flex-wrap: wrap;">
+            <a id="mailTo" class="fa fa-envelope" href="mailto:halvor@njastad.no"></a>
+            <a href="https://github.com/halvornj/olsalget" target="_blank">
+              <i
+                class="fa fa-github"
+                aria-hidden="true"
+              >
+              </i>
+            </a>
+          </div>
         </column>
-        <column>
+        <column id="donate-button-container-container">
           <div id="donate-button-container">
             <div id="donate-button"></div>
             <script
@@ -92,8 +92,14 @@
               PayPal.Donation.Button({
                 env: "production",
                 hosted_button_id: "9MU23U23JKRW6",
+                style: {
+                  layout: "vertical",
+                  color: "gold",
+                  shape: "rect",
+                  label: "donate",
+                },
                 image: {
-                  src: "/icons/PP_logo.png",
+                  src: "/icons/paypal.svg",
                   alt: "Donate with PayPal button",
                   title: "PayPal - The safer, easier way to pay online!",
                 },
@@ -101,8 +107,7 @@
             </script>
           </div>
         </column>
-      </column>
-    </div>
+      </div>
     <script src="index.js"></script>
   </body>
 </html>

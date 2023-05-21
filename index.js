@@ -292,7 +292,3 @@ function kommunenavnListeFormSubmitted(event, kommuneNavn) {
   document.getElementById("comingWeekDiv").style.display = "none";
   event.target[0].value = "";
 }
-
-window.onresize(evt => {
-  if(document.getElementById("contactInfo").innerWidth < "100px")
-})

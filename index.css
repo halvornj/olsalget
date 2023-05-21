@@ -109,13 +109,13 @@ column {
   display: block;
   float: left;
   margin: 0;
-  width: 50%;
   height: 100%;
   outline: 1px solid black;
+  /*overflow-y: auto; */
 }
 
 column img {
-  width: 80%;
+  height: 100%;
 }
 
 a {
@@ -123,12 +123,59 @@ a {
   color: black;
 }
 
-#donate-button-container {
+.advertisement {
+  width: 70%
+}
+
+#donate-button-container-container {
+  width: 50%;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
+  flex-grow: initial;
+  height: 8vh;
 }
 
 #donate-button {
   margin: 1vh, 1vw;
 }
+
+#donate-button img {
+  height: 8vh;
+  transform: translateY(.7vh);
+}
+
+#rightColumn {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#contactInfo {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: row;
+  height: 8vh;
+}
+
+#contactInfo a {
+  margin-right: 1vw;
+  font-size: 8vh;
+  flex-shrink: 1;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  #contactInfo {
+    flex-direction: column;
+  }
+
+  #contactInfo a {
+    font-size: 4vh;
+    height: 50%;
+  }
+}
+	
