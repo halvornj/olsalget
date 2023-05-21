@@ -1,0 +1,25 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: sans-serif;
+}
+body {
+  background-color: #f0f0f0;
+  display: flex;
+}
+#mainContainer {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+}
+#locationText {
+  font-size: 2.5em;
+}
+#localTimeText {
+  font-size: 5em;
+}
