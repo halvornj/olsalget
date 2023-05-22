@@ -93,8 +93,17 @@ button:active {
 }
 #kommunenavnInput {
   padding: 10px 15px;
-  width: calc(100% - 30px - 3.2px);
+  /* width: calc((100% - 30px - 3.2px)); */
+  width: calc(80% - 30px - 3.2px);
   border-radius: 0.5em;
+  margin-right: 0px;
+  float:left;
+}
+
+.searchButton {
+  width: calc(19.6%);
+  float: right;
+  margin: 0px;
 }
 
 .footer {
