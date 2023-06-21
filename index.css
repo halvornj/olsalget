@@ -1,5 +1,6 @@
 :root {
   --buttonWidth: 230px;
+  --offBlack: #1c1c1c;
 }
 
 * {
@@ -39,7 +40,7 @@ body {
   position: center;
   text-align: center;
   display: block;
-  color: #131313;
+  color: var(--offBlack);
 }
 #salesTimesFlavourText {
   font-size: 2.5em;
@@ -55,7 +56,7 @@ button {
   border: none;
   font-weight: bold;
   transition: 0.2s;
-  color: black;
+  color: var(--offBlack);
   padding: 10px 15px;
   width: var(--buttonWidth);
 }
@@ -81,7 +82,7 @@ button:active {
   margin: 3px;
 }
 #comingWeekTable tr {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--offBlack);
 }
 
 #kommunenavnListeForm {
@@ -97,6 +98,7 @@ button:active {
   width: calc(80% - 30px - 3.2px);
   border-radius: 0.5em;
   margin-right: 0px;
+  border: var(--offBlack) inset 2px;
   float:left;
 }
 
@@ -109,8 +111,7 @@ button:active {
 .footer {
   position: fixed;
   width: 100%;
-  height: 10vh;
-  background-color: #b5b5b5;
+  height: 9vh;
   bottom: 0px;
 }
 
@@ -119,50 +120,16 @@ column {
   float: left;
   margin: 0;
   height: 100%;
-  outline: 1px solid black;
   /*overflow-y: auto; */
-}
-
-column img {
-  height: 100%;
 }
 
 a {
   text-decoration: none;
-  color: black;
-}
-
-.advertisement {
-  width: 70%
-}
-
-#donate-button-container-container {
-  width: 50%;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  flex-grow: initial;
-  height: 8vh;
-}
-
-#donate-button {
-  margin: 1vh, 1vw;
-}
-
-#donate-button img {
-  height: 8vh;
-  transform: translateY(.7vh);
-}
-
-#rightColumn {
-  width: 30%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: var(--offBlack);
 }
 
 #contactInfo {
-  width: 50%;
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -173,18 +140,7 @@ a {
 #contactInfo a {
   margin-right: 1vw;
   font-size: 8vh;
-  flex-shrink: 1;
-  white-space: nowrap;
-}
-
-@media (max-width: 600px) {
-  #contactInfo {
-    flex-direction: column;
-  }
-
-  #contactInfo a {
-    font-size: 4vh;
-    height: 50%;
-  }
+  color: var(--offBlack);
+  text-shadow: #b5b5b5 3px 3px;
 }
 	
