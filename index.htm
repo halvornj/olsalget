@@ -68,47 +68,17 @@
       <button onclick="alert('Se ut vinduet');">Er det vær for utepils?</button>
     </div>
     <div class="footer">
-      <column class="advertisement"><iframe>1</iframe></column>
-      <column id="rightColumn">
-        <column class="contactInfo" id="contactInfo">
-          <div style="display: flex; flex-wrap: wrap;">
-            <a id="mailTo" class="fa fa-envelope" href="mailto:halvor@njastad.no"></a>
-            <a href="https://github.com/halvornj/olsalget" target="_blank">
-              <i
-                class="fa fa-github"
-                aria-hidden="true"
-              >
-              </i>
-            </a>
-          </div>
-        </column>
-        <column id="donate-button-container-container">
-          <div id="donate-button-container">
-            <div id="donate-button"></div>
-            <script
-              src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js"
-              charset="UTF-8"
-            ></script>
-            <script>
-              PayPal.Donation.Button({
-                env: "production",
-                hosted_button_id: "9MU23U23JKRW6",
-                style: {
-                  layout: "vertical",
-                  color: "gold",
-                  shape: "rect",
-                  label: "donate",
-                },
-                image: {
-                  src: "/icons/paypal.svg",
-                  alt: "Donate with PayPal button",
-                  title: "PayPal - The safer, easier way to pay online!",
-                },
-              }).render("#donate-button");
-            </script>
-          </div>
-        </column>
-      </div>
+      <column class="contactInfo" id="contactInfo">
+          <a id="mailTo" class="fa fa-envelope" href="mailto:halvor@njastad.no"></a>
+          <a href="https://github.com/halvornj/olsalget" target="_blank">
+            <i
+              class="fa fa-github"
+              aria-hidden="true"
+            >
+            </i>
+          </a>
+      </column>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>
