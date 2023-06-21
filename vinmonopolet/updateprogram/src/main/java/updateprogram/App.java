@@ -6,17 +6,7 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
-import java.io.UnsupportedEncodingException;
-import java.io.DataInputStream;
-import java.io.InputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Scanner;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -71,6 +61,7 @@ public class App {
             }
             in.close();
             connection.disconnect();
+            System.out.println("successful api-response, connection closed.");
 
             // now we parse json
             JSONArray fullArray = new JSONArray(content.toString());
@@ -82,16 +73,20 @@ public class App {
                 writeStore.put("gpsCoord", ((JSONObject) currentStore.get("address")).get("gpsCoord"));
                 newArray.put(writeStore);
             }
-
+            System.out.println("json parsed.");
             // now, write newArray to file
-            File myObj = new File("stores.json");
+            File myObj = new File("../stores.json");
             // this bit just makes sure the file exists. 'if' can be removed later
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("Found file ../stores.json");
             }
-            PrintWriter myFile = new PrintWriter("stores.json", "UTF-8");
+            PrintWriter myFile = new PrintWriter("../stores.json", "UTF-8");
+            System.out.println("writing to file...");
             myFile.println(newArray.toString(4));
             myFile.close();
+            System.out.println("stores.json is now updated.");
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
