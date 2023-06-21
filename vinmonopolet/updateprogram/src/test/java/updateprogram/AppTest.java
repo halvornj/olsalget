@@ -1,4 +1,4 @@
-package com.updateprogram;
+package updateprogram;
 
 import static org.junit.Assert.assertTrue;
 
