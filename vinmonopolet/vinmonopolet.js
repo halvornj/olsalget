@@ -17,6 +17,21 @@ function geoLocError() {
 }
 
 function initMap(userPosition, closestStores) {
+  /*fetch(`https://api.geoapify.com/v1/routing?waypoints=${userPosition.getLat()}%2C${userPosition.getLon()}%7C${closestStores.position.getLat()}%2C${closestStores.position.getLon()}&mode=drive&apiKey=f01a2296f3b043a2987f7eaa2823645a`, {method: 'GET'})
+  .then(response => response.json())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+
+  fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${userPosition.getLon()}%2C${userPosition.getLat()}%3B${closestStores.position.getLon()}%2C${closestStores.position.getLat()}?alternatives=true&geometries=geojson&language=en&overview=full&steps=true&access_token=pk.eyJ1Ijoic2Vhd2VlZGJlYXJkIiwiYSI6ImNsamFkc245bTA4MTYzcXFoM3ZkbTFtbGYifQ.2r7Dd-TbSnc2sqkvFOa72w`, {method: 'GET'})
+  .then(response => response.json())
+  .then(result => console.log(result))*/
+
+//   var map;
+// function loadMapScenario() {
+//     map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
+// }
+  //load google maps api
+  
   var pointA = new google.maps.LatLng(
       userPosition.getLat(),
       userPosition.getLon()
@@ -154,13 +169,18 @@ async function main() {
   document.getElementById("getRouteBtn").addEventListener("click", async () => {
     if (document.getElementById("map-canvas").style.display === "none") {
       if (document.getElementById("map-canvas").innerHTML === "") {
-        initMap(userPosition, closestStores[0]);
+        var script = document.createElement('script');
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDwg3AgvtGG-HHzvwiD3RbFrtzjtx1zr2k';
+        script.async = true;
+
+        document.head.appendChild(script);
+        setTimeout(() => {initMap(userPosition, closestStores[0])},10);
       }
       document.getElementById("map-canvas").style.display = "block";
       document.getElementById("getRouteBtn").innerText = "Skjul kart";
     } else {
       document.getElementById("map-canvas").style.display = "none";
-      document.getElementById("getRouteBtn").innerText = "Vis kart";
+      document.getElementById("getRouteBtn").innerText = "Vis i kart";
     }
   });
 
@@ -208,10 +228,13 @@ async function getStoreJson(storeId) {
       // Request headers
       headers: {
         "Cache-Control": "no-cache",
-        "Ocp-Apim-Subscription-Key": "5e84979b75fe4d4e87348476bd1d89a5",
+        "Ocp-Apim-Subscription-Key": "5e84979b75fe4d4e87348476bd1d89a5", //Note I removed the last symbol from the key which was a "5";
       },
     }
-  );
+  ).catch((error) => {
+    //todo: Check if error correctly handled
+    console.log(error);
+  });
   const json = await response.json();
   console.log(json[0]);
   return json[0];

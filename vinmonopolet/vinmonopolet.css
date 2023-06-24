@@ -36,14 +36,14 @@ body {
 }
 
 #openTimes {
-  font-size: 5em;
+  font-size: 4em;
   position: center;
   text-align: center;
   display: block;
   color: var(--offBlack);
 }
 #openTimesFlavourText {
-  font-size: 2.5em;
+  font-size: 2.3em;
   text-align: center;
   display: block;
 }
@@ -88,29 +88,6 @@ button:active {
 }
 #closestStoresTable tr {
   border-bottom: 1px solid var(--offBlack);
-}
-
-#kommunenavnListeForm {
-  text-align: center;
-  margin: 0.5em;
-  width: var(--buttonWidth);
-  justify-content: center;
-  align-items: center;
-}
-#kommunenavnInput {
-  padding: 10px 15px;
-  /* width: calc((100% - 30px - 3.2px)); */
-  width: calc(80% - 30px - 3.2px);
-  border-radius: 0.5em;
-  margin-right: 0px;
-  border: var(--offBlack) inset 2px;
-  float: left;
-}
-
-.searchButton {
-  width: calc(19.6%);
-  float: right;
-  margin: 0px;
 }
 
 .footer {
