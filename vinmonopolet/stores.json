@@ -1,0 +1,1737 @@
+[
+    {
+        "storeName": "Mo i Nord-Odal",
+        "storeId": "101",
+        "gpsCoord": "60.4252324;11.640115"
+    },
+    {
+        "storeName": "Rosendal",
+        "storeId": "102",
+        "gpsCoord": "59.9860712;6.0100417"
+    },
+    {
+        "storeName": "Aksdal",
+        "storeId": "103",
+        "gpsCoord": "59.42203;5.44446"
+    },
+    {
+        "storeName": "Oslo, Briskeby",
+        "storeId": "104",
+        "gpsCoord": "59.9206481;10.7169757"
+    },
+    {
+        "storeName": "Nittedal",
+        "storeId": "105",
+        "gpsCoord": "60.0474078;10.8799996"
+    },
+    {
+        "storeName": "Suldal",
+        "storeId": "106",
+        "gpsCoord": "59.483745;6.25048"
+    },
+    {
+        "storeName": "Hovden",
+        "storeId": "107",
+        "gpsCoord": "59.559677;7.355829"
+    },
+    {
+        "storeName": "Nesna",
+        "storeId": "108",
+        "gpsCoord": "66.1997614;13.0234424"
+    },
+    {
+        "storeName": "Digerneset",
+        "storeId": "109",
+        "gpsCoord": "62.4921261;6.6060126"
+    },
+    {
+        "storeName": "Oslo, Frogner",
+        "storeId": "111",
+        "gpsCoord": "59.9188589;10.7073207"
+    },
+    {
+        "storeName": "Sætre",
+        "storeId": "112",
+        "gpsCoord": "59.6815398;10.5258609"
+    },
+    {
+        "storeName": "Porsgrunn, Down Town",
+        "storeId": "113",
+        "gpsCoord": "59.137276 ; 9.640192"
+    },
+    {
+        "storeName": "Oslo, Aker Brygge",
+        "storeId": "114",
+        "gpsCoord": "59.9106345;10.7259311"
+    },
+    {
+        "storeName": "Oslo, Grünerløkka",
+        "storeId": "115",
+        "gpsCoord": "59.9211573;10.7571369"
+    },
+    {
+        "storeName": "Sandnes, Kvadrat",
+        "storeId": "116",
+        "gpsCoord": "58.876707;5.721903"
+    },
+    {
+        "storeName": "Oslo, Alna",
+        "storeId": "117",
+        "gpsCoord": "59.9258197;10.8469616"
+    },
+    {
+        "storeName": "Oslo, Oslo S",
+        "storeId": "118",
+        "gpsCoord": "59.9108801;10.7507337"
+    },
+    {
+        "storeName": "Eggedal",
+        "storeId": "119",
+        "gpsCoord": "60.245703 ; 9.356065"
+    },
+    {
+        "storeName": "Trondheim, City Syd",
+        "storeId": "120",
+        "gpsCoord": "63.3682271;10.3809509"
+    },
+    {
+        "storeName": "Bergen, Bergen Storsenter",
+        "storeId": "121",
+        "gpsCoord": "60.3892401;5.3318259"
+    },
+    {
+        "storeName": "Oslo, Holmlia",
+        "storeId": "122",
+        "gpsCoord": "59.8348282;10.794902"
+    },
+    {
+        "storeName": "Dokka",
+        "storeId": "123",
+        "gpsCoord": "60.8345377;10.0742980"
+    },
+    {
+        "storeName": "Bærum, Kolsås",
+        "storeId": "124",
+        "gpsCoord": "59.915870361;10.500054359"
+    },
+    {
+        "storeName": "Vinstra",
+        "storeId": "125",
+        "gpsCoord": "61.594717;9.725465"
+    },
+    {
+        "storeName": "Krokstadelva",
+        "storeId": "126",
+        "gpsCoord": "59.7561449;9.9991519"
+    },
+    {
+        "storeName": "Oslo, CC Vest",
+        "storeId": "127",
+        "gpsCoord": "59.9176495;10.6363590"
+    },
+    {
+        "storeName": "Stathelle",
+        "storeId": "128",
+        "gpsCoord": "59.0458676;9.6938645"
+    },
+    {
+        "storeName": "Fitjar",
+        "storeId": "129",
+        "gpsCoord": "59.918156;5.315838"
+    },
+    {
+        "storeName": "Bergen, Sletten",
+        "storeId": "130",
+        "gpsCoord": "60.3565955;5.3592388"
+    },
+    {
+        "storeName": "Noresund",
+        "storeId": "131",
+        "gpsCoord": "60.179917;9.625762"
+    },
+    {
+        "storeName": "Oslo, Linderud",
+        "storeId": "132",
+        "gpsCoord": "59.9432411;10.8354604"
+    },
+    {
+        "storeName": "Lakselv",
+        "storeId": "133",
+        "gpsCoord": "70.0457323;24.9676944"
+    },
+    {
+        "storeName": "Nesodden",
+        "storeId": "134",
+        "gpsCoord": "59.8559265137;10.66083335"
+    },
+    {
+        "storeName": "Holmen Senter",
+        "storeId": "135",
+        "gpsCoord": "59.8543714;10.4882964"
+    },
+    {
+        "storeName": "Oslo, Majorstuen",
+        "storeId": "136",
+        "gpsCoord": "59.9307;10.71"
+    },
+    {
+        "storeName": "Kristiansund, Futura",
+        "storeId": "137",
+        "gpsCoord": "63.110669;7.780337"
+    },
+    {
+        "storeName": "Oslo, Manglerud",
+        "storeId": "138",
+        "gpsCoord": "59.8972890;10.8128575"
+    },
+    {
+        "storeName": "Trondheim, Byhaven",
+        "storeId": "140",
+        "gpsCoord": "63.4333497;10.3962676"
+    },
+    {
+        "storeName": "Oslo, Paleet",
+        "storeId": "141",
+        "gpsCoord": "59.9142166;10.7393055"
+    },
+    {
+        "storeName": "Nøtterøy",
+        "storeId": "142",
+        "gpsCoord": "59.2525672;10.4184750"
+    },
+    {
+        "storeName": "Oslo, Oslo City",
+        "storeId": "143",
+        "gpsCoord": "59.9126054;10.7515334"
+    },
+    {
+        "storeName": "Oslo, Thereses gate",
+        "storeId": "144",
+        "gpsCoord": "59.9277735;10.7312112"
+    },
+    {
+        "storeName": "Oslo, Tveita",
+        "storeId": "145",
+        "gpsCoord": "59.9138363;10.8418900"
+    },
+    {
+        "storeName": "Trondheim, Sirkus Shopping",
+        "storeId": "146",
+        "gpsCoord": "63.436258;10.456246"
+    },
+    {
+        "storeName": "Sauda",
+        "storeId": "147",
+        "gpsCoord": "59.6497472;6.3551339"
+    },
+    {
+        "storeName": "Askøy",
+        "storeId": "148",
+        "gpsCoord": "60.4101;5.2271"
+    },
+    {
+        "storeName": "Bergen, Fyllingsdalen",
+        "storeId": "149",
+        "gpsCoord": "60.34911;5.291805"
+    },
+    {
+        "storeName": "Bergen, Valkendorfsgt.",
+        "storeId": "150",
+        "gpsCoord": "60.393844;5.320888"
+    },
+    {
+        "storeName": "Måløy",
+        "storeId": "151",
+        "gpsCoord": "61.93555;5.114850"
+    },
+    {
+        "storeName": "Oslo, Sandaker",
+        "storeId": "152",
+        "gpsCoord": "59.9384265;10.7684746"
+    },
+    {
+        "storeName": "Knarvik",
+        "storeId": "156",
+        "gpsCoord": "60.546932;5.2856493"
+    },
+    {
+        "storeName": "Trondheim, Trondheim Torg",
+        "storeId": "160",
+        "gpsCoord": "63.429574;10.393581"
+    },
+    {
+        "storeName": "Oslo, Storo",
+        "storeId": "161",
+        "gpsCoord": "59.9472928;10.7738132"
+    },
+    {
+        "storeName": "Oslo, Stovner",
+        "storeId": "162",
+        "gpsCoord": "59.9621379;10.9245156"
+    },
+    {
+        "storeName": "Bergen, Nesttun",
+        "storeId": "163",
+        "gpsCoord": "60.3174630;5.3542358"
+    },
+    {
+        "storeName": "Florø",
+        "storeId": "164",
+        "gpsCoord": "61.6007736;5.037078"
+    },
+    {
+        "storeName": "Bergen, Arna",
+        "storeId": "165",
+        "gpsCoord": "60.4213188;5.4650458"
+    },
+    {
+        "storeName": "Bø i Telemark",
+        "storeId": "166",
+        "gpsCoord": "59.4138480;9.0593618"
+    },
+    {
+        "storeName": "Flekkefjord",
+        "storeId": "167",
+        "gpsCoord": "58.2965231;6.6619036"
+    },
+    {
+        "storeName": "Karmøy, Kopervik",
+        "storeId": "168",
+        "gpsCoord": "59.2804227;5.3041950"
+    },
+    {
+        "storeName": "Risør",
+        "storeId": "169",
+        "gpsCoord": "58.7211;9.2338"
+    },
+    {
+        "storeName": "Bergen, Vestkanten",
+        "storeId": "170",
+        "gpsCoord": "60.363352;5.233634"
+    },
+    {
+        "storeName": "Vikersund",
+        "storeId": "171",
+        "gpsCoord": "59.964399;9.99258"
+    },
+    {
+        "storeName": "Evje",
+        "storeId": "172",
+        "gpsCoord": "58.586901;7.805743"
+    },
+    {
+        "storeName": "Slemmestad",
+        "storeId": "173",
+        "gpsCoord": "59.7782498;10.4846048"
+    },
+    {
+        "storeName": "Ålesund, Moa",
+        "storeId": "174",
+        "gpsCoord": "62.465445;6.351643"
+    },
+    {
+        "storeName": "Åndalsnes",
+        "storeId": "175",
+        "gpsCoord": "62.5692220;7.6861185"
+    },
+    {
+        "storeName": "Årnes",
+        "storeId": "176",
+        "gpsCoord": "60.1226555;11.4678998"
+    },
+    {
+        "storeName": "Norheimsund",
+        "storeId": "177",
+        "gpsCoord": "60.372338;6.146228"
+    },
+    {
+        "storeName": "Oslo, Kiellandsplass",
+        "storeId": "178",
+        "gpsCoord": "59.92821;10.7505016327"
+    },
+    {
+        "storeName": "Husnes",
+        "storeId": "179",
+        "gpsCoord": "59.8623780;5.7542335"
+    },
+    {
+        "storeName": "Trondheim, Valentinlyst",
+        "storeId": "180",
+        "gpsCoord": "63.4249487;10.4424205"
+    },
+    {
+        "storeName": "Skien, Gråtenmoen",
+        "storeId": "181",
+        "gpsCoord": "59.1858561;9.6138639"
+    },
+    {
+        "storeName": "Oslo, Hasle Torg",
+        "storeId": "182",
+        "gpsCoord": "59.9235696;10.7927"
+    },
+    {
+        "storeName": "Ulsteinvik",
+        "storeId": "183",
+        "gpsCoord": "62.3428452;5.8480709"
+    },
+    {
+        "storeName": "Ørnes",
+        "storeId": "185",
+        "gpsCoord": "66.8737;13.7061"
+    },
+    {
+        "storeName": "Støren",
+        "storeId": "189",
+        "gpsCoord": "63.0479816;10.2832379"
+    },
+    {
+        "storeName": "Bærum, Bekkestua",
+        "storeId": "190",
+        "gpsCoord": "59.9166545;10.5887072"
+    },
+    {
+        "storeName": "Bærum, Sandvika",
+        "storeId": "194",
+        "gpsCoord": "59.89284471;10.52303"
+    },
+    {
+        "storeName": "Bergen, Åsane",
+        "storeId": "197",
+        "gpsCoord": "60.465332;5.322082"
+    },
+    {
+        "storeName": "Bærum, Østerås",
+        "storeId": "198",
+        "gpsCoord": "59.9437096;10.6074228"
+    },
+    {
+        "storeName": "Alta",
+        "storeId": "200",
+        "gpsCoord": "69.9661952;23.2726005"
+    },
+    {
+        "storeName": "Arendal",
+        "storeId": "201",
+        "gpsCoord": "58.4594945;8.7634542"
+    },
+    {
+        "storeName": "Asker",
+        "storeId": "202",
+        "gpsCoord": "59.8367269;10.4336347"
+    },
+    {
+        "storeName": "Askim",
+        "storeId": "203",
+        "gpsCoord": "59.5815876;11.1688260"
+    },
+    {
+        "storeName": "Bodø, Sentrum",
+        "storeId": "204",
+        "gpsCoord": "67.284066;14.3797767"
+    },
+    {
+        "storeName": "Drammen, Bragernes",
+        "storeId": "205",
+        "gpsCoord": "59.745742;10.202855"
+    },
+    {
+        "storeName": "Brekstad",
+        "storeId": "206",
+        "gpsCoord": "63.6888835;9.6661806"
+    },
+    {
+        "storeName": "Drammen, Strømsø",
+        "storeId": "207",
+        "gpsCoord": "59.7389871;10.2002951"
+    },
+    {
+        "storeName": "Brønnøysund",
+        "storeId": "208",
+        "gpsCoord": "65.4728353;12.2082818"
+    },
+    {
+        "storeName": "Egersund",
+        "storeId": "209",
+        "gpsCoord": "58.4519924;6.0035543"
+    },
+    {
+        "storeName": "Drøbak",
+        "storeId": "210",
+        "gpsCoord": "59.6641223;10.6279021"
+    },
+    {
+        "storeName": "Grimstad",
+        "storeId": "211",
+        "gpsCoord": "58.3416;8.5938"
+    },
+    {
+        "storeName": "Fauske",
+        "storeId": "212",
+        "gpsCoord": "67.2583222;15.3957895"
+    },
+    {
+        "storeName": "Eidsvoll",
+        "storeId": "213",
+        "gpsCoord": "60.329518;11.258647"
+    },
+    {
+        "storeName": "Leknes",
+        "storeId": "214",
+        "gpsCoord": "68.1489;13.6174"
+    },
+    {
+        "storeName": "Elverum",
+        "storeId": "215",
+        "gpsCoord": "60.8831693;11.5615333"
+    },
+    {
+        "storeName": "Finnsnes",
+        "storeId": "216",
+        "gpsCoord": "69.230187;17.977495"
+    },
+    {
+        "storeName": "Fagernes",
+        "storeId": "217",
+        "gpsCoord": "60.9861245;9.2351242"
+    },
+    {
+        "storeName": "Haugesund",
+        "storeId": "218",
+        "gpsCoord": "59.4109400;5.2737099"
+    },
+    {
+        "storeName": "Fredrikstad, Torvbyen",
+        "storeId": "219",
+        "gpsCoord": "59.2139240;10.9395179"
+    },
+    {
+        "storeName": "Hammerfest",
+        "storeId": "220",
+        "gpsCoord": "70.6636654;23.6825083"
+    },
+    {
+        "storeName": "Stavanger, Hillevåg",
+        "storeId": "221",
+        "gpsCoord": "58.9479866;5.7391150"
+    },
+    {
+        "storeName": "Fredrikstad, Østsiden",
+        "storeId": "222",
+        "gpsCoord": "59.206;10.973"
+    },
+    {
+        "storeName": "Gjøvik",
+        "storeId": "223",
+        "gpsCoord": "60.7999914;10.6936292"
+    },
+    {
+        "storeName": "Harstad",
+        "storeId": "224",
+        "gpsCoord": "68.7989869;16.5456354"
+    },
+    {
+        "storeName": "Gol",
+        "storeId": "225",
+        "gpsCoord": "60.7019928;8.9368812"
+    },
+    {
+        "storeName": "Gran",
+        "storeId": "226",
+        "gpsCoord": "60.3566;10.5709"
+    },
+    {
+        "storeName": "Stavanger, Herbarium",
+        "storeId": "227",
+        "gpsCoord": "58.9699142;5.7277930"
+    },
+    {
+        "storeName": "Kirkenes",
+        "storeId": "228",
+        "gpsCoord": "69.7280118;30.0376009"
+    },
+    {
+        "storeName": "Halden",
+        "storeId": "229",
+        "gpsCoord": "59.1215016;11.3833732"
+    },
+    {
+        "storeName": "Hamar",
+        "storeId": "230",
+        "gpsCoord": "60.7960849;11.0892890"
+    },
+    {
+        "storeName": "Stavanger, Verksgata",
+        "storeId": "231",
+        "gpsCoord": "58.971384;5.73688"
+    },
+    {
+        "storeName": "Kristiansund, Sentrum",
+        "storeId": "232",
+        "gpsCoord": "63.1093454;7.7322502"
+    },
+    {
+        "storeName": "Holmestrand",
+        "storeId": "233",
+        "gpsCoord": "59.4870965;10.3187023"
+    },
+    {
+        "storeName": "Kolbotn",
+        "storeId": "234",
+        "gpsCoord": "59.810037;10.799959"
+    },
+    {
+        "storeName": "Odda",
+        "storeId": "235",
+        "gpsCoord": "60.0702803;6.5422019"
+    },
+    {
+        "storeName": "Levanger",
+        "storeId": "236",
+        "gpsCoord": "63.74901167;11.3023626"
+    },
+    {
+        "storeName": "Horten",
+        "storeId": "237",
+        "gpsCoord": "59.4151698;10.4862476"
+    },
+    {
+        "storeName": "Honningsvåg",
+        "storeId": "239",
+        "gpsCoord": "70.9819;25.9715"
+    },
+    {
+        "storeName": "Mo i Rana",
+        "storeId": "240",
+        "gpsCoord": "66.3062122;14.1335968"
+    },
+    {
+        "storeName": "Sandnes, Sentrum",
+        "storeId": "241",
+        "gpsCoord": "58.8479807;5.740184"
+    },
+    {
+        "storeName": "Hønefoss",
+        "storeId": "242",
+        "gpsCoord": "60.1647532;10.2536553"
+    },
+    {
+        "storeName": "Kolvereid",
+        "storeId": "243",
+        "gpsCoord": "64.865348;11.604309"
+    },
+    {
+        "storeName": "Molde",
+        "storeId": "244",
+        "gpsCoord": "62.7376594;7.1827361"
+    },
+    {
+        "storeName": "Ålesund, Sentrum",
+        "storeId": "245",
+        "gpsCoord": "62.471387;6.153867"
+    },
+    {
+        "storeName": "Jessheim",
+        "storeId": "246",
+        "gpsCoord": "60.1419248;11.1747038"
+    },
+    {
+        "storeName": "Kongsberg",
+        "storeId": "247",
+        "gpsCoord": "59.6640275;9.6474783"
+    },
+    {
+        "storeName": "Mosjøen",
+        "storeId": "248",
+        "gpsCoord": "65.83990316;13.18992644"
+    },
+    {
+        "storeName": "Kongsvinger",
+        "storeId": "250",
+        "gpsCoord": "60.1864746;12.0046554"
+    },
+    {
+        "storeName": "Førde",
+        "storeId": "251",
+        "gpsCoord": "61.4526;5.8506"
+    },
+    {
+        "storeName": "Namsos",
+        "storeId": "252",
+        "gpsCoord": "64.468429;11.491356"
+    },
+    {
+        "storeName": "Kristiansand, Sørlandssenteret",
+        "storeId": "253",
+        "gpsCoord": "58.1799;8.1333"
+    },
+    {
+        "storeName": "Kristiansand, Lillemarkens",
+        "storeId": "254",
+        "gpsCoord": "58.1452;7.9915"
+    },
+    {
+        "storeName": "Nordfjordeid",
+        "storeId": "255",
+        "gpsCoord": "61.908603;5.984137"
+    },
+    {
+        "storeName": "Narvik",
+        "storeId": "256",
+        "gpsCoord": "68.4410756;17.4356356"
+    },
+    {
+        "storeName": "Kragerø",
+        "storeId": "257",
+        "gpsCoord": "58.8694714;9.4152940"
+    },
+    {
+        "storeName": "Larvik",
+        "storeId": "258",
+        "gpsCoord": "59.0537;10.0292"
+    },
+    {
+        "storeName": "Sunndalsøra",
+        "storeId": "259",
+        "gpsCoord": "62.6700166;8.5773302"
+    },
+    {
+        "storeName": "Oppdal",
+        "storeId": "260",
+        "gpsCoord": "62.5944821;9.6902327"
+    },
+    {
+        "storeName": "Sogndal",
+        "storeId": "261",
+        "gpsCoord": "61.2318;7.102"
+    },
+    {
+        "storeName": "Orkanger",
+        "storeId": "262",
+        "gpsCoord": "63.2971;9.8446"
+    },
+    {
+        "storeName": "Lillehammer",
+        "storeId": "263",
+        "gpsCoord": "61.1152335;10.4658186"
+    },
+    {
+        "storeName": "Røros",
+        "storeId": "264",
+        "gpsCoord": "62.5756317;11.3811411"
+    },
+    {
+        "storeName": "Lillestrøm",
+        "storeId": "265",
+        "gpsCoord": "59.9575929;11.0483251"
+    },
+    {
+        "storeName": "Mandal",
+        "storeId": "266",
+        "gpsCoord": "58.0293;7.4614"
+    },
+    {
+        "storeName": "Rudshøgda",
+        "storeId": "267",
+        "gpsCoord": "60.9093;10.8143"
+    },
+    {
+        "storeName": "Sandnessjøen",
+        "storeId": "268",
+        "gpsCoord": "66.02200791; 12.6339"
+    },
+    {
+        "storeName": "Storslett",
+        "storeId": "269",
+        "gpsCoord": "69.76861;21.003499"
+    },
+    {
+        "storeName": "Moss",
+        "storeId": "270",
+        "gpsCoord": "59.4372651;10.6639834"
+    },
+    {
+        "storeName": "Sortland",
+        "storeId": "272",
+        "gpsCoord": "68.6943635;15.4161171"
+    },
+    {
+        "storeName": "Notodden",
+        "storeId": "273",
+        "gpsCoord": "59.557;9.2551"
+    },
+    {
+        "storeName": "Otta",
+        "storeId": "274",
+        "gpsCoord": "61.771682;9.541096"
+    },
+    {
+        "storeName": "Os",
+        "storeId": "275",
+        "gpsCoord": "60.1838;5.4724"
+    },
+    {
+        "storeName": "Steinkjer",
+        "storeId": "276",
+        "gpsCoord": "64.0102864;11.4925281"
+    },
+    {
+        "storeName": "Porsgrunn, Jernbanegata",
+        "storeId": "277",
+        "gpsCoord": "59.139461;9.6548329"
+    },
+    {
+        "storeName": "Bardufoss",
+        "storeId": "278",
+        "gpsCoord": "69.064059087;18.504678010"
+    },
+    {
+        "storeName": "Stjørdal",
+        "storeId": "280",
+        "gpsCoord": "63.4689457;10.9242615"
+    },
+    {
+        "storeName": "Rjukan",
+        "storeId": "281",
+        "gpsCoord": "59.8792932;8.5914546"
+    },
+    {
+        "storeName": "Tromsø, Langnes",
+        "storeId": "282",
+        "gpsCoord": "69.6746614;18.9203755"
+    },
+    {
+        "storeName": "Sandefjord",
+        "storeId": "283",
+        "gpsCoord": "59.1293529;10.2252665"
+    },
+    {
+        "storeName": "Svolvær",
+        "storeId": "284",
+        "gpsCoord": "68.2333;14.559"
+    },
+    {
+        "storeName": "Sarpsborg, Storbyen",
+        "storeId": "285",
+        "gpsCoord": "59.2842033;11.1081653"
+    },
+    {
+        "storeName": "Oslo, Steen & Strøm",
+        "storeId": "286",
+        "gpsCoord": "59.9117037;10.7431080"
+    },
+    {
+        "storeName": "Lørenskog, Triaden",
+        "storeId": "287",
+        "gpsCoord": "59.9191869;10.9529987"
+    },
+    {
+        "storeName": "Tromsø, Tromsdalen",
+        "storeId": "288",
+        "gpsCoord": "69.6399623;18.9708618"
+    },
+    {
+        "storeName": "Ski",
+        "storeId": "289",
+        "gpsCoord": "59.7164197;10.8360662"
+    },
+    {
+        "storeName": "Skien, Lietorvet",
+        "storeId": "290",
+        "gpsCoord": "59.2104061;9.6049850"
+    },
+    {
+        "storeName": "Strømmen",
+        "storeId": "291",
+        "gpsCoord": "59.947564;11.007335"
+    },
+    {
+        "storeName": "Tromsø, Sentrum",
+        "storeId": "292",
+        "gpsCoord": "69.6461;18.9545"
+    },
+    {
+        "storeName": "Tynset",
+        "storeId": "293",
+        "gpsCoord": "62.2787449;10.7731633"
+    },
+    {
+        "storeName": "Trysil",
+        "storeId": "294",
+        "gpsCoord": "61.3154033;12.2614273"
+    },
+    {
+        "storeName": "Tønsberg",
+        "storeId": "295",
+        "gpsCoord": "59.2692842;10.4117630"
+    },
+    {
+        "storeName": "Vadsø",
+        "storeId": "296",
+        "gpsCoord": "70.071905;29.749646"
+    },
+    {
+        "storeName": "Stord",
+        "storeId": "297",
+        "gpsCoord": "59.7785025;5.4993168"
+    },
+    {
+        "storeName": "Voss",
+        "storeId": "298",
+        "gpsCoord": "60.629113;6.424191"
+    },
+    {
+        "storeName": "Ørsta",
+        "storeId": "299",
+        "gpsCoord": "62.199407;6.124449"
+    },
+    {
+        "storeName": "Rakkestad",
+        "storeId": "300",
+        "gpsCoord": "59.4276587;11.3401048"
+    },
+    {
+        "storeName": "Bjørkelangen",
+        "storeId": "301",
+        "gpsCoord": "59.8831;11.5667"
+    },
+    {
+        "storeName": "Flisa",
+        "storeId": "302",
+        "gpsCoord": "60.612627;12.010825"
+    },
+    {
+        "storeName": "Dombås",
+        "storeId": "303",
+        "gpsCoord": "62.0738271;9.1270977"
+    },
+    {
+        "storeName": "Geilo",
+        "storeId": "304",
+        "gpsCoord": "60.5342095;8.2091357"
+    },
+    {
+        "storeName": "Vinje",
+        "storeId": "305",
+        "gpsCoord": "59.5684789;7.9896919"
+    },
+    {
+        "storeName": "Lillesand",
+        "storeId": "306",
+        "gpsCoord": "58.249204;8.376206"
+    },
+    {
+        "storeName": "Farsund",
+        "storeId": "307",
+        "gpsCoord": "58.09639305;06.80553279"
+    },
+    {
+        "storeName": "Jørpeland",
+        "storeId": "308",
+        "gpsCoord": "59.0216289;6.0415989"
+    },
+    {
+        "storeName": "Bømlo",
+        "storeId": "309",
+        "gpsCoord": "59.7933330;5.1716050"
+    },
+    {
+        "storeName": "Stryn",
+        "storeId": "310",
+        "gpsCoord": "61.9033622;6.7190685"
+    },
+    {
+        "storeName": "Årdal",
+        "storeId": "311",
+        "gpsCoord": "61.3101937; 7.8079549"
+    },
+    {
+        "storeName": "Surnadal",
+        "storeId": "312",
+        "gpsCoord": "62.9759882;8.7280454"
+    },
+    {
+        "storeName": "Kyrksæterøra",
+        "storeId": "313",
+        "gpsCoord": "63.291027;9.088997"
+    },
+    {
+        "storeName": "Hitra",
+        "storeId": "314",
+        "gpsCoord": "63.6019304;8.9770929"
+    },
+    {
+        "storeName": "Grong",
+        "storeId": "315",
+        "gpsCoord": "64.4645233;12.3147064"
+    },
+    {
+        "storeName": "Andenes",
+        "storeId": "316",
+        "gpsCoord": "69.3146923;16.1198382"
+    },
+    {
+        "storeName": "Storsteinnes",
+        "storeId": "317",
+        "gpsCoord": "69.239712;19.227018"
+    },
+    {
+        "storeName": "Båtsfjord",
+        "storeId": "318",
+        "gpsCoord": "70.6369874;29.7262439"
+    },
+    {
+        "storeName": "Kautokeino",
+        "storeId": "319",
+        "gpsCoord": "69.0114592;23.0415377"
+    },
+    {
+        "storeName": "Seljord",
+        "storeId": "320",
+        "gpsCoord": "59.4815588;8.6285004"
+    },
+    {
+        "storeName": "Hvaler",
+        "storeId": "321",
+        "gpsCoord": "59.0275057;11.0341843"
+    },
+    {
+        "storeName": "Trondheim, Nedre Elvehavn",
+        "storeId": "322",
+        "gpsCoord": "63.4354311;10.4125994"
+    },
+    {
+        "storeName": "Tvedestrand",
+        "storeId": "323",
+        "gpsCoord": "58.6240313;8.9277902"
+    },
+    {
+        "storeName": "Stange",
+        "storeId": "324",
+        "gpsCoord": "60.71693801;11.1913805007"
+    },
+    {
+        "storeName": "Sotra",
+        "storeId": "325",
+        "gpsCoord": "60.358975;5.124328"
+    },
+    {
+        "storeName": "Bryne",
+        "storeId": "326",
+        "gpsCoord": "58.73560;5.63999"
+    },
+    {
+        "storeName": "Skjervøy",
+        "storeId": "327",
+        "gpsCoord": "70.0330362;20.9742469"
+    },
+    {
+        "storeName": "Rognan",
+        "storeId": "328",
+        "gpsCoord": "67.1020723;15.3972889"
+    },
+    {
+        "storeName": "Stranda",
+        "storeId": "329",
+        "gpsCoord": "62.3078564;6.9459833"
+    },
+    {
+        "storeName": "Rena",
+        "storeId": "330",
+        "gpsCoord": "61.1325943;11.3713354"
+    },
+    {
+        "storeName": "Bergen, Lagunen",
+        "storeId": "331",
+        "gpsCoord": "60.297116;5.331159"
+    },
+    {
+        "storeName": "Lena",
+        "storeId": "332",
+        "gpsCoord": "60.677429;10.817714"
+    },
+    {
+        "storeName": "Elnesvågen",
+        "storeId": "333",
+        "gpsCoord": "62.8542;7.1606"
+    },
+    {
+        "storeName": "Oslo, Ullevaal Stadion",
+        "storeId": "334",
+        "gpsCoord": "59.9501652;10.7348884"
+    },
+    {
+        "storeName": "Oslo, Røa",
+        "storeId": "335",
+        "gpsCoord": "59.9480010;10.6440331"
+    },
+    {
+        "storeName": "Trondheim, Lade",
+        "storeId": "336",
+        "gpsCoord": "63.4433483;10.4478454"
+    },
+    {
+        "storeName": "Verdal",
+        "storeId": "337",
+        "gpsCoord": "63.7918493;11.4852398"
+    },
+    {
+        "storeName": "Vinterbro",
+        "storeId": "338",
+        "gpsCoord": "59.7397965;10.7666609"
+    },
+    {
+        "storeName": "Bodø, City Nord",
+        "storeId": "339",
+        "gpsCoord": "67.2772;14.4241"
+    },
+    {
+        "storeName": "Rissa",
+        "storeId": "340",
+        "gpsCoord": "63.5842865;9.9617790"
+    },
+    {
+        "storeName": "Stokmarknes",
+        "storeId": "341",
+        "gpsCoord": "68.5671571;14.9123333"
+    },
+    {
+        "storeName": "Melhus",
+        "storeId": "342",
+        "gpsCoord": "63.2865722;10.2786966"
+    },
+    {
+        "storeName": "Mysen",
+        "storeId": "343",
+        "gpsCoord": "59.5534136;11.3327564"
+    },
+    {
+        "storeName": "Vennesla",
+        "storeId": "344",
+        "gpsCoord": "58.27097461;7.970477342"
+    },
+    {
+        "storeName": "Lyngdal",
+        "storeId": "345",
+        "gpsCoord": "58.138;7.069"
+    },
+    {
+        "storeName": "Sandane",
+        "storeId": "346",
+        "gpsCoord": "61.7757738;6.2135982"
+    },
+    {
+        "storeName": "Fosnavåg",
+        "storeId": "347",
+        "gpsCoord": "62.3427505;5.6303175"
+    },
+    {
+        "storeName": "Sykkylven",
+        "storeId": "348",
+        "gpsCoord": "62.3919305;6.5805036"
+    },
+    {
+        "storeName": "Vågå",
+        "storeId": "349",
+        "gpsCoord": "61.8768521;9.0963656"
+    },
+    {
+        "storeName": "Rygge",
+        "storeId": "350",
+        "gpsCoord": "59.4161;10.6826"
+    },
+    {
+        "storeName": "Vestby",
+        "storeId": "351",
+        "gpsCoord": "59.60398;10.74317"
+    },
+    {
+        "storeName": "Raufoss",
+        "storeId": "352",
+        "gpsCoord": "60.7287409;10.6152540"
+    },
+    {
+        "storeName": "Ulefoss",
+        "storeId": "353",
+        "gpsCoord": "59.2808;9.2684"
+    },
+    {
+        "storeName": "Søgne",
+        "storeId": "354",
+        "gpsCoord": "58.0986;7.8152"
+    },
+    {
+        "storeName": "Sola",
+        "storeId": "355",
+        "gpsCoord": "58.8821927;5.65257310"
+    },
+    {
+        "storeName": "Høyanger",
+        "storeId": "356",
+        "gpsCoord": "61.2186;6.0727"
+    },
+    {
+        "storeName": "Volda",
+        "storeId": "357",
+        "gpsCoord": "62.1442;6.0723"
+    },
+    {
+        "storeName": "Frøya",
+        "storeId": "358",
+        "gpsCoord": "63.728833;8.828094"
+    },
+    {
+        "storeName": "Myre",
+        "storeId": "359",
+        "gpsCoord": "68.914695;15.1011800"
+    },
+    {
+        "storeName": "Setermoen",
+        "storeId": "360",
+        "gpsCoord": "68.861521;18.345065"
+    },
+    {
+        "storeName": "Oslo, Grønland Basar",
+        "storeId": "361",
+        "gpsCoord": "59.9134;10.7642"
+    },
+    {
+        "storeName": "Liertoppen",
+        "storeId": "362",
+        "gpsCoord": "59.8113;10.3048"
+    },
+    {
+        "storeName": "Løten",
+        "storeId": "363",
+        "gpsCoord": "60.8205;11.3422"
+    },
+    {
+        "storeName": "Lom",
+        "storeId": "364",
+        "gpsCoord": "61.837174;8.56895825"
+    },
+    {
+        "storeName": "Drangedal",
+        "storeId": "365",
+        "gpsCoord": "59.090148;9.064751"
+    },
+    {
+        "storeName": "Luster",
+        "storeId": "366",
+        "gpsCoord": "61.4065;7.2883"
+    },
+    {
+        "storeName": "Vanylven",
+        "storeId": "367",
+        "gpsCoord": "62.10065;5.557601"
+    },
+    {
+        "storeName": "Sjøvegan",
+        "storeId": "368",
+        "gpsCoord": "68.8748;17.8348"
+    },
+    {
+        "storeName": "Lødingen",
+        "storeId": "369",
+        "gpsCoord": "68.414;15.9979"
+    },
+    {
+        "storeName": "Vardø",
+        "storeId": "370",
+        "gpsCoord": "70.3711556;31.1198618"
+    },
+    {
+        "storeName": "Bergen, Laksevåg",
+        "storeId": "373",
+        "gpsCoord": "60.389466;5.286462"
+    },
+    {
+        "storeName": "Oslo, Lambertseter",
+        "storeId": "374",
+        "gpsCoord": "59.87490;10.81045"
+    },
+    {
+        "storeName": "Hokksund",
+        "storeId": "375",
+        "gpsCoord": "59.7692;9.91"
+    },
+    {
+        "storeName": "Tjøme",
+        "storeId": "376",
+        "gpsCoord": "59.1225;10.399"
+    },
+    {
+        "storeName": "Jevnaker",
+        "storeId": "377",
+        "gpsCoord": "60.2411;10.3847"
+    },
+    {
+        "storeName": "Sørumsand",
+        "storeId": "378",
+        "gpsCoord": "59.98717;11.24458"
+    },
+    {
+        "storeName": "Brattvåg",
+        "storeId": "379",
+        "gpsCoord": "62.5976;6.4459"
+    },
+    {
+        "storeName": "Ringebu",
+        "storeId": "380",
+        "gpsCoord": "61.5305;10.1393"
+    },
+    {
+        "storeName": "Re",
+        "storeId": "381",
+        "gpsCoord": "59.3725;10.2696"
+    },
+    {
+        "storeName": "Rørvik",
+        "storeId": "382",
+        "gpsCoord": "64.8621;11.2408"
+    },
+    {
+        "storeName": "Malvik",
+        "storeId": "383",
+        "gpsCoord": "63.420483;10.755336"
+    },
+    {
+        "storeName": "Vestnes",
+        "storeId": "384",
+        "gpsCoord": "62.623;7.0942"
+    },
+    {
+        "storeName": "Klepp",
+        "storeId": "385",
+        "gpsCoord": "58.7794;5.6257"
+    },
+    {
+        "storeName": "Kristiansand, Vågsbygd",
+        "storeId": "386",
+        "gpsCoord": "58.1253;7.9526"
+    },
+    {
+        "storeName": "Nesbyen",
+        "storeId": "387",
+        "gpsCoord": "60.5687;9.1026"
+    },
+    {
+        "storeName": "Skarnes",
+        "storeId": "388",
+        "gpsCoord": "60.2552;11.6803"
+    },
+    {
+        "storeName": "Oslo, Grorud",
+        "storeId": "389",
+        "gpsCoord": "59.96019;10.88067"
+    },
+    {
+        "storeName": "Nannestad",
+        "storeId": "392",
+        "gpsCoord": "60.220442;11.014352"
+    },
+    {
+        "storeName": "Oslo, Skøyen",
+        "storeId": "393",
+        "gpsCoord": "59.9211216;10.677531"
+    },
+    {
+        "storeName": "Brumunddal",
+        "storeId": "394",
+        "gpsCoord": "60.884745;10.943198"
+    },
+    {
+        "storeName": "Gausdal",
+        "storeId": "395",
+        "gpsCoord": "61.226542;10.222113"
+    },
+    {
+        "storeName": "Beitostølen",
+        "storeId": "396",
+        "gpsCoord": "61.246471;8.910726"
+    },
+    {
+        "storeName": "Tofte",
+        "storeId": "397",
+        "gpsCoord": "59.54179;10.558800"
+    },
+    {
+        "storeName": "Stokke",
+        "storeId": "398",
+        "gpsCoord": "59.22133;10.30301"
+    },
+    {
+        "storeName": "Randaberg",
+        "storeId": "399",
+        "gpsCoord": "58.99831;5.61754"
+    },
+    {
+        "storeName": "Ølen",
+        "storeId": "400",
+        "gpsCoord": "59.6037975;5.8073418"
+    },
+    {
+        "storeName": "Trondheim, Byåsen",
+        "storeId": "401",
+        "gpsCoord": "63.4173929;10.3539599"
+    },
+    {
+        "storeName": "Åfjord",
+        "storeId": "402",
+        "gpsCoord": "63.9606778;10.2241256"
+    },
+    {
+        "storeName": "Oslo, Mortensrud",
+        "storeId": "403",
+        "gpsCoord": "59.8484191895;10.8291940"
+    },
+    {
+        "storeName": "Stavern",
+        "storeId": "404",
+        "gpsCoord": "59.000063;10.034292"
+    },
+    {
+        "storeName": "Ålgård",
+        "storeId": "405",
+        "gpsCoord": "58.7702331543;5.846295356"
+    },
+    {
+        "storeName": "Ål",
+        "storeId": "406",
+        "gpsCoord": "60.63089;8.56431"
+    },
+    {
+        "storeName": "Sande",
+        "storeId": "407",
+        "gpsCoord": "59.58743;10.20635"
+    },
+    {
+        "storeName": "Øyer",
+        "storeId": "408",
+        "gpsCoord": "61.24622;10.43922"
+    },
+    {
+        "storeName": "Brokelandsheia",
+        "storeId": "409",
+        "gpsCoord": "58.8242306; 9.0740381"
+    },
+    {
+        "storeName": "Austevoll",
+        "storeId": "410",
+        "gpsCoord": "60.007139;5.2049669"
+    },
+    {
+        "storeName": "Koppang",
+        "storeId": "411",
+        "gpsCoord": "61.57051;11.05105"
+    },
+    {
+        "storeName": "Rødberg",
+        "storeId": "412",
+        "gpsCoord": "60.267810;8.9454177"
+    },
+    {
+        "storeName": "Evenskjer",
+        "storeId": "413",
+        "gpsCoord": "68.5837542;16.571922"
+    },
+    {
+        "storeName": "Askvoll",
+        "storeId": "414",
+        "gpsCoord": "61.3459407;5.0627044"
+    },
+    {
+        "storeName": "Ytre Enebakk",
+        "storeId": "415",
+        "gpsCoord": "59.7239822;11.0503022"
+    },
+    {
+        "storeName": "Stavanger, Madla",
+        "storeId": "416",
+        "gpsCoord": "58.952;5.679"
+    },
+    {
+        "storeName": "Oslo, Nydalen",
+        "storeId": "417",
+        "gpsCoord": "59.949113;10.7663752"
+    },
+    {
+        "storeName": "Ås",
+        "storeId": "418",
+        "gpsCoord": "59.66468;10.79081"
+    },
+    {
+        "storeName": "Hemsedal",
+        "storeId": "419",
+        "gpsCoord": "60.86307;8.55233"
+    },
+    {
+        "storeName": "Bruhagen",
+        "storeId": "420",
+        "gpsCoord": "63.0521;7.6312"
+    },
+    {
+        "storeName": "Lonevåg",
+        "storeId": "421",
+        "gpsCoord": "60.52540824;5.49676895141"
+    },
+    {
+        "storeName": "Svelvik",
+        "storeId": "422",
+        "gpsCoord": "59.617607;10.409519"
+    },
+    {
+        "storeName": "Selbu",
+        "storeId": "423",
+        "gpsCoord": "63.2193031311;11.04035377"
+    },
+    {
+        "storeName": "Korgen",
+        "storeId": "424",
+        "gpsCoord": "66.08029;13.82500"
+    },
+    {
+        "storeName": "Andebu",
+        "storeId": "425",
+        "gpsCoord": "59.3046;10.1767"
+    },
+    {
+        "storeName": "Gjerdrum",
+        "storeId": "426",
+        "gpsCoord": "60.070810856;11.035364270"
+    },
+    {
+        "storeName": "Bagn",
+        "storeId": "427",
+        "gpsCoord": "60.82302294;9.553333818"
+    },
+    {
+        "storeName": "Bjugn",
+        "storeId": "428",
+        "gpsCoord": "63.765171051;9.811869621"
+    },
+    {
+        "storeName": "Etne",
+        "storeId": "429",
+        "gpsCoord": "59.66439196;5.94064235"
+    },
+    {
+        "storeName": "Kvinesdal",
+        "storeId": "430",
+        "gpsCoord": "58.3176;6.9587"
+    },
+    {
+        "storeName": "Nærbø",
+        "storeId": "431",
+        "gpsCoord": "58.6681518555;5.641"
+    },
+    {
+        "storeName": "Langevåg",
+        "storeId": "432",
+        "gpsCoord": "62.440360702;6.18992"
+    },
+    {
+        "storeName": "Radøy",
+        "storeId": "433",
+        "gpsCoord": "60.64102365;5.04195213"
+    },
+    {
+        "storeName": "Bergen, Åsane Horisont",
+        "storeId": "434",
+        "gpsCoord": "60.470404;5.323168"
+    },
+    {
+        "storeName": "Stavanger, Hinna",
+        "storeId": "436",
+        "gpsCoord": "58.9149059;5.7293891"
+    },
+    {
+        "storeName": "Froland",
+        "storeId": "437",
+        "gpsCoord": "58.5084127;8.6293413"
+    },
+    {
+        "storeName": "Hov",
+        "storeId": "438",
+        "gpsCoord": "60.696;10.35"
+    },
+    {
+        "storeName": "Moelv",
+        "storeId": "439",
+        "gpsCoord": "60.92853467;10.7017779"
+    },
+    {
+        "storeName": "Oslo, Bøler",
+        "storeId": "440",
+        "gpsCoord": "59.8830397;10.8458152"
+    },
+    {
+        "storeName": "Fetsund",
+        "storeId": "441",
+        "gpsCoord": "59.9281273;11.162448"
+    },
+    {
+        "storeName": "Bærum, Fornebu",
+        "storeId": "442",
+        "gpsCoord": "59.8935172;10.6207561"
+    },
+    {
+        "storeName": "Herøy",
+        "storeId": "443",
+        "gpsCoord": "65.98360;12.2878"
+    },
+    {
+        "storeName": "Lyngen",
+        "storeId": "444",
+        "gpsCoord": "69.5747451;20.2069277"
+    },
+    {
+        "storeName": "Bø i Vesterålen",
+        "storeId": "445",
+        "gpsCoord": "68.62087;14.445598"
+    },
+    {
+        "storeName": "Inderøy",
+        "storeId": "446",
+        "gpsCoord": "63.8735416;11.2972103"
+    },
+    {
+        "storeName": "Kjøllefjord",
+        "storeId": "447",
+        "gpsCoord": "70.9454167;27.3515139"
+    },
+    {
+        "storeName": "Eikelandsosen",
+        "storeId": "448",
+        "gpsCoord": "60.2400685;5.747474"
+    },
+    {
+        "storeName": "Karmøy, Oasen",
+        "storeId": "449",
+        "gpsCoord": "59.3771667541609;5.30601"
+    },
+    {
+        "storeName": "Stavanger, Tasta",
+        "storeId": "450",
+        "gpsCoord": "58.984417;5.689802"
+    },
+    {
+        "storeName": "Flå",
+        "storeId": "452",
+        "gpsCoord": "60.4302089;9.4619752"
+    },
+    {
+        "storeName": "Bærum, Bærums Verk",
+        "storeId": "453",
+        "gpsCoord": "59.9414269;10.5019759"
+    },
+    {
+        "storeName": "Oslo, Vinderen",
+        "storeId": "454",
+        "gpsCoord": "59.9421870311;10.704102"
+    },
+    {
+        "storeName": "Kløfta",
+        "storeId": "455",
+        "gpsCoord": "60.0761246;11.136121"
+    },
+    {
+        "storeName": "Steigen",
+        "storeId": "456",
+        "gpsCoord": "67.77607509;15.01445621"
+    },
+    {
+        "storeName": "Smøla",
+        "storeId": "457",
+        "gpsCoord": "63.46083081574632;8.01210"
+    },
+    {
+        "storeName": "Tysnes",
+        "storeId": "458",
+        "gpsCoord": "60.04392149;5.52213728"
+    },
+    {
+        "storeName": "Oslo, Carl Berner",
+        "storeId": "459",
+        "gpsCoord": "59.9277545;10.7791509"
+    },
+    {
+        "storeName": "Trondheim, Heimdal",
+        "storeId": "460",
+        "gpsCoord": "63.3515349;10.354883"
+    },
+    {
+        "storeName": "Sarpsborg, Borg",
+        "storeId": "461",
+        "gpsCoord": "59.2741392;11.0822828"
+    },
+    {
+        "storeName": "Son",
+        "storeId": "462",
+        "gpsCoord": "59.52579;10.689055"
+    },
+    {
+        "storeName": "Åsgårdstrand",
+        "storeId": "463",
+        "gpsCoord": "59.34968406;10.46005725"
+    },
+    {
+        "storeName": "Vik i Sogn",
+        "storeId": "464",
+        "gpsCoord": "61.0856397;6.5815133"
+    },
+    {
+        "storeName": "Frosta",
+        "storeId": "465",
+        "gpsCoord": "63.58850889;10.74017901"
+    },
+    {
+        "storeName": "Sund",
+        "storeId": "466",
+        "gpsCoord": "60.2700735;5.0724634"
+    },
+    {
+        "storeName": "Vik i Hole",
+        "storeId": "467",
+        "gpsCoord": "60.07769;10.282087"
+    },
+    {
+        "storeName": "Drammen, CC",
+        "storeId": "468",
+        "gpsCoord": "59.7413889;10.2210607000"
+    },
+    {
+        "storeName": "Bodø, Hunstad",
+        "storeId": "469",
+        "gpsCoord": "67.280830;14.544759"
+    },
+    {
+        "storeName": "Råholt",
+        "storeId": "470",
+        "gpsCoord": "60.2811161;11.1742052"
+    },
+    {
+        "storeName": "Oslo, Valkyrien",
+        "storeId": "471",
+        "gpsCoord": "59.9281069;10.7187714"
+    },
+    {
+        "storeName": "Skedsmokorset",
+        "storeId": "472",
+        "gpsCoord": "60.000991;11.0397496"
+    },
+    {
+        "storeName": "Lørenskog, Metro",
+        "storeId": "473",
+        "gpsCoord": "59.9275692;10.9583706"
+    },
+    {
+        "storeName": "Oslo, Bryn",
+        "storeId": "475",
+        "gpsCoord": "59.9031958;10.8224587"
+    },
+    {
+        "storeName": "eLager",
+        "storeId": "801",
+        "gpsCoord": "59.57627;10.746115"
+    }
+]

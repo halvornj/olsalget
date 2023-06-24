@@ -71,6 +71,7 @@ public class App {
                 JSONObject writeStore = new JSONObject();
                 writeStore.put("storeId", currentStore.get("storeId"));
                 writeStore.put("gpsCoord", ((JSONObject) currentStore.get("address")).get("gpsCoord"));
+                writeStore.put("storeName", currentStore.get("storeName"));
                 newArray.put(writeStore);
             }
             System.out.println("json parsed.");
