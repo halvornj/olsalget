@@ -24,7 +24,7 @@ body {
   }
 }
 
-#salesTimesContainer {
+#openTimesContainer {
   display: flex;
   position: fixed;
   justify-content: center;
@@ -35,14 +35,14 @@ body {
   overflow-y: auto;
 }
 
-#salesTimes {
+#openTimes {
   font-size: 5em;
   position: center;
   text-align: center;
   display: block;
   color: var(--offBlack);
 }
-#salesTimesFlavourText {
+#openTimesFlavourText {
   font-size: 2.5em;
   text-align: center;
   display: block;
@@ -70,18 +70,23 @@ button:active {
   transform: translate(3px, 3px);
   box-shadow: #b5b5b5 0px 0px;
 }
-#comingWeekTable {
+#closestStoresTable {
   border-collapse: collapse;
 }
 
-#comingWeekTable td:nth-child(odd) {
+#closestStoresTable td:nth-child(odd) {
   text-align: right;
+  padding-right: 10px;
 }
-#comingWeekTable td {
+#closestStoresTable td:nth-child(even) {
+  font-weight: bold;
+}
+
+#closestStoresTable td {
   padding: 3px;
   margin: 3px;
 }
-#comingWeekTable tr {
+#closestStoresTable tr {
   border-bottom: 1px solid var(--offBlack);
 }
 
@@ -99,7 +104,7 @@ button:active {
   border-radius: 0.5em;
   margin-right: 0px;
   border: var(--offBlack) inset 2px;
-  float:left;
+  float: left;
 }
 
 .searchButton {
@@ -155,4 +160,8 @@ a {
   color: var(--offBlack);
   text-shadow: #b5b5b5 3px 3px 1px;
 }
-	
+
+#map-canvas {
+  height: 50%;
+  width: 60%;
+}

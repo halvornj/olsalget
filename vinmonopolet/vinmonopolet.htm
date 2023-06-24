@@ -7,43 +7,45 @@
     />
     <meta
       name="description"
-      content="se når ølsalget stenger i din lokale kommune, eller andre kommuner i Norge."
+      content="se hvor det er vinmonopol nærme deg, og når de stenger."
     />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="../icons/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="vinmonopolet.css" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwg3AgvtGG-HHzvwiD3RbFrtzjtx1zr2k"></script>
     <title>Vinmonopolet</title>
   </head>
   <body>
     <div class="header">
-      <a href="../index.htm"><img src="../icons/back-button.svg" alt="back" id="backButton" /></a>
+      <a href="../index.htm"
+        ><img src="../icons/back-button.svg" alt="back" id="backButton"
+      /></a>
     </div>
 
-    <div id="salesTimesContainer">
-      <div id="salesTimesFlavourText"></div>
-      <div id="salesTimes">Loading...</div>
-      <div id="comingWeekDiv" style="display: none">
-        <table id="comingWeekTable"></table>
+    <div id="openTimesContainer">
+      <div id="openTimesFlavourText"></div>
+      <div id="openTimes">Loading...</div>
+      <button id="showOtherStoresButton">Vis vinmonopol i nærheten</button>
+      <div id="closestStoresDiv" style="display: none">
+        <table id="closestStoresTable"></table>
       </div>
-      <button>
-        Andre butikker i nærheten
-      </button>
-      <button>Få retning</button>
+      <button id="getRouteBtn">Vis kart</button>
+      <div id="map-canvas" style="display: none"></div>
     </div>
     <div class="footer">
       <column class="contactInfo" id="contactInfo">
-          <a id="mailTo" class="fa fa-envelope" href="mailto:halvor@njastad.no"></a>
-          <a href="https://github.com/halvornj/olsalget" target="_blank">
-            <i
-              class="fa fa-github"
-              aria-hidden="true"
-            >
-            </i>
-          </a>
+        <a
+          id="mailTo"
+          class="fa fa-envelope"
+          href="mailto:halvor@njastad.no"
+        ></a>
+        <a href="https://github.com/halvornj/olsalget" target="_blank">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
       </column>
     </div>
-    <script src="index.js"></script>
+    <script type="module" src="vinmonopolet.js"></script>
   </body>
 </html>

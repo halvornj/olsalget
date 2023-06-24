@@ -1,11 +1,10 @@
+import { Position } from "./Position.js";
+
 class Store {
-  constructor(id, name, status, streetAdress, gpsCoordinates, openingHours) {
+  constructor(id, name, position) {
     this.id = id;
     this.name = name;
-    this.status = status;
-    this.streetAdress = streetAdress;
-    this.gpsCoordinates = gpsCoordinates;
-    this.openingHours = openingHours;
+    this.position = position;
   }
   //getters, so far no setters needed
   getId() {
@@ -14,20 +13,18 @@ class Store {
   getName() {
     return this.name;
   }
-  getStatus() {
-    return this.status;
+  getPosition() {
+    return this.position;
   }
-  getStreetAdress() {
-    return this.streetAdress;
+  setDistanceFromUser(userPosition) {
+    this.distanceFromUser = Position.getDistanceBetween(
+      this.position,
+      userPosition
+    );
   }
-  getGpsCoordinates() {
-    return this.gpsCoordinates;
+  getDistanceFromUser() {
+    return this.distanceFromUser;
   }
-  getOpeningHours() {
-    return this.openingHours;
-  }
-
-  distanceFrom(north, east) {}
 }
 
 export { Store };
