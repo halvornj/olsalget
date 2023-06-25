@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="no">
   <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -54,17 +58,25 @@
             list="kommunenavnListe"
             autocomplete="off"
           />
+          <button type="submit" class="fa fa-search searchButton"></button>
           <datalist id="kommunenavnListe"></datalist>
         </form>
       </div>
-      <button onclick="alert('Coming soon\xAE');">
-        Når stenger Vinmonopolet?
-      </button>
-      <button onclick="alert('Se ut vinduet');">Er det vær for utepils?</button>
+      <a href="vinmonopolet/vinmonopolet.htm"
+        ><button>Når stenger Vinmonopolet?</button></a
+      >
     </div>
     <div class="footer">
-      <column>1</column>
-      <column>2</column>
+      <column class="contactInfo" id="contactInfo">
+        <a
+          id="mailTo"
+          class="fa fa-envelope"
+          href="mailto:halvor@njastad.no"
+        ></a>
+        <a href="https://github.com/halvornj/olsalget" target="_blank">
+          <i class="fa fa-github" aria-hidden="true"> </i>
+        </a>
+      </column>
     </div>
     <script src="index.js"></script>
   </body>

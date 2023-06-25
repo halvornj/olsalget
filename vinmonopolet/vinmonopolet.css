@@ -24,7 +24,7 @@ body {
   }
 }
 
-#salesTimesContainer {
+#openTimesContainer {
   display: flex;
   position: fixed;
   justify-content: center;
@@ -35,15 +35,15 @@ body {
   overflow-y: auto;
 }
 
-#salesTimes {
-  font-size: 5em;
+#openTimes {
+  font-size: 4em;
   position: center;
   text-align: center;
   display: block;
   color: var(--offBlack);
 }
-#salesTimesFlavourText {
-  font-size: 2.5em;
+#openTimesFlavourText {
+  font-size: 2.3em;
   text-align: center;
   display: block;
 }
@@ -70,42 +70,24 @@ button:active {
   transform: translate(3px, 3px);
   box-shadow: #b5b5b5 0px 0px;
 }
-#comingWeekTable {
+#closestStoresTable {
   border-collapse: collapse;
 }
 
-#comingWeekTable td:nth-child(odd) {
+#closestStoresTable td:nth-child(odd) {
   text-align: right;
+  padding-right: 10px;
 }
-#comingWeekTable td {
+#closestStoresTable td:nth-child(even) {
+  font-weight: bold;
+}
+
+#closestStoresTable td {
   padding: 3px;
   margin: 3px;
 }
-#comingWeekTable tr {
+#closestStoresTable tr {
   border-bottom: 1px solid var(--offBlack);
-}
-
-#kommunenavnListeForm {
-  text-align: center;
-  margin: 0.5em;
-  width: var(--buttonWidth);
-  justify-content: center;
-  align-items: center;
-}
-#kommunenavnInput {
-  padding: 10px 15px;
-  /* width: calc((100% - 30px - 3.2px)); */
-  width: calc(80% - 30px - 3.2px);
-  border-radius: 0.5em;
-  margin-right: 0px;
-  border: var(--offBlack) inset 2px;
-  float:left;
-}
-
-.searchButton {
-  width: calc(19.6%);
-  float: right;
-  margin: 0px;
 }
 
 .footer {
@@ -113,6 +95,18 @@ button:active {
   width: 100%;
   height: 9vh;
   bottom: 0px;
+}
+
+.header {
+  z-index: 5;
+}
+
+#backButton {
+  height: 10vh;
+  min-width: 20px;
+  min-height: 20px;
+  filter: drop-shadow(#b5b5b5 3px 3px 1px);
+  /* border: 1px solid black; */
 }
 
 column {
@@ -141,6 +135,10 @@ a {
   margin-right: 1vw;
   font-size: 8vh;
   color: var(--offBlack);
-  text-shadow: #b5b5b5 3px 3px;
+  text-shadow: #b5b5b5 3px 3px 1px;
 }
-	
+
+#map-canvas {
+  height: 50%;
+  width: 60%;
+}
