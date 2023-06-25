@@ -105,7 +105,6 @@ async function main() {
     geoLocError();
   }
   //*invariant: position is known
-  console.log("position: ", userPosition);
 
   //getting the stores
   const stores = await fetch("stores.json");
@@ -236,7 +235,6 @@ async function getStoreJson(storeId) {
     console.log(error);
   });
   const json = await response.json();
-  console.log(json[0]);
   return json[0];
 }
 
