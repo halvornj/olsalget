@@ -14,7 +14,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="../icons/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="vinmonopolet.css" />
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwg3AgvtGG-HHzvwiD3RbFrtzjtx1zr2k&callback=initMap"></script> -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwg3AgvtGG-HHzvwiD3RbFrtzjtx1zr2k&callback=Function.prototype"></script>
     <title>Vinmonopolet</title>
   </head>
   <body>
@@ -33,15 +35,7 @@
       </div>
       <button id="getRouteBtn">Vis i kart</button>
       <div id="map-canvas" style="display: none"></div>
-      <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&setMkt=nb&setLang=nb&branch=experimental&key=AngrhqUoQZj-qgewBLLR_jNB1o7FaE_3wrJLfnDd_UlOJ5KKZT6qTvsfh2bmxXGz'></script>
-        <script type='text/javascript'>
-                var map;
-                function loadMapScenario() {
-                    map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
-                }
-                
-            
-        </script>
+      <div id="map-canvas-text" style="display: none"></div>
     </div>
     <div class="footer">
       <column class="contactInfo" id="contactInfo">

@@ -16,21 +16,9 @@ function geoLocError() {
   return; //unreachable, but makes the linter happy
 }
 
-function initMap(userPosition, closestStores) {
-  /*fetch(`https://api.geoapify.com/v1/routing?waypoints=${userPosition.getLat()}%2C${userPosition.getLon()}%7C${closestStores.position.getLat()}%2C${closestStores.position.getLon()}&mode=drive&apiKey=f01a2296f3b043a2987f7eaa2823645a`, {method: 'GET'})
-  .then(response => response.json())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-
-  fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${userPosition.getLon()}%2C${userPosition.getLat()}%3B${closestStores.position.getLon()}%2C${closestStores.position.getLat()}?alternatives=true&geometries=geojson&language=en&overview=full&steps=true&access_token=pk.eyJ1Ijoic2Vhd2VlZGJlYXJkIiwiYSI6ImNsamFkc245bTA4MTYzcXFoM3ZkbTFtbGYifQ.2r7Dd-TbSnc2sqkvFOa72w`, {method: 'GET'})
-  .then(response => response.json())
-  .then(result => console.log(result))*/
-
-//   var map;
-// function loadMapScenario() {
-//     map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
-// }
-  //load google maps api
+async function initMap(userPosition, closestStores) {
+  //Main mapping function to utilize Google Maps API to get a route from user to closest store
+  document.getElementById("map-canvas-text").style.display = "none";
   
   var pointA = new google.maps.LatLng(
       userPosition.getLat(),
@@ -65,15 +53,15 @@ function initMap(userPosition, closestStores) {
     });
 
   // get route from A to B
-  calculateAndDisplayRoute(
-    directionsService,
-    directionsDisplay,
-    pointA,
-    pointB
-  );
+  calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB)
+    .catch((error) => {
+      // Handle the error by calling the fallback function
+      console.log(error);
+      loadLeafletMap(userPosition, closestStores);
+    });
 }
 
-function calculateAndDisplayRoute(
+async function calculateAndDisplayRoute(
   directionsService,
   directionsDisplay,
   pointA,
@@ -91,10 +79,36 @@ function calculateAndDisplayRoute(
       if (status == google.maps.DirectionsStatus.OK) {
         directionsDisplay.setDirections(response);
       } else {
-        window.alert("Directions request failed due to " + status);
+        throw "Error: " + status;
       }
     }
   );
+}
+
+function loadLeafletMap(userPosition, closestStore) {
+  console.log(closestStore)
+  //Secondary mapping function that runs if Google Maps API fails
+  //Only shows the closest store on a map
+  document.getElementById("map-canvas").innerHTML = ""; 
+
+  let map = L.map("map-canvas").setView(
+    [closestStore.position.getLat(), closestStore.position.getLon()],
+    13
+  );
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18
+  }).addTo(map);
+
+  L.marker([closestStore.position.getLat(), closestStore.position.getLon()]).addTo(map);
+
+  map.on('click', function(e) {
+    window.open("https://www.google.com/maps/dir/?api=1&origin=" + userPosition.getLat() + "," + userPosition.getLon() + "&destination=" + closestStore.position.getLat() + "," + closestStore.position.getLon() + "&travelmode=driving");
+  });
+  document.getElementById("map-canvas-text").innerHTML += "Klikk på kartet for å få veibeskrivelse til vinmonopolet: <u>" + closestStore.name + "</u>";
+  document.getElementById("map-canvas-text").style.display = "block";
+
+  setTimeout(function(){ map.invalidateSize()}, 1);
 }
 
 async function main() {
@@ -169,17 +183,17 @@ async function main() {
   document.getElementById("getRouteBtn").addEventListener("click", async () => {
     if (document.getElementById("map-canvas").style.display === "none") {
       if (document.getElementById("map-canvas").innerHTML === "") {
-        var script = document.createElement('script');
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDwg3AgvtGG-HHzvwiD3RbFrtzjtx1zr2k';
-        script.async = true;
-
-        document.head.appendChild(script);
-        setTimeout(() => {initMap(userPosition, closestStores[0])},10);
+        try {
+          const result = await initMap(userPosition, closestStores[0]);
+        } catch (error) {
+          loadLeafletMap(userPosition, closestStores[0]);
+        }
       }
       document.getElementById("map-canvas").style.display = "block";
       document.getElementById("getRouteBtn").innerText = "Skjul kart";
     } else {
       document.getElementById("map-canvas").style.display = "none";
+      document.getElementById("map-canvas-text").style.display = "none";
       document.getElementById("getRouteBtn").innerText = "Vis i kart";
     }
   });

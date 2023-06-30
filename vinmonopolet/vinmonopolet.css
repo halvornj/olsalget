@@ -1,6 +1,8 @@
 :root {
   --buttonWidth: 230px;
   --offBlack: #1c1c1c;
+  --imageShadow: #b5b5b5 3px 3px 1px;
+  --textShadow: #b5b5b5 3px 3px;
 }
 
 * {
@@ -51,7 +53,7 @@ button {
   margin: 0.5em;
   display: block;
   background-color: #e9e9ed;
-  box-shadow: #b5b5b5 3px 3px;
+  box-shadow: var(--textShadow);
   border-radius: 5px;
   border: none;
   font-weight: bold;
@@ -105,7 +107,7 @@ button:active {
   height: 10vh;
   min-width: 20px;
   min-height: 20px;
-  filter: drop-shadow(#b5b5b5 3px 3px 1px);
+  filter: drop-shadow(var(--imageShadow));
   /* border: 1px solid black; */
 }
 
@@ -135,10 +137,24 @@ a {
   margin-right: 1vw;
   font-size: 8vh;
   color: var(--offBlack);
-  text-shadow: #b5b5b5 3px 3px 1px;
+  text-shadow: var(--imageShadow);
 }
 
 #map-canvas {
   height: 50%;
   width: 60%;
+  border-radius: 2%;
+  box-shadow: var(--imageShadow);
+}
+
+#map-canvas-text {
+  border-radius: 0% 0% 50px 50px;
+  box-shadow: var(--imageShadow);
+  background-color: #e9e9ed;
+  padding: 1vh 5vw;
+  margin-top: -5px;
+  z-index: 1;
+  text-align: center;
+  width: 50%;
+  max-width: 50%;
 }
