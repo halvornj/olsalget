@@ -16,7 +16,10 @@ function geoLocError() {
   return; //unreachable, but makes the linter happy
 }
 
-function initMap(userPosition, closestStores) {
+async function initMap(userPosition, closestStores) {
+  //Main mapping function to utilize Google Maps API to get a route from user to closest store
+  document.getElementById("map-canvas-text").style.display = "none";
+  
   var pointA = new google.maps.LatLng(
       userPosition.getLat(),
       userPosition.getLon()
@@ -50,15 +53,15 @@ function initMap(userPosition, closestStores) {
     });
 
   // get route from A to B
-  calculateAndDisplayRoute(
-    directionsService,
-    directionsDisplay,
-    pointA,
-    pointB
-  );
+  calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB)
+    .catch((error) => {
+      // Handle the error by calling the fallback function
+      console.log(error);
+      loadLeafletMap(userPosition, closestStores);
+    });
 }
 
-function calculateAndDisplayRoute(
+async function calculateAndDisplayRoute(
   directionsService,
   directionsDisplay,
   pointA,
@@ -76,10 +79,36 @@ function calculateAndDisplayRoute(
       if (status == google.maps.DirectionsStatus.OK) {
         directionsDisplay.setDirections(response);
       } else {
-        window.alert("Directions request failed due to " + status);
+        throw "Error: " + status;
       }
     }
   );
+}
+
+function loadLeafletMap(userPosition, closestStore) {
+  console.log(closestStore)
+  //Secondary mapping function that runs if Google Maps API fails
+  //Only shows the closest store on a map
+  document.getElementById("map-canvas").innerHTML = ""; 
+
+  let map = L.map("map-canvas").setView(
+    [closestStore.position.getLat(), closestStore.position.getLon()],
+    13
+  );
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18
+  }).addTo(map);
+
+  L.marker([closestStore.position.getLat(), closestStore.position.getLon()]).addTo(map);
+
+  map.on('click', function(e) {
+    window.open("https://www.google.com/maps/dir/?api=1&origin=" + userPosition.getLat() + "," + userPosition.getLon() + "&destination=" + closestStore.position.getLat() + "," + closestStore.position.getLon() + "&travelmode=driving");
+  });
+  document.getElementById("map-canvas-text").innerHTML += "Klikk på kartet for å få veibeskrivelse til vinmonopolet: <u>" + closestStore.name + "</u>";
+  document.getElementById("map-canvas-text").style.display = "block";
+
+  setTimeout(function(){ map.invalidateSize()}, 1);
 }
 
 async function main() {
@@ -90,7 +119,6 @@ async function main() {
     geoLocError();
   }
   //*invariant: position is known
-  console.log("position: ", userPosition);
 
   //getting the stores
   const stores = await fetch("stores.json");
@@ -154,13 +182,18 @@ async function main() {
   document.getElementById("getRouteBtn").addEventListener("click", async () => {
     if (document.getElementById("map-canvas").style.display === "none") {
       if (document.getElementById("map-canvas").innerHTML === "") {
-        initMap(userPosition, closestStores[0]);
+        try {
+          const result = await initMap(userPosition, closestStores[0]);
+        } catch (error) {
+          loadLeafletMap(userPosition, closestStores[0]);
+        }
       }
       document.getElementById("map-canvas").style.display = "block";
       document.getElementById("getRouteBtn").innerText = "Skjul kart";
     } else {
       document.getElementById("map-canvas").style.display = "none";
-      document.getElementById("getRouteBtn").innerText = "Vis kart";
+      document.getElementById("map-canvas-text").style.display = "none";
+      document.getElementById("getRouteBtn").innerText = "Vis i kart";
     }
   });
 
@@ -208,12 +241,14 @@ async function getStoreJson(storeId) {
       // Request headers
       headers: {
         "Cache-Control": "no-cache",
-        "Ocp-Apim-Subscription-Key": "5e84979b75fe4d4e87348476bd1d89a5",
+        "Ocp-Apim-Subscription-Key": "5e84979b75fe4d4e87348476bd1d89a5", //Note I removed the last symbol from the key which was a "5";
       },
     }
-  );
+  ).catch((error) => {
+    //todo: Check if error correctly handled
+    console.log(error);
+  });
   const json = await response.json();
-  console.log(json[0]);
   return json[0];
 }
 

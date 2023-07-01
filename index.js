@@ -42,6 +42,9 @@ function geoLocError() {
 }
 
 async function geoLocDone(kommuneNavn) {
+  if(kommuneNavn.includes("/")) {
+    kommuneNavn = kommuneNavn.split("/")[0];
+  }
   //code converges here, so this is where the bulk of the code is
   var year = new Date().getFullYear();
   if (HOYTIDER === undefined) {

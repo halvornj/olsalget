@@ -14,7 +14,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="../icons/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="vinmonopolet.css" />
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwg3AgvtGG-HHzvwiD3RbFrtzjtx1zr2k"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwg3AgvtGG-HHzvwiD3RbFrtzjtx1zr2k&callback=Function.prototype"></script>
     <title>Vinmonopolet</title>
   </head>
   <body>
@@ -31,8 +33,9 @@
       <div id="closestStoresDiv" style="display: none">
         <table id="closestStoresTable"></table>
       </div>
-      <button id="getRouteBtn">Vis kart</button>
+      <button id="getRouteBtn">Vis i kart</button>
       <div id="map-canvas" style="display: none"></div>
+      <div id="map-canvas-text" style="display: none"></div>
     </div>
     <div class="footer">
       <column class="contactInfo" id="contactInfo">
