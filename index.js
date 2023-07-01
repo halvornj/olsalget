@@ -118,7 +118,7 @@ function findSalesTimes(kommune, hoytider, today) {
     return null;
   }
 
-  //fuck lindesnes, all my homies hate lindesnes
+  //fuck lindesnes, all my homies hate lindesnes, respectfully
   if (kommune.kommuneNavn === "Lindesnes") {
     for (i = 0; i < hoytider.length; i++) {
       var hoytid = hoytider[i];
