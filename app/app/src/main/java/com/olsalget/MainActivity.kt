@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.motion.widget.Debug.getLocation
 import androidx.core.app.ActivityCompat
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
@@ -21,47 +22,61 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.CancellationToken
 import com.google.android.gms.tasks.CancellationTokenSource
+import java.util.concurrent.locks.ReentrantLock
+import java.util.concurrent.locks.Condition
 import com.google.android.gms.tasks.OnTokenCanceledListener
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val TAG = "MainTag"
+    private val volleyQueue = Volley.newRequestQueue(this)
+    private lateinit var kommuner : JSONObject
+    private lateinit var holidays : JSONObject
     companion object {
         private const val COARSE_LOCATION_PERMISSION_CODE = 100
     }
     private lateinit var cancelLocationToken : CancellationTokenSource
+    private val networkRequestThreads = ArrayList<Thread>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         //standard stuff, no touching for now
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //start all http-request threads here, do some work, and then await the conditions
+        //* we do all network requests AND PARSING in separate threads!
+        val kommuneCollectionThread = Thread(KommuneCollectionGetter(volleyQueue, this))
+        networkRequestThreads.add(kommuneCollectionThread)
+        kommuneCollectionThread.start()
+
+        val holidayGetterThread = Thread(HolidayGetter(volleyQueue, this))
+        networkRequestThreads.add(holidayGetterThread)
+        holidayGetterThread.start()
+
+
+
         //get the users location
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         cancelLocationToken = CancellationTokenSource()
-        //android studio says i need this :(
+        //android studio says i need this :( - they're probably right
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            Log.d("TESTBUG", "A. we don't have permission, calling request here")
+            Log.d("TESTBUG", "A.1 need permission, calling requestPermissions")
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), COARSE_LOCATION_PERMISSION_CODE)
         }else{
-            Log.d("TESTBUG", "B. already have Manifest.permission, calling getCurrentLocation")
-            fusedLocationClient.getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, cancelLocationToken.token)
-                .addOnSuccessListener { location ->
-                    Log.d("TESTBUG", "B.1 got loc, calling geoLocSucces")
-                    geoLocSuccess(location)
-                }
-                .addOnFailureListener { exception ->
-                    Log.d("Location", "Oops location failed with exception: $exception")
-                }
+            Log.d("TESTBUG", "B.1 Already had permission, calling getUserLocation")
+            getUserLocation()
         }
 
         // Get a reference to the AutoCompleteTextView in the layout.
@@ -79,70 +94,90 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+
+    @SuppressLint("MissingPermission")
+    private fun getUserLocation(){
+        Log.d("TESTBUG", "in getUserLocation")
+        fusedLocationClient.getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, cancelLocationToken.token)
+            .addOnSuccessListener { location ->
+                Log.d("TESTBUG","getUserLocation success, calling geoLocSucces w/ location")
+                geoLocSuccess(location)
+            }
+            .addOnFailureListener { exception ->
+                Log.d("Location", "Oops location failed with exception: $exception")
+                geoLocSuccess(null)
+            }
+    }
+
     @SuppressLint("MissingPermission")
     override fun onRequestPermissionsResult(requestCode: Int,
                                             permissions: Array<String>,
-                                            grantResults: IntArray){
+                                            grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        if(requestCode == COARSE_LOCATION_PERMISSION_CODE){
+        Log.d("TESTBUG", "A.2 onRequestPermissionsResult() called")
+        if (requestCode == COARSE_LOCATION_PERMISSION_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Log.d("TESTBUG", "A.1 coarse location granted, calling getCurrentLocation")
-                fusedLocationClient.getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, cancelLocationToken.token)
-                    .addOnSuccessListener { location ->
-                        Log.d("TESTBUG", "A.2 got location, calling geoLocSuccess")
-                        geoLocSuccess(location)
-                    }
-                    .addOnFailureListener { exception ->
-                        Log.d("Location", "Oops location failed with exception: $exception")
-                    }
+                Log.d("TESTBUG", "A.3 permission granted, calling geoLocSuccess w/ Position")
+                getUserLocation()
             }else{
+                Log.d("TESTBUG", "permission not granted, calling geoLocSuccess() w/ null")
                 geoLocSuccess(null)
             }
         }
     }
 
-    fun geoLocSuccess(location: Location?) {
+    private fun geoLocSuccess(location: Location?) {
         cancelLocationToken.cancel()
+        var userKommune : String = "Oslo"
         if (location == null) {
             Log.d(TAG, "location is null")
-            geoLocDone("Oslo")
+            //todo maybe a toast of some sort here, explaining why oslo
         } else {
             Log.d(TAG, "loc not null")
             Log.d(TAG, "lat: "+location.latitude)
             Log.d(TAG, "lon: "+location.longitude)
-            val geoNorgeUrl =
-                "https://ws.geonorge.no/kommuneinfo/v1/punkt?nord=" +
-                        location.latitude +
-                        "&koordsys=4326&ost=" +
-                        location.longitude
-
-            //trying new method: https://www.geeksforgeeks.org/how-to-make-an-http-request-with-android/
-            var geoNorgeResponse : String
-            val volleyQueue = Volley.newRequestQueue(this)
-            val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,geoNorgeUrl, null,
-                { response ->
-                //successfully got response
-                 geoNorgeResponse = response.get("kommunenavn") as String
-                Log.d(TAG, "geoNorgeResponse: "+geoNorgeResponse)
-                    geoLocDone(geoNorgeResponse)
-                },
-                { error ->
-                // make a Toast telling the user
-                // that something went wrong
-                Toast.makeText(this, "Some error occurred! Cannot fetch municipality name", Toast.LENGTH_LONG).show()
-                // log the error message in the error stream
-                Log.e(TAG, "geoLocSuccess error: ${error.localizedMessage}")
+            val userLocationThread = Thread(Runnable {
+                @Override
+                fun run(){
+                    userKommune = UserKommuneGetter.getResponse(volleyQueue, location) ?:"Oslo"
+                }
             })
-            volleyQueue.add(jsonObjectRequest)
-
+            networkRequestThreads.add(userLocationThread)
+            userLocationThread.start()
         }
+
+
+        for(thread in networkRequestThreads){
+            thread.join()
+        }
+        //all api-calls are now done
+        geoLocDone(userKommune)
     }
 
-    fun geoLocDone(kommuneNavn : String){
+    fun setHolidays(jsonobj : JSONObject){
+        holidays = jsonobj
+    }
+
+    fun setKommuner(jsonobj: JSONObject){
+        kommuner = jsonobj
+    }
+
+
+    private fun geoLocDone(kommuneNavn : String){
+        //!this is the join-point after all async api-calls and permission-requests
         Toast.makeText(this, kommuneNavn, Toast.LENGTH_SHORT).show()
         Log.d(TAG, "in geolocDone w/" +kommuneNavn)
         findViewById<TextView>(R.id.salesTimes).text = kommuneNavn
+
+        Log.d(TAG, kommuner.toString())
+        Log.d(TAG, holidays.toString())
+        Log.d(TAG, kommuneNavn)
+
+        val today = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE)
+
+
+        //note to self: at this point, all info should be gotten, and the logic should be the final part
     }
 
 }
