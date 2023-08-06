@@ -86,7 +86,6 @@ async function calculateAndDisplayRoute(
 }
 
 function loadLeafletMap(userPosition, closestStore) {
-  console.log(closestStore)
   //Secondary mapping function that runs if Google Maps API fails
   //Only shows the closest store on a map
   document.getElementById("map-canvas").innerHTML = ""; 
@@ -241,7 +240,7 @@ async function getStoreJson(storeId) {
       // Request headers
       headers: {
         "Cache-Control": "no-cache",
-        "Ocp-Apim-Subscription-Key": "5e84979b75fe4d4e87348476bd1d89a5", //Note I removed the last symbol from the key which was a "5";
+        "Ocp-Apim-Subscription-Key": "5e84979b75fe4d4e87348476bd1d89a5",
       },
     }
   ).catch((error) => {
