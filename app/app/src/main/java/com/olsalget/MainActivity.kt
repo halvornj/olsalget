@@ -38,30 +38,19 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val TAG = "MainTag"
-    private val volleyQueue = Volley.newRequestQueue(this)
     private lateinit var kommuner : JSONObject
     private lateinit var holidays : JSONObject
     companion object {
         private const val COARSE_LOCATION_PERMISSION_CODE = 100
     }
     private lateinit var cancelLocationToken : CancellationTokenSource
-    private val networkRequestThreads = ArrayList<Thread>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //standard stuff, no touching for now
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //start all http-request threads here, do some work, and then await the conditions
-        //* we do all network requests AND PARSING in separate threads!
-        val kommuneCollectionThread = Thread(KommuneCollectionGetter(volleyQueue, this))
-        networkRequestThreads.add(kommuneCollectionThread)
-        kommuneCollectionThread.start()
-
-        val holidayGetterThread = Thread(HolidayGetter(volleyQueue, this))
-        networkRequestThreads.add(holidayGetterThread)
-        holidayGetterThread.start()
-
+        //start http-requests here
 
 
         //get the users location
@@ -137,20 +126,12 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG, "loc not null")
             Log.d(TAG, "lat: "+location.latitude)
             Log.d(TAG, "lon: "+location.longitude)
-            val userLocationThread = Thread(Runnable {
-                @Override
-                fun run(){
-                    userKommune = UserKommuneGetter.getResponse(volleyQueue, location) ?:"Oslo"
-                }
-            })
-            networkRequestThreads.add(userLocationThread)
-            userLocationThread.start()
+
+            //launch KommuneNavnGetter
+
         }
 
 
-        for(thread in networkRequestThreads){
-            thread.join()
-        }
         //all api-calls are now done
         geoLocDone(userKommune)
     }
