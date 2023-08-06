@@ -12,32 +12,22 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.motion.widget.Debug.getLocation
 import androidx.core.app.ActivityCompat
-import com.android.volley.Request
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.tasks.CancellationToken
 import com.google.android.gms.tasks.CancellationTokenSource
-import java.util.concurrent.locks.ReentrantLock
-import java.util.concurrent.locks.Condition
-import com.google.android.gms.tasks.OnTokenCanceledListener
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.URL
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val TAG = "MainTag"
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var kommuner : JSONObject
     private lateinit var holidays : JSONObject
     companion object {
@@ -116,9 +106,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    fun getKommuneNavn(lat: Double, lon: Double): String{
+        val kommuneNavnVM = KommuneNavnViewModel(this)
+        kommuneNavnVM.getKommuneNavn(lat, lon)
+
+
+
+        //!TEMP
+        return ""
+    }
+
+    fun getHolidays() : JSONObject{
+
+
+        //!TEMP
+        return JSONObject()
+    }
+
     private fun geoLocSuccess(location: Location?) {
         cancelLocationToken.cancel()
-        var userKommune : String = "Oslo"
+        val userKommune : String = "Oslo"
         if (location == null) {
             Log.d(TAG, "location is null")
             //todo maybe a toast of some sort here, explaining why oslo
@@ -128,6 +136,7 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG, "lon: "+location.longitude)
 
             //launch KommuneNavnGetter
+            getKommuneNavn(location.latitude, location.longitude)
 
         }
 
@@ -136,26 +145,12 @@ class MainActivity : AppCompatActivity() {
         geoLocDone(userKommune)
     }
 
-    fun setHolidays(jsonobj : JSONObject){
-        holidays = jsonobj
-    }
-
-    fun setKommuner(jsonobj: JSONObject){
-        kommuner = jsonobj
-    }
 
 
     private fun geoLocDone(kommuneNavn : String){
         //!this is the join-point after all async api-calls and permission-requests
         Toast.makeText(this, kommuneNavn, Toast.LENGTH_SHORT).show()
         Log.d(TAG, "in geolocDone w/" +kommuneNavn)
-        findViewById<TextView>(R.id.salesTimes).text = kommuneNavn
-
-        Log.d(TAG, kommuner.toString())
-        Log.d(TAG, holidays.toString())
-        Log.d(TAG, kommuneNavn)
-
-        val today = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE)
 
 
         //note to self: at this point, all info should be gotten, and the logic should be the final part

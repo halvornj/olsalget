@@ -9,6 +9,6 @@ sealed class Result<out R> {
 
 interface ApiGetter {
 
-fun makeRequest() : Result<JSONObject>
+suspend fun makeRequest() : Result<JSONObject>
 
 }
