@@ -3303,10 +3303,6 @@
     "Palmesondag": "08-18"
   },
   {
-    "kommuneNavn": "Sunndal",
-    "utvidet": false
-  },
-  {
     "kommuneNavn": "Sula",
     "utvidet": true,
     "Electionday": "none",
@@ -3321,6 +3317,10 @@
     "default": "08-20",
     "sat": "08-18",
     "Palmesondag": "08-18"
+  },
+  {
+    "kommuneNavn": "Sunndal",
+    "utvidet": false
   },
   {
     "kommuneNavn": "Sunnfjord",
