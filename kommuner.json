@@ -1118,6 +1118,12 @@
     "kommuneNavn": "Gulen",
     "utvidet": false
   },
+
+  {
+    "kommuneNavn": "Guovdageaidnu",
+    "altNavn": "Kautokeino",
+    "utvidet": false
+  },
   {
     "kommuneNavn": "Hadsel",
     "utvidet": true,
@@ -1545,6 +1551,12 @@
     "utvidet": false
   },
   {
+    "kommuneNavn": "Kárášjohka",
+    "altNavn": "Karasjok",
+    "utvidet": false
+  },
+
+  {
     "kommuneNavn": "Karlsøy",
     "utvidet": false
   },
@@ -1719,6 +1731,23 @@
   {
     "kommuneNavn": "Kvitsøy",
     "utvidet": false
+  },
+  {
+    "kommuneNavn": "Kvæfjord",
+    "altNavn": "Návuona/Naavuonon",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
   },
   {
     "kommuneNavn": "Kvænangen",
@@ -2052,6 +2081,10 @@
     "Palmesondag": "08-18"
   },
   {
+    "kommuneNavn": "Lyngen",
+    "utvidet": false
+  },
+  {
     "kommuneNavn": "Lærdal",
     "utvidet": false
   },
@@ -2143,6 +2176,11 @@
     "sat": "08:30-18:00",
     "Palmesondag": "08:30-18:00"
   },
+  {
+    "kommuneNavn": "Meråker",
+    "utvidet": false
+  },
+
   {
     "kommuneNavn": "Midtre-Gauldal",
     "utvidet": true,
@@ -2428,6 +2466,22 @@
     "Palmesondag": "08-18"
   },
   {
+    "kommuneNavn": "Nordkapp",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
     "kommuneNavn": "Nordreisa",
     "utvidet": true,
     "Electionday": "none",
@@ -2600,6 +2654,39 @@
     "Palmesondag": "08-18"
   },
   {
+    "kommuneNavn": "Overhalla",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+
+  {
+    "kommuneNavn": "Porsanger",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
     "kommuneNavn": "Porsgrunn",
     "utvidet": true,
     "Electionday": "none",
@@ -2702,6 +2789,22 @@
   },
   {
     "kommuneNavn": "Rendalen",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
+    "kommuneNavn": "Rennebu",
     "utvidet": true,
     "Electionday": "none",
     "Forstejuledag": "08-18",
@@ -3039,6 +3142,23 @@
   },
   {
     "kommuneNavn": "Skien",
+    "utvidet": true,
+    "Electionday": "none",
+    "Forstejuledag": "08-16",
+    "Forstenyttarsdag": "08-16",
+    "Forstepinsedag": "08-16",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-16",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+
+  {
+    "kommuneNavn": "Skjervøy",
     "utvidet": true,
     "Electionday": "none",
     "Forstejuledag": "08-16",
@@ -3477,6 +3597,11 @@
     "default": "08-20",
     "sat": "08-18",
     "Palmesondag": ""
+  },
+  {
+    "kommuneNavn": "Deatnu",
+    "altNavn": "Tana",
+    "utvidet": false
   },
   {
     "kommuneNavn": "Time",
