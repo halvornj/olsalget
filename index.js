@@ -120,7 +120,7 @@ async function geoLocDone(kommuneNavn) {
     catch (err) {
       console.error("This error, weird:", err);
     }
-
+    console.log(hoytider);
     //hoytider.shift();
     HOYTIDER = hoytider;
   }
