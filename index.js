@@ -84,22 +84,47 @@ function geoLocError() {
   geoLocDone("Oslo");
 }
 
+async function fetchHolidays(year) {
+  try {
+    const response = await fetch("https://webapi.no/api/v1/holidays/" + year)
+    if (!response.ok) {
+      throw new Error(response.status);
+    }
+    const data = await response.json();
+    return data.data;
+  } catch (err) {
+    const backupResponse = await fetch("holidays" + year + ".json");
+    console.log("Running backup solution");
+    return backupResponse.json();
+  }
+}
+
 async function geoLocDone(kommuneNavn) {
   if(kommuneNavn.includes("/")) {
     kommuneNavn = kommuneNavn.split("/")[0];
   }
   //code converges here, so this is where the bulk of the code is
   var year = new Date().getFullYear();
+  let hoytider;
   if (HOYTIDER === undefined) {
-    const hoytiderResponse = await fetch(
-      "https://webapi.no/api/v1/holidays/" + year
-    );
-    const hoytiderJson = await hoytiderResponse.json();
-    var hoytider = hoytiderJson.data;
-    hoytider.shift();
+    
+    try {
+      const hoytiderResponse = await fetchHolidays(year);
+
+      if(hoytiderResponse) {
+        hoytider = hoytiderResponse;
+      } else {
+        console.error("Failed to fetch");
+      }
+    }
+    catch (err) {
+      console.error("This error, weird:", err);
+    }
+    console.log(hoytider);
+    //hoytider.shift();
     HOYTIDER = hoytider;
   }
-  var hoytider = HOYTIDER;
+  hoytider = HOYTIDER;
 
   if (KOMMUNER === undefined) {
     const kommuner = await fetch("kommuner.json");

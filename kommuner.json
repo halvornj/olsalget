@@ -3744,7 +3744,7 @@
     "utvidet": true,
     "Electionday": "none",
     "Forstejuledag": "08-18",
-    "Forstenyttarsdag": "08-18",
+    "c": "08-18",
     "Forstepinsedag": "08-18",
     "Grunnlovsdag": "standard",
     "Kristihimmelfartsdag": "08-20",
@@ -3757,7 +3757,7 @@
   },
   {
     "kommuneNavn": "Stor-Elvdal",
-    "utvidet": "standard"
+    "utvidet": false
   },
   {
     "kommuneNavn": "Stord",
