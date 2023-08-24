@@ -2,8 +2,11 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Olsalget" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
+        <item name="android:buttonStyle">@style/button</item>
+
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.Olsalget" parent="Base.Theme.Olsalget" />
+    <style name="Theme.Olsalget" parent="Base.Theme.Olsalget" >
+    </style>
 </resources>
