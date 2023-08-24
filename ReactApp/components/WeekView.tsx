@@ -2,6 +2,8 @@ import Button from "./Button";
 import ComingWeek from "./ComingWeek";
 import { View, Dimensions, StyleSheet } from "react-native";
 import { DataTable } from "react-native-paper";
+import { useState } from "react";
+
 import {
   Table,
   TableWrapper,
@@ -11,15 +13,26 @@ import {
 } from "react-native-table-component";
 
 export default function WeekView() {
+  const [displaying, setDisplaying] = useState<"none" | "flex">("none");
+
   return (
     <View style={styles.container}>
-      <DataTable>
+      <DataTable style={[styles.table, { display: displaying }]}>
         <DataTable.Row>
           <DataTable.Cell>val1</DataTable.Cell>
           <DataTable.Cell>val2</DataTable.Cell>
         </DataTable.Row>
       </DataTable>
-      <Button label="testLabel" onPress={clicked} />
+      <Button
+        label="testLabel"
+        onPress={() => {
+          if (displaying === "none") {
+            setDisplaying("flex");
+          } else {
+            setDisplaying("none");
+          }
+        }}
+      />
     </View>
   );
 }
@@ -29,18 +42,17 @@ const windowHeight = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 100,
-    paddingHorizontal: 30,
-    width: windowWidth * 0.7,
-    height: 200,
-    display: "none",
+    paddingTop: 30,
+    width: windowWidth * 0.5,
+    height: 100,
+    alignItems: "center",
+    justifyContent: "center",
   },
   table: {
     //todo this should be dictated by state, and the 'clicked()'method changes state.
-    display: "flex",
   },
 });
 
 function clicked() {
-  console.log("ay carambert");
+  console.log("ay caramba");
 }

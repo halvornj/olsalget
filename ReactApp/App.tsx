@@ -12,8 +12,9 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>fuck you</Text>
-      <WeekView></WeekView>
-      <ComingWeek />
+      <View style={styles.comingWeek}>
+        <WeekView></WeekView>
+      </View>
       <StatusBar style="auto" />
     </View>
   );
@@ -33,6 +34,8 @@ const styles = StyleSheet.create({
   comingWeek: {
     flex: 1 / 3,
     alignItems: "center",
+    width: 200,
+    height: 200,
   },
 });
 

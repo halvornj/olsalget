@@ -8,6 +8,7 @@ import {
   Rows,
   Col,
 } from "react-native-table-component";
+import { useState } from "react";
 
 type ComingWeekProps = {
   display?: String;
@@ -44,5 +45,3 @@ const styles = StyleSheet.create({
     display: "none",
   },
 });
-
-const toggleDisplay = () => {};

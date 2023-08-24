@@ -7,7 +7,6 @@ import {
   Touchable,
   Dimensions,
 } from "react-native";
-import { Shadow } from "react-native-shadow-2";
 
 const offBlack = "#1c1c1c";
 const offWhite = "#f0f0f0";
@@ -18,6 +17,8 @@ const windowHeight = Dimensions.get("window").height;
 type ButtonProps = {
   label: String;
   onPress: Function;
+  width?: Number;
+  height?: Number;
   type?: String; //todo: if type =="icon"
 };
 
@@ -43,8 +44,8 @@ export default function Button(props: ButtonProps) {
 const styles = StyleSheet.create({
   buttonContainer: {
     marginHorizontal: 20,
-    width: windowWidth * 0.55,
-    height: windowHeight * 0.065,
+    width: "100%",
+    height: "100%",
     alignItems: "center",
     justifyContent: "center",
     padding: 3,
@@ -55,7 +56,6 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    position: "absolute",
     backgroundColor: "#0A7637",
     paddingVertical: 10,
     paddingHorizontal: 15,
@@ -63,9 +63,8 @@ const styles = StyleSheet.create({
     height: "100%",
     alignItems: "center",
     justifyContent: "center",
-    flexDirection: "row",
     borderRadius: 5,
-    zIndex: 2,
+    zIndex: 1,
   },
   buttonLabel: {
     color: offWhite,
