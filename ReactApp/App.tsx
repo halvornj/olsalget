@@ -7,6 +7,8 @@ import Button from "./components/Button";
 import ComingWeek from "./components/ComingWeek";
 import WeekView from "./components/WeekView";
 
+import Kommune from "./Kommune";
+
 //main renderer i guess
 export default function App() {
   return (
@@ -80,7 +82,7 @@ async function main() {
     } else {
       //* error in getting position
       console.log("got permission, but error in getUserLocation()");
-      //todo make a Toast explaining error
+      //todo:  make a Toast explaining error
     }
   } else {
     //* didn't get permission
@@ -106,17 +108,21 @@ async function getUserKommuneNavn(
 }
 
 async function geoLocDone(kommuneNavn: String) {
-  //join-point
+  //*join-point
   console.log("kommunenavn:");
   console.log(kommuneNavn);
   const holidays = await getHolidays();
+
+  const userKommune: Kommune[] = await getMunicipality(kommuneNavn);
+  console.log(userKommune);
+  console.log(await getMunicipality());
 }
 
 async function getHolidays(): Promise<Object[]> {
   const year = new Date().getFullYear();
   if ((await AsyncStorage.getItem(year.toString())) == null) {
     //there is no asyncStorage entry for current year
-    console.log("no asyncstorage entry found");
+    console.log("no asyncstorage entry for holidays found");
     //todo split the fetch into separate method that catches errors and gets backup
     const hoytiderResponse = await fetch(
       "https://webapi.no/api/v1/holidays/" + year
@@ -130,5 +136,35 @@ async function getHolidays(): Promise<Object[]> {
     return hoyTider;
   }
 }
+/**
+ * @deprecated this is the method used in the website, should be updated to use db.
+ * @param name optional. returns the spesific Kommune-object matching the name if provided, or all Kommune-objects if parameter is null.
+ * @returns an array with only the spesific Kommune-object if parameter was supplied, array of all Kommune-objects if no parameter was given.
+ */
+const getMunicipality = async (name?: String): Promise<Kommune[]> => {
+  if ((await AsyncStorage.getItem("kommuner")) === null) {
+    //first ever fetch of the kommuner-list
+    const kommunerResponse = await fetch(
+      "https://raw.githubusercontent.com/halvornj/olsalget/main/kommuner.json"
+    );
+    const kommunerJSON = await kommunerResponse.json();
+    AsyncStorage.setItem("kommuner", JSON.stringify(kommunerJSON));
+    if (name != null) {
+      return kommunerJSON.find((kommune) => kommune.kommuneNavn === name);
+    } else {
+      return kommunerJSON;
+    }
+  } else {
+    const kommunerJSON = JSON.parse(await AsyncStorage.getItem("kommuner"));
+    if (name != null) {
+      return kommunerJSON.find((kommune) => kommune.kommuneNavn === name);
+    } else {
+      return kommunerJSON;
+    }
+  }
+
+  //!rm l8r
+  return [new Kommune("bayayayo")];
+};
 
 main();

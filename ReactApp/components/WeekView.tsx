@@ -19,8 +19,28 @@ export default function WeekView() {
     <View style={styles.container}>
       <DataTable style={[styles.table, { display: displaying }]}>
         <DataTable.Row>
+          <DataTable.Cell>day1</DataTable.Cell>
           <DataTable.Cell>val1</DataTable.Cell>
+        </DataTable.Row>
+        <DataTable.Row>
+          <DataTable.Cell>day2</DataTable.Cell>
           <DataTable.Cell>val2</DataTable.Cell>
+        </DataTable.Row>
+        <DataTable.Row>
+          <DataTable.Cell>day3</DataTable.Cell>
+          <DataTable.Cell>val3</DataTable.Cell>
+        </DataTable.Row>
+        <DataTable.Row>
+          <DataTable.Cell>day4</DataTable.Cell>
+          <DataTable.Cell>val4</DataTable.Cell>
+        </DataTable.Row>
+        <DataTable.Row>
+          <DataTable.Cell>day5</DataTable.Cell>
+          <DataTable.Cell>val5</DataTable.Cell>
+        </DataTable.Row>
+        <DataTable.Row>
+          <DataTable.Cell>day6</DataTable.Cell>
+          <DataTable.Cell>val6</DataTable.Cell>
         </DataTable.Row>
       </DataTable>
       <Button
@@ -46,7 +66,7 @@ const styles = StyleSheet.create({
     width: windowWidth * 0.5,
     height: 100,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
   table: {
     //todo this should be dictated by state, and the 'clicked()'method changes state.

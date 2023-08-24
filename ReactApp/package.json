@@ -10,10 +10,14 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.18.2",
+    "@react-native-firebase/app": "^18.3.1",
+    "@react-native-firebase/firestore": "^18.3.1",
     "@types/react-native": "^0.72.2",
     "expo": "^49.0.7",
     "expo-location": "^16.1.0",
+    "expo-splash-screen": "~0.20.5",
     "expo-status-bar": "~1.6.0",
+    "firebase": "^10.3.0",
     "firestore": "^1.1.6",
     "react": "18.2.0",
     "react-native": "0.72.4",
@@ -21,8 +25,7 @@
     "react-native-paper": "^5.10.1",
     "react-native-shadow-2": "^7.0.8",
     "react-native-svg": "13.9.0",
-    "react-native-table-component": "^1.2.2",
-    "expo-splash-screen": "~0.20.5"
+    "react-native-table-component": "^1.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

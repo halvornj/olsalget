@@ -17,8 +17,8 @@ const windowHeight = Dimensions.get("window").height;
 type ButtonProps = {
   label: String;
   onPress: Function;
-  width?: Number;
-  height?: Number;
+  width?: Number; //todo: not yet implemented. maybe tie this to a state-object?
+  height?: Number; //todo: not yet implemented.
   type?: String; //todo: if type =="icon"
 };
 
