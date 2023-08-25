@@ -41,7 +41,10 @@ const styles = StyleSheet.create({
   },
 });
 
-//returns boolean, whether app has location permission or not
+/**
+ *
+ * @returns boolean, wether app has permission to use location. if permission is not granted, calls askPermission to request it
+ */
 const checkPermission = async () => {
   const hasPermission = await Location.getForegroundPermissionsAsync();
   if (!(hasPermission.status === "granted")) {
@@ -60,7 +63,10 @@ const askPermission = async () => {
   console.log("user granted permission in askPermission");
   return permission.status === "granted";
 };
-//returns position object if available, null if not. only call if permission for location is granted
+/**
+ *
+ * @returns userLocation coordinate object if it can be obtained, null otherwise
+ */
 export const getUserLocation = async () => {
   const userLocation = await Location.getLastKnownPositionAsync();
   if (userLocation != null) {
@@ -118,6 +124,10 @@ async function geoLocDone(kommuneNavn: String) {
   console.log(await getMunicipality());
 }
 
+/**
+ *
+ * @returns JSON-array of holidays for the current year
+ */
 async function getHolidays(): Promise<Object[]> {
   const year = new Date().getFullYear();
   if ((await AsyncStorage.getItem(year.toString())) == null) {
@@ -162,9 +172,6 @@ const getMunicipality = async (name?: String): Promise<Kommune[]> => {
       return kommunerJSON;
     }
   }
-
-  //!rm l8r
-  return [new Kommune("bayayayo")];
 };
 
 main();
