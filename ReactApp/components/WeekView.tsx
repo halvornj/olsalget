@@ -1,5 +1,4 @@
 import Button from "./Button";
-import ComingWeek from "./ComingWeek";
 import { View, Dimensions, StyleSheet } from "react-native";
 import { DataTable } from "react-native-paper";
 import { useState } from "react";
@@ -14,33 +13,45 @@ import {
 
 export default function WeekView() {
   const [displaying, setDisplaying] = useState<"none" | "flex">("none");
+  const [row0key, setRow0key] = useState<string>("loading");
+  const [row0val, setRow0] = useState<string>("loading");
+  const [row1key, setRow1key] = useState<string>("loading");
+  const [row1val, setRow1] = useState<string>("loading");
+  const [row2key, setRow2key] = useState<string>("loading");
+  const [row2val, setRow2] = useState<string>("loading");
+  const [row3key, setRow3key] = useState<string>("loading");
+  const [row3val, setRow3] = useState<string>("loading");
+  const [row4key, setRow4key] = useState<string>("loading");
+  const [row4val, setRow4] = useState<string>("loading");
+  const [row5key, setRow5key] = useState<string>("loading");
+  const [row5val, setRow5] = useState<string>("loading");
 
   return (
     <View style={styles.container}>
       <DataTable style={[styles.table, { display: displaying }]}>
         <DataTable.Row>
-          <DataTable.Cell>day1</DataTable.Cell>
-          <DataTable.Cell>val1</DataTable.Cell>
+          <DataTable.Cell>{row0key}</DataTable.Cell>
+          <DataTable.Cell>{row0val}</DataTable.Cell>
         </DataTable.Row>
         <DataTable.Row>
-          <DataTable.Cell>day2</DataTable.Cell>
-          <DataTable.Cell>val2</DataTable.Cell>
+          <DataTable.Cell>{row1key}</DataTable.Cell>
+          <DataTable.Cell>{row1val}</DataTable.Cell>
         </DataTable.Row>
         <DataTable.Row>
-          <DataTable.Cell>day3</DataTable.Cell>
-          <DataTable.Cell>val3</DataTable.Cell>
+          <DataTable.Cell>{row2key}</DataTable.Cell>
+          <DataTable.Cell>{row2val}</DataTable.Cell>
         </DataTable.Row>
         <DataTable.Row>
-          <DataTable.Cell>day4</DataTable.Cell>
-          <DataTable.Cell>val4</DataTable.Cell>
+          <DataTable.Cell>{row3key}</DataTable.Cell>
+          <DataTable.Cell>{row3val}</DataTable.Cell>
         </DataTable.Row>
         <DataTable.Row>
-          <DataTable.Cell>day5</DataTable.Cell>
-          <DataTable.Cell>val5</DataTable.Cell>
+          <DataTable.Cell>{row4key}</DataTable.Cell>
+          <DataTable.Cell>{row4val}</DataTable.Cell>
         </DataTable.Row>
         <DataTable.Row>
-          <DataTable.Cell>day6</DataTable.Cell>
-          <DataTable.Cell>val6</DataTable.Cell>
+          <DataTable.Cell>{row5key}</DataTable.Cell>
+          <DataTable.Cell>{row5val}</DataTable.Cell>
         </DataTable.Row>
       </DataTable>
       <Button
@@ -76,3 +87,5 @@ const styles = StyleSheet.create({
 function clicked() {
   console.log("ay caramba");
 }
+
+const populateTable = () => {};
