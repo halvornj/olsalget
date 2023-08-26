@@ -166,7 +166,7 @@ function findSalesTimes(kommune, hoytider, today) {
     for (i = 0; i < hoytider.length; i++) {
       var hoytid = hoytider[i];
       if (hoytid.date.slice(0, 10) === tomorrowStr) {
-        if (today.getDay === 6) {
+        if (today.getDay() === 6) {
           return kommune.sat;
         } else {
           return kommune.default;
