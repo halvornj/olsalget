@@ -10,48 +10,37 @@ import {
   Rows,
   Col,
 } from "react-native-table-component";
+import React, { useImperativeHandle, forwardRef } from "react";
 
-export default function WeekView() {
+export default function WeekView(props: { dayTimeTuples: string[][] }) {
   const [displaying, setDisplaying] = useState<"none" | "flex">("none");
-  const [row0key, setRow0key] = useState<string>("loading");
-  const [row0val, setRow0] = useState<string>("loading");
-  const [row1key, setRow1key] = useState<string>("loading");
-  const [row1val, setRow1] = useState<string>("loading");
-  const [row2key, setRow2key] = useState<string>("loading");
-  const [row2val, setRow2] = useState<string>("loading");
-  const [row3key, setRow3key] = useState<string>("loading");
-  const [row3val, setRow3] = useState<string>("loading");
-  const [row4key, setRow4key] = useState<string>("loading");
-  const [row4val, setRow4] = useState<string>("loading");
-  const [row5key, setRow5key] = useState<string>("loading");
-  const [row5val, setRow5] = useState<string>("loading");
 
   return (
     <View style={styles.container}>
       <DataTable style={[styles.table, { display: displaying }]}>
         <DataTable.Row>
-          <DataTable.Cell>{row0key}</DataTable.Cell>
-          <DataTable.Cell>{row0val}</DataTable.Cell>
+          <DataTable.Cell>{props.dayTimeTuples[0][0]}</DataTable.Cell>
+          <DataTable.Cell>{props.dayTimeTuples[0][1]}</DataTable.Cell>
         </DataTable.Row>
         <DataTable.Row>
-          <DataTable.Cell>{row1key}</DataTable.Cell>
-          <DataTable.Cell>{row1val}</DataTable.Cell>
+          <DataTable.Cell>{props.dayTimeTuples[1][0]}</DataTable.Cell>
+          <DataTable.Cell>{props.dayTimeTuples[1][1]}</DataTable.Cell>
         </DataTable.Row>
         <DataTable.Row>
-          <DataTable.Cell>{row2key}</DataTable.Cell>
-          <DataTable.Cell>{row2val}</DataTable.Cell>
+          <DataTable.Cell>{props.dayTimeTuples[2][0]}</DataTable.Cell>
+          <DataTable.Cell>{props.dayTimeTuples[2][1]}</DataTable.Cell>
         </DataTable.Row>
         <DataTable.Row>
-          <DataTable.Cell>{row3key}</DataTable.Cell>
-          <DataTable.Cell>{row3val}</DataTable.Cell>
+          <DataTable.Cell>{props.dayTimeTuples[3][0]}</DataTable.Cell>
+          <DataTable.Cell>{props.dayTimeTuples[3][1]}</DataTable.Cell>
         </DataTable.Row>
         <DataTable.Row>
-          <DataTable.Cell>{row4key}</DataTable.Cell>
-          <DataTable.Cell>{row4val}</DataTable.Cell>
+          <DataTable.Cell>{props.dayTimeTuples[4][0]}</DataTable.Cell>
+          <DataTable.Cell>{props.dayTimeTuples[4][1]}</DataTable.Cell>
         </DataTable.Row>
         <DataTable.Row>
-          <DataTable.Cell>{row5key}</DataTable.Cell>
-          <DataTable.Cell>{row5val}</DataTable.Cell>
+          <DataTable.Cell>{props.dayTimeTuples[5][0]}</DataTable.Cell>
+          <DataTable.Cell>{props.dayTimeTuples[5][1]}</DataTable.Cell>
         </DataTable.Row>
       </DataTable>
       <Button
@@ -79,13 +68,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
   },
-  table: {
-    //todo this should be dictated by state, and the 'clicked()'method changes state.
-  },
+  table: {},
 });
-
-function clicked() {
-  console.log("ay caramba");
-}
-
-const populateTable = () => {};
