@@ -1,13 +1,21 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Alert } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Alert,
+  FlatList,
+  Dimensions,
+} from "react-native";
 import * as Location from "expo-location";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRef, useState, useEffect } from "react";
+import Autocomplete from "react-native-autocomplete-input";
 
 import Button from "./components/Button";
 import WeekView from "./components/WeekView";
-
 import Kommune from "./Kommune";
+import { TextInput } from "react-native-paper";
 
 export default function App() {
   //! i do not know why this works, but this ensures main, the function that runs on startup, only runs once.
@@ -112,7 +120,18 @@ export default function App() {
       setFlavourText(`I ${userKommune.kommuneNavn} er ølsalget åpent fra`);
       setSalesTimes(salesTimes);
     }
+    //grab data needed for rendering here
     populateTable(userKommune, holidays, new Date(Date.now() + 86400000));
+    await populateAllKommuneNames();
+  };
+
+  const populateAllKommuneNames = async () => {
+    const fullKommuneData = await getMunicipality();
+    var allKommuneNames: String[] = [];
+    for (var i: number = 0; i < fullKommuneData.length; i++) {
+      allKommuneNames.push(fullKommuneData[i].kommuneNavn);
+    }
+    setAllKommuneNames(allKommuneNames);
   };
 
   const populateTable = (userKommune: Kommune, holidays, fromDate: Date) => {
@@ -169,6 +188,7 @@ export default function App() {
       return hoyTider;
     }
   };
+
   /**
    * @deprecated this is the method used in the website, should be updated to use db.
    * @param name optional. returns the spesific Kommune-object matching the name if provided, or all Kommune-objects if parameter is null.
@@ -281,6 +301,13 @@ export default function App() {
     [],
     [],
   ]);
+  //? for some fucking reason i decided that the string prorperty of kommune-objects is capital S String
+  const [allKommuneNames, setAllKommuneNames] = useState<String[]>([]);
+
+  const [kommuneQuery, setKommuneQuery] = useState<string>("");
+  const kommuneSearchRes = allKommuneNames.filter((name) => {
+    return name.includes(kommuneQuery);
+  });
 
   //main renderer i guess
   return (
@@ -290,10 +317,24 @@ export default function App() {
       <View style={styles.comingWeek}>
         <WeekView dayTimeTuples={tableElements}></WeekView>
       </View>
+      <View style={styles.autocompleteContainer}>
+        <Autocomplete
+          //!this is not editable or interactable in any way, needs to work asap
+          data={kommuneSearchRes}
+          value={kommuneQuery}
+          onChangeText={(text) => setKommuneQuery(text)}
+          flatListProps={{
+            renderItem: ({ item }) => <Text>{item}</Text>,
+          }}
+        />
+      </View>
       <StatusBar style="auto" />
     </View>
   );
 }
+
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 //styles
 const styles = StyleSheet.create({
   container: {
@@ -311,6 +352,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: 200,
     height: 200,
+  },
+  autocompleteContainer: {
+    flex: 1,
+    position: "absolute",
+    left: windowWidth * 0.25,
+    right: windowWidth * 0.25,
+    top: windowHeight * 0.05,
+    zIndex: 1,
   },
   salesTimesFlavourText: {
     fontSize: 20,
