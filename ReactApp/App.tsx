@@ -167,6 +167,15 @@ export default function App() {
   };
 
   /**
+   * function takes a query representing name of kommune, and if it is a valid kommune, calls geoLocDone w/ query as parameter. else, throws NotAMunicipalityError
+   * @param query lowered string of kommuneNavn to search for
+   * @returns null
+   */
+  const onSearch = (query: string) => {
+    //todo
+  };
+
+  /**
    *
    * @returns JSON-array of holidays for the current year
    */
@@ -306,7 +315,7 @@ export default function App() {
 
   const [kommuneQuery, setKommuneQuery] = useState<string>("");
   const kommuneSearchRes = allKommuneNames.filter((name) => {
-    return name.includes(kommuneQuery);
+    return name.toLowerCase().includes(kommuneQuery);
   });
 
   //main renderer i guess
@@ -319,13 +328,23 @@ export default function App() {
       </View>
       <View style={styles.autocompleteContainer}>
         <Autocomplete
-          //!this is not editable or interactable in any way, needs to work asap
+          //? i'm very sorry, i take it back, this is editable, just not in an android emulator >:(
           data={kommuneSearchRes}
           value={kommuneQuery}
           onChangeText={(text) => setKommuneQuery(text)}
           flatListProps={{
             renderItem: ({ item }) => <Text>{item}</Text>,
           }}
+          //todo: call onSearch on search(?)
+          inputContainerStyle={{
+            width: windowWidth * 0.5,
+          }}
+          listContainerStyle={{
+            //i have a brain the size of a neutron star
+            width: windowWidth * 0.5,
+            height: Math.min(windowHeight * 0.2, kommuneSearchRes.length * 30),
+          }}
+          hideResults={kommuneQuery.length === 0}
         />
       </View>
       <StatusBar style="auto" />
@@ -354,12 +373,8 @@ const styles = StyleSheet.create({
     height: 200,
   },
   autocompleteContainer: {
-    flex: 1,
-    position: "absolute",
-    left: windowWidth * 0.25,
-    right: windowWidth * 0.25,
-    top: windowHeight * 0.05,
-    zIndex: 1,
+    flex: 1 / 3,
+    alignItems: "center",
   },
   salesTimesFlavourText: {
     fontSize: 20,

@@ -44,7 +44,7 @@ export default function WeekView(props: { dayTimeTuples: string[][] }) {
         </DataTable.Row>
       </DataTable>
       <Button
-        label="testLabel"
+        label="Hva med kommende uke?"
         onPress={() => {
           if (displaying === "none") {
             setDisplaying("flex");
