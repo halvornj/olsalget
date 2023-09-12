@@ -129,7 +129,13 @@ export default function App() {
     const fullKommuneData = await getMunicipality();
     var allKommuneNames: String[] = [];
     for (var i: number = 0; i < fullKommuneData.length; i++) {
-      allKommuneNames.push(fullKommuneData[i].kommuneNavn);
+      if (fullKommuneData[i].altNavn != null) {
+        allKommuneNames.push(
+          fullKommuneData[i].kommuneNavn + "/" + fullKommuneData[i].altNavn
+        );
+      } else {
+        allKommuneNames.push(fullKommuneData[i].kommuneNavn);
+      }
     }
     setAllKommuneNames(allKommuneNames);
   };
@@ -172,7 +178,24 @@ export default function App() {
    * @returns null
    */
   const onSearch = (query: string) => {
-    //todo
+    //todo finish this
+    //capitalize first letter
+    query = query[0].toUpperCase() + query.slice(1);
+    query = query.trim();
+    //? structure: [kommuneNavn, ?altnavn]
+    const queryArr: String[] = query.split("/");
+    //* logic time
+    //this is the one that should trigger on cilck from list
+    if (allKommuneNames.includes(query)) {
+      geoLocDone(queryArr[0]);
+      return;
+    }
+    for (var i: number = 0; i < allKommuneNames.length; i++) {
+      if (allKommuneNames[i].split("/").some((e) => queryArr.includes(e))) {
+        geoLocDone(allKommuneNames[i].split("/")[0]);
+        return;
+      }
+    }
   };
 
   /**
@@ -310,7 +333,6 @@ export default function App() {
     [],
     [],
   ]);
-  //? for some fucking reason i decided that the string prorperty of kommune-objects is capital S String
   const [allKommuneNames, setAllKommuneNames] = useState<String[]>([]);
 
   const [kommuneQuery, setKommuneQuery] = useState<string>("");
