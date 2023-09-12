@@ -173,12 +173,11 @@ export default function App() {
   };
 
   /**
-   * function takes a query representing name of kommune, and if it is a valid kommune, calls geoLocDone w/ query as parameter. else, throws NotAMunicipalityError
+   * function takes a query representing name of kommune, and if it is a valid kommune, calls geoLocDone w/ query as parameter.
    * @param query lowered string of kommuneNavn to search for
    * @returns null
    */
   const onSearch = (query: string) => {
-    //todo finish this
     //capitalize first letter
     query = query[0].toUpperCase() + query.slice(1);
     query = query.trim();
@@ -190,10 +189,15 @@ export default function App() {
       geoLocDone(queryArr[0]);
       return;
     }
+    if (kommuneSearchRes.length === 1) {
+      geoLocDone(kommuneSearchRes[0]);
+      return;
+    }
+
     for (var i: number = 0; i < allKommuneNames.length; i++) {
       if (allKommuneNames[i].split("/").some((e) => queryArr.includes(e))) {
         geoLocDone(allKommuneNames[i].split("/")[0]);
-        return;
+        // (allKommuneNames[i].split("/").some((e) => queryArr.includes(e)))) and (geoLocDone(allKommuneNames[i].split("/")[0]))
       }
     }
   };
@@ -248,8 +252,24 @@ export default function App() {
     const tomorrowStr: String = tomorrow.toISOString().slice(0, 10);
     const todayStr: String = today.toISOString().slice(0, 10);
 
-    const alkoholLoven = new Kommune(kommune.kommuneNavn, false);
     if (!kommune.utvidet) {
+      const alkoholLoven = new Kommune(
+        kommune.kommuneNavn,
+        false,
+        null,
+        "none",
+        "08-15",
+        "08-15",
+        "08-15",
+        "standard",
+        "08-18",
+        "standard",
+        "08-15",
+        "08-15",
+        "08-18",
+        "08-15",
+        "08-15"
+      );
       kommune = alkoholLoven;
     }
 
@@ -350,7 +370,6 @@ export default function App() {
       </View>
       <View style={styles.autocompleteContainer}>
         <Autocomplete
-          //? i'm very sorry, i take it back, this is editable, just not in an android emulator >:(
           data={kommuneSearchRes}
           value={kommuneQuery}
           onChangeText={(text) => setKommuneQuery(text)}
@@ -358,12 +377,15 @@ export default function App() {
             renderItem: ({ item }) => <Text>{item}</Text>,
           }}
           //todo: call onSearch on search(?)
+          onSubmitEditing={() => onSearch(kommuneQuery)}
+          placeholder="Søk etter kommune"
+          autoCapitalize="words"
           inputContainerStyle={{
             width: windowWidth * 0.5,
           }}
           listContainerStyle={{
-            //i have a brain the size of a neutron star
             width: windowWidth * 0.5,
+            //i have a brain the size of a neutron star
             height: Math.min(windowHeight * 0.2, kommuneSearchRes.length * 30),
           }}
           hideResults={kommuneQuery.length === 0}
