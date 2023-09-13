@@ -1,4 +1,5 @@
 import { StatusBar } from "expo-status-bar";
+
 import {
   StyleSheet,
   Text,
@@ -6,6 +7,7 @@ import {
   Alert,
   FlatList,
   Dimensions,
+  Pressable,
 } from "react-native";
 import * as Location from "expo-location";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -29,11 +31,9 @@ export default function App() {
   const checkPermission = async () => {
     const hasPermission = await Location.getForegroundPermissionsAsync();
     if (!(hasPermission.status === "granted")) {
-      console.log("the user has not previously granted permission");
       const permission = await askPermission();
       return permission;
     } else {
-      console.log("user has already granted permission");
       return true;
     }
   };
@@ -41,7 +41,6 @@ export default function App() {
   //function that asks user to grant permission. should only be called if permission is not already granted.
   const askPermission = async () => {
     const permission = await Location.requestForegroundPermissionsAsync();
-    console.log("user granted permission in askPermission");
     return permission.status === "granted";
   };
   /**
@@ -61,20 +60,15 @@ export default function App() {
 
     var kommunenavn: String = "Oslo";
     if (hasPermission) {
-      console.log("have permission, getting coords now");
       const userCoordinates = await getUserLocation();
-      console.log("got coords:");
-      console.log(userCoordinates);
       if (userCoordinates != null) {
         kommunenavn = await getUserKommuneNavn(userCoordinates);
       } else {
         //* error in getting position
-        console.log("got permission, but error in getUserLocation()");
         //todo:  make a Toast explaining error
       }
     } else {
       //* didn't get permission
-      console.log("no permission");
       //todo: make a Toast(?) explaining why Oslo
     }
     geoLocDone(kommunenavn);
@@ -84,7 +78,6 @@ export default function App() {
   const getUserKommuneNavn = async (
     coords: Location.LocationObjectCoords
   ): Promise<String> => {
-    console.log("in getUserKommuneNavn");
     const apiResponse = await fetch(
       "https://ws.geonorge.no/kommuneinfo/v1/punkt?nord=" +
         coords.latitude +
@@ -97,18 +90,14 @@ export default function App() {
 
   const geoLocDone = async (kommuneNavn: String) => {
     //*join-point
-    console.log("kommunenavn:");
-    console.log(kommuneNavn);
 
     const holidays: JSON = await getHolidays();
-
     const userKommune: Kommune = (await getMunicipality(kommuneNavn))[0];
 
     setKommune(userKommune);
 
     const today: Date = new Date(Date.now());
     const salesTimes: String = findSalesTimes(userKommune, holidays, today);
-    console.log("salestimes: ", salesTimes);
     if (
       salesTimes === null ||
       salesTimes === undefined ||
@@ -178,6 +167,7 @@ export default function App() {
    * @returns null
    */
   const onSearch = (query: string) => {
+    setKommuneQuery("");
     //capitalize first letter
     query = query[0].toUpperCase() + query.slice(1);
     query = query.trim();
@@ -210,7 +200,6 @@ export default function App() {
     const year = new Date().getFullYear();
     if ((await AsyncStorage.getItem(year.toString())) == null) {
       //there is no asyncStorage entry for current year
-      console.log("no asyncstorage entry for holidays found");
       //todo split the fetch into separate method that catches errors and gets backup
       const hoytiderResponse = await fetch(
         "https://webapi.no/api/v1/holidays/" + year
@@ -357,16 +346,15 @@ export default function App() {
 
   const [kommuneQuery, setKommuneQuery] = useState<string>("");
   const kommuneSearchRes = allKommuneNames.filter((name) => {
-    return name.toLowerCase().includes(kommuneQuery);
+    return name.toLowerCase().includes(kommuneQuery.toLowerCase());
   });
 
   //main renderer i guess
   return (
     <View style={styles.container}>
-      <Text style={styles.salesTimesFlavourText}>{flavourText}</Text>
-      <Text style={styles.salesTimes}>{salesTimes}</Text>
-      <View style={styles.comingWeek}>
-        <WeekView dayTimeTuples={tableElements}></WeekView>
+      <View style={styles.textWrapper}>
+        <Text style={styles.salesTimesFlavourText}>{flavourText}</Text>
+        <Text style={styles.salesTimes}>{salesTimes}</Text>
       </View>
       <View style={styles.autocompleteContainer}>
         <Autocomplete
@@ -374,12 +362,19 @@ export default function App() {
           value={kommuneQuery}
           onChangeText={(text) => setKommuneQuery(text)}
           flatListProps={{
-            renderItem: ({ item }) => <Text>{item}</Text>,
+            renderItem: ({ item }) => (
+              <Pressable
+                onPress={() => {
+                  setKommuneQuery(item.toString());
+                  onSearch(item.toString());
+                }}
+              >
+                <Text>{item}</Text>
+              </Pressable>
+            ),
           }}
-          //todo: call onSearch on search(?)
           onSubmitEditing={() => onSearch(kommuneQuery)}
           placeholder="Søk etter kommune"
-          autoCapitalize="words"
           inputContainerStyle={{
             width: windowWidth * 0.5,
           }}
@@ -387,9 +382,13 @@ export default function App() {
             width: windowWidth * 0.5,
             //i have a brain the size of a neutron star
             height: Math.min(windowHeight * 0.2, kommuneSearchRes.length * 30),
+            zIndex: 2,
           }}
-          hideResults={kommuneQuery.length === 0}
+          hideResults={kommuneQuery.length === 0 || kommuneSearchRes.length < 1}
         />
+      </View>
+      <View style={styles.comingWeek}>
+        <WeekView dayTimeTuples={tableElements}></WeekView>
       </View>
       <StatusBar style="auto" />
     </View>
@@ -406,24 +405,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  buttonContainer: {
-    flex: 1 / 3,
-    alignItems: "center",
-  },
-  comingWeek: {
-    flex: 1 / 3,
-    alignItems: "center",
-    width: 200,
-    height: 200,
-  },
-  autocompleteContainer: {
-    flex: 1 / 3,
-    alignItems: "center",
-  },
+  textWrapper: {},
   salesTimesFlavourText: {
     fontSize: 20,
   },
   salesTimes: {
+    textAlign: "center",
     fontSize: 30,
+  },
+  autocompleteContainer: {
+    marginTop: 20,
+    flex: 1 / 10,
+  },
+  comingWeek: {
+    marginTop: 0,
+    flex: 1 / 2,
+    alignItems: "center",
+    width: 200,
+    height: 200,
   },
 });

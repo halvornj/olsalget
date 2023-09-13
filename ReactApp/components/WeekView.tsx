@@ -3,13 +3,6 @@ import { View, Dimensions, StyleSheet } from "react-native";
 import { DataTable } from "react-native-paper";
 import { useState } from "react";
 
-import {
-  Table,
-  TableWrapper,
-  Row,
-  Rows,
-  Col,
-} from "react-native-table-component";
 import React, { useImperativeHandle, forwardRef } from "react";
 
 export default function WeekView(props: { dayTimeTuples: string[][] }) {
@@ -18,29 +11,53 @@ export default function WeekView(props: { dayTimeTuples: string[][] }) {
   return (
     <View style={styles.container}>
       <DataTable style={[styles.table, { display: displaying }]}>
-        <DataTable.Row>
-          <DataTable.Cell>{props.dayTimeTuples[0][0]}</DataTable.Cell>
-          <DataTable.Cell>{props.dayTimeTuples[0][1]}</DataTable.Cell>
+        <DataTable.Row style={styles.tr}>
+          <DataTable.Cell style={styles.key}>
+            {props.dayTimeTuples[0][0]}
+          </DataTable.Cell>
+          <DataTable.Cell style={styles.val}>
+            {props.dayTimeTuples[0][1]}
+          </DataTable.Cell>
         </DataTable.Row>
-        <DataTable.Row>
-          <DataTable.Cell>{props.dayTimeTuples[1][0]}</DataTable.Cell>
-          <DataTable.Cell>{props.dayTimeTuples[1][1]}</DataTable.Cell>
+        <DataTable.Row style={styles.tr}>
+          <DataTable.Cell style={styles.key}>
+            {props.dayTimeTuples[1][0]}
+          </DataTable.Cell>
+          <DataTable.Cell style={styles.val}>
+            {props.dayTimeTuples[1][1]}
+          </DataTable.Cell>
         </DataTable.Row>
-        <DataTable.Row>
-          <DataTable.Cell>{props.dayTimeTuples[2][0]}</DataTable.Cell>
-          <DataTable.Cell>{props.dayTimeTuples[2][1]}</DataTable.Cell>
+        <DataTable.Row style={styles.tr}>
+          <DataTable.Cell style={styles.key}>
+            {props.dayTimeTuples[2][0]}
+          </DataTable.Cell>
+          <DataTable.Cell style={styles.val}>
+            {props.dayTimeTuples[2][1]}
+          </DataTable.Cell>
         </DataTable.Row>
-        <DataTable.Row>
-          <DataTable.Cell>{props.dayTimeTuples[3][0]}</DataTable.Cell>
-          <DataTable.Cell>{props.dayTimeTuples[3][1]}</DataTable.Cell>
+        <DataTable.Row style={styles.tr}>
+          <DataTable.Cell style={styles.key}>
+            {props.dayTimeTuples[3][0]}
+          </DataTable.Cell>
+          <DataTable.Cell style={styles.val}>
+            {props.dayTimeTuples[3][1]}
+          </DataTable.Cell>
         </DataTable.Row>
-        <DataTable.Row>
-          <DataTable.Cell>{props.dayTimeTuples[4][0]}</DataTable.Cell>
-          <DataTable.Cell>{props.dayTimeTuples[4][1]}</DataTable.Cell>
+        <DataTable.Row style={styles.tr}>
+          <DataTable.Cell style={styles.key}>
+            {props.dayTimeTuples[4][0]}
+          </DataTable.Cell>
+          <DataTable.Cell style={styles.val}>
+            {props.dayTimeTuples[4][1]}
+          </DataTable.Cell>
         </DataTable.Row>
-        <DataTable.Row>
-          <DataTable.Cell>{props.dayTimeTuples[5][0]}</DataTable.Cell>
-          <DataTable.Cell>{props.dayTimeTuples[5][1]}</DataTable.Cell>
+        <DataTable.Row style={styles.tr}>
+          <DataTable.Cell style={styles.key}>
+            {props.dayTimeTuples[5][0]}
+          </DataTable.Cell>
+          <DataTable.Cell style={styles.val}>
+            {props.dayTimeTuples[5][1]}
+          </DataTable.Cell>
         </DataTable.Row>
       </DataTable>
       <Button
@@ -68,5 +85,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
   },
-  table: {},
+  table: {
+    alignItems: "center",
+  },
+  tr: {
+    borderBottomColor: "black",
+    borderBottomWidth: 1,
+    width: windowWidth * 0.35,
+    paddingBottom: 0,
+    marginBottom: 0,
+  },
+  key: {
+    justifyContent: "flex-end",
+  },
+  val: {
+    alignContent: "flex-start",
+    paddingLeft: 10,
+  },
 });
