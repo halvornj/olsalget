@@ -99,7 +99,7 @@ button:active {
   border-radius: 0.5em;
   margin-right: 0px;
   border: var(--offBlack) inset 2px;
-  float:left;
+  float: left;
 }
 
 .searchButton {
@@ -143,4 +143,3 @@ a {
   color: var(--offBlack);
   text-shadow: #b5b5b5 3px 3px;
 }
-	

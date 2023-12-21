@@ -28,19 +28,19 @@ async function geoLocSuccess(position) {
   const date = {
     day: new Date().getDate(),
     month: new Date().getMonth(),
-    year: new Date().getFullYear()
-  }
+    year: new Date().getFullYear(),
+  };
 
   const userPosition = {
     lat: lat,
-    lon: lon
-  }
-    
+    lon: lon,
+  };
+
   const response = await fetch(
-    "https://ws.geonorge.no/kommuneinfo/v1/punkt?nord=" +
-    lat +
-    "&koordsys=4326&ost=" +
-    lon
+    "https://api.kartverket.no/kommuneinfo/v1//punkt?nord=" +
+      lat +
+      "&koordsys=4326&ost=" +
+      lon
   );
 
   const useNewData = async () => {
@@ -53,13 +53,16 @@ async function geoLocSuccess(position) {
     jsonData = JSON.parse(localStorage.getItem("municipalityObject"));
   };
 
-  if(localStorage.getItem("Date") && localStorage.getItem("userPosition")) {
+  if (localStorage.getItem("Date") && localStorage.getItem("userPosition")) {
     const oldDate = JSON.parse(localStorage.getItem("Date"));
     const oldUserPosition = JSON.parse(localStorage.getItem("userPosition"));
-    if( //Check if the user is in the same place and in the same day as to not call the api unneccesarily
-      (oldDate.day === date.day && oldDate.month === date.month && oldDate.year === date.year) &&
-      (Math.abs(oldUserPosition.lat - userPosition.lat) < 0.001) && 
-      (Math.abs(oldUserPosition.lon - userPosition.lon) < 0.001)
+    if (
+      //Check if the user is in the same place and in the same day as to not call the api unneccesarily
+      oldDate.day === date.day &&
+      oldDate.month === date.month &&
+      oldDate.year === date.year &&
+      Math.abs(oldUserPosition.lat - userPosition.lat) < 0.001 &&
+      Math.abs(oldUserPosition.lon - userPosition.lon) < 0.001
     ) {
       useCachedData();
     } else {
@@ -86,7 +89,7 @@ function geoLocError() {
 
 async function fetchHolidays(year) {
   try {
-    const response = await fetch("https://webapi.no/api/v1/holidays/" + year)
+    const response = await fetch("https://webapi.no/api/v1/holidays/");
     if (!response.ok) {
       throw new Error(response.status);
     }
@@ -94,33 +97,30 @@ async function fetchHolidays(year) {
     return data.data;
   } catch (err) {
     const backupResponse = await fetch("holidays" + year + ".json");
-    console.log("Running backup solution");
+    console.warn("Running backup solution for holidays");
     return backupResponse.json();
   }
 }
 
 async function geoLocDone(kommuneNavn) {
-  if(kommuneNavn.includes("/")) {
+  if (kommuneNavn.includes("/")) {
     kommuneNavn = kommuneNavn.split("/")[0];
   }
   //code converges here, so this is where the bulk of the code is
   var year = new Date().getFullYear();
   let hoytider;
   if (HOYTIDER === undefined) {
-    
     try {
       const hoytiderResponse = await fetchHolidays(year);
 
-      if(hoytiderResponse) {
+      if (hoytiderResponse) {
         hoytider = hoytiderResponse;
       } else {
         console.error("Failed to fetch");
       }
-    }
-    catch (err) {
+    } catch (err) {
       console.error("This error, weird:", err);
     }
-    console.log(hoytider);
     //hoytider.shift();
     HOYTIDER = hoytider;
   }
