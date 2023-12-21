@@ -1,0 +1,54 @@
+[
+  {
+    "date": "2023-01-01T00:00:00",
+    "description": "Første nyttårsdag"
+  },
+  {
+    "date": "2023-05-01T00:00:00",
+    "description": "Offentlig høytidsdag"
+  },
+  {
+    "date": "2023-05-17T00:00:00",
+    "description": "Grunnlovsdag"
+  },
+  {
+    "date": "2023-12-25T00:00:00",
+    "description": "Første juledag"
+  },
+  {
+    "date": "2023-12-26T00:00:00",
+    "description": "Andre juledag"
+  },
+  {
+    "date": "2023-04-02T00:00:00",
+    "description": "Palmesøndag"
+  },
+  {
+    "date": "2023-04-06T00:00:00",
+    "description": "Skjærtorsdag"
+  },
+  {
+    "date": "2023-04-07T00:00:00",
+    "description": "Langfredag"
+  },
+  {
+    "date": "2023-04-09T00:00:00",
+    "description": "Første påskedag"
+  },
+  {
+    "date": "2023-04-10T00:00:00",
+    "description": "Andre påskedag"
+  },
+  {
+    "date": "2023-05-18T00:00:00",
+    "description": "Kristi himmelfartsdag"
+  },
+  {
+    "date": "2023-05-28T00:00:00",
+    "description": "Første pinsedag"
+  },
+  {
+    "date": "2023-05-29T00:00:00",
+    "description": "Andre pinsedag"
+  }
+]
