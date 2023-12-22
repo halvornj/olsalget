@@ -38,22 +38,20 @@ body {
 }
 
 #closestStoreContainer {
-  font-size: 2em;
   text-align: center;
   display: block;
 }
 
 #closestStoreTitleText {
-  font-size: .8em;
+  font-size: 1.6em;
 }
 
 #closestStoreTitle {
-  font-size: 2em;
-  font-weight: bold;
+  font-size: 4em;
 }
 
 #closestStoreDistance {
-  font-size: 1em;
+  font-size: 2em;
   text-decoration: underline;
 }
 
@@ -62,16 +60,15 @@ body {
 }
 
 #closestStoreTimeText {
-  font-size: .8em
+  font-size: 1.6em
 }
 
 #closestStoreTime {
-  font-size: 2em;
+  font-size: 5em;
   position: center;
   text-align: center;
   display: block;
   color: var(--offBlack);
-  font-weight: bold;
 }
 
 button {
