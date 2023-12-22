@@ -1,3 +1,4 @@
+console.time("TTL");
 import { Position } from "./Position.js";
 import { Store } from "./Store.js";
 //getCoords() returns a promise that resolves to a Position object
@@ -196,17 +197,17 @@ async function main() {
     }
   });
 
-  document.getElementById(
-    "openTimesFlavourText"
-  ).innerText = `Nærmeste vinmonopol: ${closestStores[0].getName()}.\n Avstand: ${
-    Math.round(closestStores[0].getDistanceFromUser() * 100) / 100
-  }km. Åpningstider:`;
+  document.getElementById("closestStoreTitleText").innerText = `Nærmeste vinmonopol:`;
+  document.getElementById("closestStoreTitle").innerText = closestStores[0].getName();
+  console.log(closestStores[0]);
+  document.getElementById("closestStoreDistance").innerText = `${Math.round(closestStores[0].getDistanceFromUser() * 100) / 100}km unna`;
+  document.getElementById("closestStoreTimeText").innerText = 'Åpent:';
 
   var openingTimes = openingHoursForDay(
     await getStoreJson(closestStores[0].getId()),
     new Date(Date.now())
   );
-  document.getElementById("openTimes").innerText = openingTimes;
+  document.getElementById("closestStoreTime").innerText = openingTimes;
   //todo: handle too many requests or permission denied
   //todo: if error429, throw up loading symbol and try again in 5(?) seconds
 
@@ -290,3 +291,5 @@ function openingHoursForDay(storeJson, date) {
 }
 
 main();
+
+console.timeEnd("TTL")

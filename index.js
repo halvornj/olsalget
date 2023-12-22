@@ -1,3 +1,4 @@
+console.time("TTL");
 var KOMMUNE;
 var HOYTIDER;
 var KOMMUNENUMMER;
@@ -368,3 +369,4 @@ function kommunenavnListeFormSubmitted(event, kommuneNavn) {
   document.getElementById("comingWeekDiv").style.display = "none";
   event.target[0].value = "";
 }
+console.timeEnd("TTL");
