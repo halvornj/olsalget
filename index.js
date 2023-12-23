@@ -42,7 +42,12 @@ async function geoLocSuccess(position) {
       lat +
       "&koordsys=4326&ost=" +
       lon
-  );
+  ).catch((err) => {
+    console.error(err);
+    alert("Vi fant ikke din posisjon, så vi antar at du er i Oslo");
+    geoLocDone("Oslo");
+    return;
+  });
 
   const useNewData = async () => {
     jsonData = await response.json();
