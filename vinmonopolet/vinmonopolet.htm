@@ -27,9 +27,20 @@
     </div>
 
     <div id="openTimesContainer">
-      <div id="openTimesFlavourText"></div>
-      <div id="openTimes">Loading...</div>
-      <button id="showOtherStoresButton">Vis vinmonopol i nærheten</button>
+
+      <div id="closestStoreContainer">
+        <div id="closestStoreTitleContainer">
+          <div id="closestStoreTitleText"></div>
+          <div id="closestStoreTitle"></div>
+        </div>
+        <div id="closestStoreDistance"></div>
+        <div id="closestStoreTimeContainer">
+          <div id="closestStoreTimeText"></div>
+          <div id="closestStoreTime">Loading...</div>
+        </div>
+      </div>
+
+      <button id="showOtherStoresButton">Flere vinmonopol i nærheten</button>
       <div id="closestStoresDiv" style="display: none">
         <table id="closestStoresTable"></table>
       </div>
@@ -37,6 +48,7 @@
       <div id="map-canvas" style="display: none"></div>
       <div id="map-canvas-text" style="display: none"></div>
     </div>
+
     <div class="footer">
       <column class="contactInfo" id="contactInfo">
         <a

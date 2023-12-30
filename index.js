@@ -1,3 +1,4 @@
+console.time("TTL");
 var KOMMUNE;
 var HOYTIDER;
 var KOMMUNENUMMER;
@@ -41,7 +42,12 @@ async function geoLocSuccess(position) {
       lat +
       "&koordsys=4326&ost=" +
       lon
-  );
+  ).catch((err) => {
+    console.error(err);
+    alert("Vi fant ikke din posisjon, så vi antar at du er i Oslo");
+    geoLocDone("Oslo");
+    return;
+  });
 
   const useNewData = async () => {
     jsonData = await response.json();
@@ -368,3 +374,4 @@ function kommunenavnListeFormSubmitted(event, kommuneNavn) {
   document.getElementById("comingWeekDiv").style.display = "none";
   event.target[0].value = "";
 }
+console.timeEnd("TTL");

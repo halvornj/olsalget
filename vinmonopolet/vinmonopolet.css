@@ -37,18 +37,40 @@ body {
   overflow-y: auto;
 }
 
-#openTimes {
+#closestStoreContainer {
+  text-align: center;
+  display: block;
+}
+
+#closestStoreTitleText {
+  font-size: 1.6em;
+}
+
+#closestStoreTitle {
   font-size: 4em;
+}
+
+#closestStoreDistance {
+  font-size: 2em;
+  text-decoration: underline;
+}
+
+#closestStoreTimeContainer {
+  width: auto;
+}
+
+#closestStoreTimeText {
+  font-size: 1.6em
+}
+
+#closestStoreTime {
+  font-size: 5em;
   position: center;
   text-align: center;
   display: block;
   color: var(--offBlack);
 }
-#openTimesFlavourText {
-  font-size: 2.3em;
-  text-align: center;
-  display: block;
-}
+
 button {
   margin: 0.5em;
   display: block;
@@ -72,6 +94,7 @@ button:active {
   transform: translate(3px, 3px);
   box-shadow: #b5b5b5 0px 0px;
 }
+
 #closestStoresTable {
   border-collapse: collapse;
 }
