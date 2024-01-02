@@ -1,6 +1,9 @@
 :root {
   --buttonWidth: 230px;
   --offBlack: #1c1c1c;
+  --offWhite: #f0f0f0;
+  --buttonColor: #0a7637;
+
   --imageShadow: #b5b5b5 3px 3px 1px;
   --textShadow: #b5b5b5 3px 3px;
 }
@@ -60,7 +63,7 @@ body {
 }
 
 #closestStoreTimeText {
-  font-size: 1.6em
+  font-size: 1.6em;
 }
 
 #closestStoreTime {
@@ -74,19 +77,19 @@ body {
 button {
   margin: 0.5em;
   display: block;
-  background-color: #e9e9ed;
+  background-color: var(--buttonColor);
   box-shadow: var(--textShadow);
   border-radius: 5px;
   border: none;
   font-weight: bold;
   transition: 0.2s;
-  color: var(--offBlack);
+  color: var(--offWhite);
   padding: 10px 15px;
   width: var(--buttonWidth);
 }
 
 button:hover {
-  background-color: #dedede;
+  background-color: #085b2a;
   cursor: pointer;
 }
 
