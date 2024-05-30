@@ -250,6 +250,11 @@
         "gpsCoord": "59.9384265;10.7684746"
     },
     {
+        "storeName": "Samnanger",
+        "storeId": "153",
+        "gpsCoord": "60.401232;5.730157"
+    },
+    {
         "storeName": "Knarvik",
         "storeId": "156",
         "gpsCoord": "60.546932;5.2856493"
@@ -1062,7 +1067,7 @@
     {
         "storeName": "Oslo, Røa",
         "storeId": "335",
-        "gpsCoord": "59.9480010;10.6440331"
+        "gpsCoord": "59.9461948;10.6433335"
     },
     {
         "storeName": "Trondheim, Lade",
@@ -1097,7 +1102,7 @@
     {
         "storeName": "Melhus",
         "storeId": "342",
-        "gpsCoord": "63.2865722;10.2786966"
+        "gpsCoord": "63.2851778;10.2792248"
     },
     {
         "storeName": "Mysen",
@@ -1127,7 +1132,7 @@
     {
         "storeName": "Sykkylven",
         "storeId": "348",
-        "gpsCoord": "62.3919305;6.5805036"
+        "gpsCoord": "62.391866;6.582972"
     },
     {
         "storeName": "Vågå",
@@ -1725,9 +1730,24 @@
         "gpsCoord": "59.9275692;10.9583706"
     },
     {
+        "storeName": "Oslo, Bjørvika",
+        "storeId": "474",
+        "gpsCoord": "59.905363;10.7594744"
+    },
+    {
         "storeName": "Oslo, Bryn",
         "storeId": "475",
         "gpsCoord": "59.9031958;10.8224587"
+    },
+    {
+        "storeName": "Sveio",
+        "storeId": "476",
+        "gpsCoord": "59.543472;5.354623"
+    },
+    {
+        "storeName": "Fjerdingby",
+        "storeId": "477",
+        "gpsCoord": "59.92363;11.064413"
     },
     {
         "storeName": "eLager",
