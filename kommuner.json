@@ -2925,18 +2925,18 @@
   {
     "kommuneNavn": "Oslo",
     "utvidet": true,
-    "Electionday": "09-20",
-    "Forstejuledag": "09-18",
-    "Forstenyttarsdag": "09-18",
-    "Forstepinsedag": "09-18",
+    "Electionday": "08-20",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
     "Grunnlovsdag": "standard",
     "Kristihimmelfartsdag": "standard",
     "Offentlighoytidsdag": "standard",
-    "Skjertorsdag": "09-18",
-    "Forstepaskedag": "09-18",
-    "default": "09-20",
-    "sat": "09-18",
-    "Palmesondag": "09-18"
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
   },
   {
     "kommuneNavn": "Osterøy",
