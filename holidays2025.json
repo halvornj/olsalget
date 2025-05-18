@@ -1,1 +1,15 @@
-{"authenticated":false,"timeTaken":0,"data":[{"date":"2025-01-01T00:00:00","description":"Første nyttårsdag"},{"date":"2025-04-13T00:00:00","description":"Palmesøndag"},{"date":"2025-04-17T00:00:00","description":"Skjærtorsdag"},{"date":"2025-04-18T00:00:00","description":"Langfredag"},{"date":"2025-04-20T00:00:00","description":"Første påskedag"},{"date":"2025-04-21T00:00:00","description":"Andre påskedag"},{"date":"2025-05-01T00:00:00","description":"Offentlig høytidsdag"},{"date":"2025-05-17T00:00:00","description":"Grunnlovsdag"},{"date":"2025-05-29T00:00:00","description":"Kristi himmelfartsdag"},{"date":"2025-06-08T00:00:00","description":"Første pinsedag"},{"date":"2025-06-09T00:00:00","description":"Andre pinsedag"},{"date":"2025-12-25T00:00:00","description":"Første juledag"},{"date":"2025-12-26T00:00:00","description":"Andre juledag"}],"statusCode":200}
+[
+  { "date": "2025-01-01T00:00:00", "description": "Første nyttårsdag" },
+  { "date": "2025-04-13T00:00:00", "description": "Palmesøndag" },
+  { "date": "2025-04-17T00:00:00", "description": "Skjærtorsdag" },
+  { "date": "2025-04-18T00:00:00", "description": "Langfredag" },
+  { "date": "2025-04-20T00:00:00", "description": "Første påskedag" },
+  { "date": "2025-04-21T00:00:00", "description": "Andre påskedag" },
+  { "date": "2025-05-01T00:00:00", "description": "Offentlig høytidsdag" },
+  { "date": "2025-05-17T00:00:00", "description": "Grunnlovsdag" },
+  { "date": "2025-05-29T00:00:00", "description": "Kristi himmelfartsdag" },
+  { "date": "2025-06-08T00:00:00", "description": "Første pinsedag" },
+  { "date": "2025-06-09T00:00:00", "description": "Andre pinsedag" },
+  { "date": "2025-12-25T00:00:00", "description": "Første juledag" },
+  { "date": "2025-12-26T00:00:00", "description": "Andre juledag" }
+]
