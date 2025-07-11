@@ -1,0 +1,70 @@
+cabal-version: 2.2
+
+-- This file has been generated from package.yaml by hpack version 0.37.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           olsalget-server
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/halvornj/olsalget-server#readme>
+homepage:       https://github.com/halvornj/olsalget-server#readme
+bug-reports:    https://github.com/halvornj/olsalget-server/issues
+author:         Halvor Ivan Njåstad
+maintainer:     halvor@njastad.no
+copyright:      None
+license:        BSD-3-Clause
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    CHANGELOG.md
+
+source-repository head
+  type: git
+  location: https://github.com/halvornj/olsalget-server
+
+library
+  exposed-modules:
+      Lib
+  other-modules:
+      Paths_olsalget_server
+  autogen-modules:
+      Paths_olsalget_server
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
+  build-depends:
+      base >=4.7 && <5
+    , scotty
+  default-language: Haskell2010
+
+executable olsalget-server-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_olsalget_server
+  autogen-modules:
+      Paths_olsalget_server
+  hs-source-dirs:
+      app
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , olsalget-server
+    , scotty
+  default-language: Haskell2010
+
+test-suite olsalget-server-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_olsalget_server
+  autogen-modules:
+      Paths_olsalget_server
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , olsalget-server
+    , scotty
+  default-language: Haskell2010
