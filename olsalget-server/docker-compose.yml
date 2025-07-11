@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  database:
+    build: ./db
+    container_name: olsalget-db
+    ports:
+      - "5432:5432"
+    env_file:
+      - db-info.env
+    volumes:
+      - ./db/postgres:/var/lib/postgresql/data

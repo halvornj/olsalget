@@ -2,7 +2,8 @@
 
 
 module Main (main) where
-
+import Data.Configurator
+import Data.Configurator.Types
 import Web.Scotty
 
 
