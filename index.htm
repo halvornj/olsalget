@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-H8ZFKLYKN6"
+    ></script>
+    <!--Google ads-->
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8812415771836744"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-H8ZFKLYKN6");
+    </script>
+    <meta
+      name="description"
+      content="se når ølsalget stenger i din lokale kommune, eller andre kommuner i Norge."
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <title>Ølsalget</title>
+  </head>
+  <body>
+    <div id="salesTimesContainer">
+      <div id="salesTimesFlavourText"></div>
+      <div id="salesTimes">Loading...</div>
+      <div id="comingWeekDiv" style="display: none">
+        <table id="comingWeekTable"></table>
+      </div>
+      <button onclick="comingWeek(new Date(Date.now()+86400000));">
+        Hva med kommende uke?
+      </button>
+      <div id="velgKommuneDiv" style="display: block">
+        <form
+          id="kommunenavnListeForm"
+          onsubmit="kommunenavnListeFormSubmitted(event, kommunenavnInput.value)"
+        >
+          <input
+            id="kommunenavnInput"
+            name="kommunenavnInput"
+            placeholder="skriv kommunenavn..."
+            list="kommunenavnListe"
+            autocomplete="off"
+          />
+          <button type="submit" class="fa fa-search searchButton"></button>
+          <datalist id="kommunenavnListe"></datalist>
+        </form>
+      </div>
+      <a href="vinmonopolet/vinmonopolet.htm"
+        ><button>Når stenger Vinmonopolet?</button></a
+      >
+    </div>
+    <div class="footer">
+      <column class="contactInfo" id="contactInfo">
+        <a
+          id="mailTo"
+          class="fa fa-envelope"
+          href="mailto:halvor@njastad.no"
+        ></a>
+        <a href="https://github.com/halvornj/olsalget" target="_blank">
+          <i class="fa fa-github" aria-hidden="true"> </i>
+        </a>
+      </column>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
