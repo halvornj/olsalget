@@ -1,12 +1,12 @@
 version: "3"
 
 services:
-  database:
-    build: ./db
-    container_name: olsalget-db
+  db:
+    image: postgres
+    restart: always
     ports:
       - "5432:5432"
     env_file:
       - db-info.env
     volumes:
-      - ./db/postgres:/var/lib/postgresql/data
+      - ./db:/docker-entrypoint-initdb.d
