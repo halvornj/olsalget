@@ -3,6 +3,9 @@
 module Lib
     (routes
     ,db
+    ,getAllMunicipalities
+    ,getMunicipality
+    ,getAllNames
     ) where
 
 import Web.Scotty
@@ -48,3 +51,11 @@ db conf = do
 routes :: Connection -> IO ()
 routes conn = scotty 8088 $ do
     get "/" $ text "foobar"
+    get "/municipalities/" $ getAllMunicipalities conn
+    get "/municipalities/:name" $ getMunicipality conn
+    get "/municipalities/names/" $ getAllNames conn
+
+getAllMunicipalities :: Connection -> ActionM ()
+getAllMunicipalities conn = do
+    let result = query conn "SELECT * FROM municipalities"
+	...
