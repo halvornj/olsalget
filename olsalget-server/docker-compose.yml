@@ -10,3 +10,4 @@ services:
       - db-info.env
     volumes:
       - ./db:/docker-entrypoint-initdb.d
+    container_name: olsalget-db

@@ -1,18 +1,18 @@
 CREATE TABLE IF NOT EXISTS municipalities (
         kommuneNavn VARCHAR(255) PRIMARY KEY,
         altNavn VARCHAR(255),
-        electionday VARCHAR(16),
-        forstejuledag VARCHAR(16),
-        forstenyttarsdag VARCHAR(16),
-        forstepinsedag VARCHAR(16),
-        grunnlovsdag VARCHAR(16),
-        kristihimmelfartsdag VARCHAR(16),
-        offentlighoytidsdag VARCHAR(16),
-        skjertorsdag VARCHAR(16),
-        forstepaskedag VARCHAR(16),
-        standard VARCHAR(16),
-        saturday VARCHAR(16),
-        palmesondag VARCHAR(16)
+        electionday VARCHAR(32),
+        forstejuledag VARCHAR(32),
+        forstenyttarsdag VARCHAR(32),
+        forstepinsedag VARCHAR(32),
+        grunnlovsdag VARCHAR(32),
+        kristihimmelfartsdag VARCHAR(32),
+        offentlighoytidsdag VARCHAR(32),
+        skjertorsdag VARCHAR(32),
+        forstepaskedag VARCHAR(32),
+        standard VARCHAR(32),
+        saturday VARCHAR(32),
+        palmesondag VARCHAR(32)
 );
 
 INSERT INTO municipalities (kommuneNavn, altNavn, electionday, forstejuledag, forstenyttarsdag, forstepinsedag, grunnlovsdag, kristihimmelfartsdag, offentlighoytidsdag, skjertorsdag, forstepaskedag, standard, saturday, palmesondag) VALUES
@@ -43,7 +43,7 @@ INSERT INTO municipalities (kommuneNavn, altNavn, electionday, forstejuledag, fo
 ('Bindal', NULL, 'none', '08-18', '08-18', '08-18', NULL, '08-20', NULL, NULL, '08-18','08-20', '08-18', NULL),
 ('Birkenes', NULL, 'none', '08-18', '08-18', '08-18', NULL, '08-20', NULL, NULL, '08-18','08-20', '08-18', NULL),
 ('Bjerkreim', NULL, NULL, '08-18', '08-18', '08-18', NULL, '08-20', NULL, '08-18', '08-18','08-20', '08-18', '08-18'),
-('Bjørnafjorden', NULL, 'vanlig i Fusa-delen av kommunen, stengt i Os-delen', '08-15 i Fusa /-18 i Os', '08-15 i Fusa /-18 i Os', '08-15 i Fusa /-18 i Os', NULL, '08-20', NULL, '08-18', '08-15 i Fusa /-18 i Os','08-20', '08-18', '08-18'),
+('Bjørnafjorden', NULL, 'vanlig i Fusa, stengt i Os', '08-15 i Fusa /-18 i Os', '08-15 i Fusa /-18 i Os', '08-15 i Fusa /-18 i Os', NULL, '08-20', NULL, '08-18', '08-15 i Fusa /-18 i Os','08-20', '08-18', '08-18'),
 ('Bodø', NULL, 'none', '08-18', '08-18', '08-18', NULL, '08-20', NULL, '08-18', '08-18','08-20', '08-18', '08-18'),
 ('Bokn', NULL, NULL, '08-15', '08-15', '08-15', NULL, NULL, NULL, '08-15', '08-15', '08-18', '08-15', '08-15'),
 ('Bremanger', NULL, NULL, '08-15', '08-15', '08-15', NULL, '08-20', NULL, '08-18', '08-15','08-20', '08-18', '08-18'),
@@ -239,7 +239,6 @@ INSERT INTO municipalities (kommuneNavn, altNavn, electionday, forstejuledag, fo
 ('Rana', NULL, 'none', '08-18', '08-18', '08-18', NULL, '08-18', NULL, '08-18', '08-18','08-20', '08-18', '08-18'),
 ('Randaberg', NULL, 'none', '08-18', '08-18', '08-18', NULL, '08-20', NULL, '08-18', '08-18','08-20', '08-18', '08-18'),
 ('Rauma', NULL, 'none', '08-18', '08-18', '08-18', NULL, '08-20', NULL, '08-18', '08-18','08-20', '08-18', '08-18'),
-('Rakkestad', NULL, 'none', '08-18', '08-18', '08-18', NULL, '08-20', NULL, '08-18', '08-18','08-20', '08-18', '08-18'),
 ('Rendalen', NULL, 'none', '08-18', '08-18', '08-18', NULL, '08-20', NULL, '08-18', '08-18','08-20', '08-18', '08-18'),
 ('Rennebu', NULL, 'none', '08-18', '08-18', '08-18', NULL, '08-20', NULL, '08-18', '08-18','08-20', '08-18', '08-18'),
 ('Rindal', NULL, 'none', '08-18', '08-18', '08-18', NULL, '08-20', NULL, '08-18', '08-18','08-20', '08-18', '08-18'),
