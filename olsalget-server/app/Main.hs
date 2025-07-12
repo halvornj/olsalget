@@ -3,10 +3,10 @@
 
 module Main (main) where
 import Data.Configurator
-
+import Lib
 
 main :: IO ()
 main = do
     config <- load[Required "db-info.env"]
-    dbConn <- db config
-    routes dbConn
+    dbConn <- Lib.db config
+    Lib.routes dbConn

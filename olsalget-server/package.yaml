@@ -24,6 +24,9 @@ dependencies:
   - scotty
   - postgresql-simple
   - configurator
+  - aeson
+  - http-types
+
 ghc-options:
   - -Wall
   - -Wcompat
