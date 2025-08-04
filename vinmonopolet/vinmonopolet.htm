@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <meta
+      name="description"
+      content="se hvor det er vinmonopol nærme deg, og når de stenger."
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../icons/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="vinmonopolet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwg3AgvtGG-HHzvwiD3RbFrtzjtx1zr2k&callback=Function.prototype"></script>
+    <title>Vinmonopolet</title>
+  </head>
+  <body>
+    <div class="header">
+      <a href="../index.htm"
+        ><img src="../icons/back-button.svg" alt="back" id="backButton"
+      /></a>
+    </div>
+
+    <div id="openTimesContainer">
+
+      <div id="closestStoreContainer">
+        <div id="closestStoreTitleContainer">
+          <div id="closestStoreTitleText"></div>
+          <div id="closestStoreTitle"></div>
+        </div>
+        <div id="closestStoreDistance"></div>
+        <div id="closestStoreTimeContainer">
+          <div id="closestStoreTimeText"></div>
+          <div id="closestStoreTime">Loading...</div>
+        </div>
+      </div>
+
+      <button id="showOtherStoresButton">Flere vinmonopol i nærheten</button>
+      <div id="closestStoresDiv" style="display: none">
+        <table id="closestStoresTable"></table>
+      </div>
+      <button id="getRouteBtn">Vis i kart</button>
+      <div id="map-canvas" style="display: none"></div>
+      <div id="map-canvas-text" style="display: none"></div>
+    </div>
+
+    <div class="footer">
+      <column class="contactInfo" id="contactInfo">
+        <a
+          id="mailTo"
+          class="fa fa-envelope"
+          href="mailto:halvor@njastad.no"
+        ></a>
+        <a href="https://github.com/halvornj/olsalget" target="_blank">
+          <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+      </column>
+    </div>
+    <script type="module" src="vinmonopolet.js"></script>
+  </body>
+</html>
