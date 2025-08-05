@@ -21,6 +21,7 @@
       gtag("js", new Date());
       gtag("config", "G-H8ZFKLYKN6");
     </script>
+
     <meta
       name="description"
       content="se når ølsalget stenger i din lokale kommune, eller andre kommuner i Norge."
@@ -32,16 +33,15 @@
     <link rel="stylesheet" type="text/css" href="index.css" />
     <title>Ølsalget</title>
   </head>
+
   <body>
     <div id="salesTimesContainer">
       <div id="salesTimesFlavourText"></div>
-      <div id="salesTimes">Loading...</div>
+      <div id="salesTimes">{get}</div>
       <div id="comingWeekDiv" style="display: none">
         <table id="comingWeekTable"></table>
       </div>
-      <button onclick="comingWeek(new Date(Date.now()+86400000));">
-        Hva med kommende uke?
-      </button>
+      <button onclick="displayComingWeek();">Hva med kommende uke?</button>
       <div id="velgKommuneDiv" style="display: block">
         <form
           id="kommunenavnListeForm"
