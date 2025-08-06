@@ -1,4 +1,4 @@
-export class Municipality {
+export default class Municipality {
   readonly kommunenavn: string;
   readonly altnavn: string | null;
   readonly electionday: string | null;

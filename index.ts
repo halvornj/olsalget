@@ -1,6 +1,7 @@
+import Municipality from "./lib.js";
+
 //for the first pass, I'm writing this in the same style i like to write C
-//imports
-import { Municipality } from "./lib";
+console.log("snhtsnthsnth");
 
 //defines/macros
 //#define TODAY_IDX 0;
@@ -9,7 +10,7 @@ const TODAY_IDX: number = 0;
 /*global ui state variables
  */
 let weekTimes: Array<string> = [
-  "Loading...",
+  "ligma...",
   "Loading...",
   "Loading...",
   "Loading...",
@@ -37,3 +38,19 @@ let currentMunicipality: Municipality = new Municipality( //no named arguments??
 /*getters and setters? for ui states
  */
 const getMainDisplay = () => weekTimes[0];
+
+const setMainDisplay = () => {
+  console.log("setmain called");
+  let salesTimesContainer: HTMLElement | null =
+    document.getElementById("salesTimes");
+  if (salesTimesContainer != null) {
+    salesTimesContainer.innerText = weekTimes[0];
+  }
+};
+
+const main = () => {
+  console.log("main");
+  setMainDisplay();
+};
+
+main();
