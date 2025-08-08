@@ -26,6 +26,7 @@ dependencies:
   - configurator
   - aeson
   - http-types
+  - wai-cors
 
 ghc-options:
   - -Wall

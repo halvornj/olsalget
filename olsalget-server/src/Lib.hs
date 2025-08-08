@@ -17,7 +17,7 @@ import Data.Configurator
 import Data.Configurator.Types
 import Data.Aeson
 import Network.HTTP.Types.Status (status200, status400)
-
+import Network.Wai.Middleware.Cors
 import Data.Monoid ((<>))
 
 data Municipality = Municipality{ -- because of stupid norwegian laws (and my database design) some holidays do not have special rules. I've set these to null in db, and its a bad backend that doesn't support nulls but relies on the database storing empty strings!
@@ -77,16 +77,11 @@ db conf = do
 -- Connection is conn to db
 routes :: Connection -> IO ()
 routes conn = scotty 8088 $ do
+    middleware simpleCors
     get "/" $ text "foobar"
     get "/municipalities" $ getAllMunicipalities conn
     get "/municipalities/names" $ getAllNames conn
     get "/municipalities/:name" $ getMunicipality conn
-    
-    get "/hello" $ do
-	text "hello world!"
-    get "/hello/:name" $ do
-        name <- param "name"
-        text ("hello " <> name <> "!")
 
 
 getAllMunicipalities :: Connection -> ActionM ()
@@ -111,8 +106,8 @@ getMunicipality conn = do
 
 getAllNames :: Connection -> ActionM ()
 getAllNames conn = do
-    let res = query_ conn "SELECT municipalities.kommunenavn FROM municipalities"
-    names <- liftIO res :: ActionM[String]
+    res <- (liftIO $ query_ conn "SELECT municipalities.kommunenavn FROM municipalities") :: ActionM [Only String]
+    let names = [name | Only name <- res]
     case names of
 	[] -> do
 	    status status400
