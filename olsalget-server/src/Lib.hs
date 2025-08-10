@@ -74,10 +74,17 @@ db conf = do
     connect connectInfo
 
 
+
 -- Connection is conn to db
 routes :: Connection -> IO ()
 routes conn = scotty 8088 $ do
-    middleware simpleCors
+    let corsPolicy = simpleCorsResourcePolicy {
+          corsOrigins = Nothing
+	, corsMethods = ["GET", "OPTIONS"]
+	, corsRequestHeaders = ["ngrok-skip-browser-warning"]
+    }
+    
+    middleware $ cors (const $ Just $ corsPolicy)
     get "/" $ text "foobar"
     get "/municipalities" $ getAllMunicipalities conn
     get "/municipalities/names" $ getAllNames conn
