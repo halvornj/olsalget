@@ -16,7 +16,6 @@ export default class Municipality {
         this.palmesondag = palmesondag;
     }
     getStringForDate(date) {
-        //TODO
         return "00-24";
     }
 }

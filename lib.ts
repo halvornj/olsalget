@@ -47,7 +47,6 @@ export default class Municipality {
   }
 
   getStringForDate(date: Date): string {
-    //TODO
     return "00-24";
   }
 }
