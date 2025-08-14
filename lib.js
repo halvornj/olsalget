@@ -1,7 +1,27 @@
-export default class Municipality {
-    constructor(kommunenavn, altnavn, electionday, forstejuledag, forstenyttarsdag, forstepinsedag, grunnlovsdag, kristihimmelfartsdag, offentlighoytidsdag, skjertorsdag, forstepaskedag, standard, saturday, palmesondag) {
-        this.kommunenavn = kommunenavn;
-        this.altnavn = altnavn;
+//defines
+const ONE_DAY_MS = 86400000;
+//classes
+export class Holiday {
+    constructor(date, description) {
+        this.description = description;
+        if (date instanceof Date) {
+            this.date = date;
+        }
+        else {
+            //do the conversion here
+            this.date = new Date(date); //if the string is malformed, you fucked up. you're on your own
+        }
+    }
+    static fromObject(obj) {
+        const r = new Holiday(0, ""); //jan 1 1970, we will assign later
+        Object.assign(r, obj);
+        return r;
+    }
+}
+export class Municipality {
+    constructor(kommuneNavn, altNavn, electionday, forstejuledag, forstenyttarsdag, forstepinsedag, grunnlovsdag, kristihimmelfartsdag, offentlighoytidsdag, skjertorsdag, forstepaskedag, standard, saturday, palmesondag) {
+        this.kommuneNavn = kommuneNavn;
+        this.altNavn = altNavn;
         this.electionday = electionday;
         this.forstejuledag = forstejuledag;
         this.forstenyttarsdag = forstenyttarsdag;
@@ -15,7 +35,35 @@ export default class Municipality {
         this.saturday = saturday;
         this.palmesondag = palmesondag;
     }
-    getStringForDate(date) {
-        return "00-24";
+    /* ! BIG COMPLAINT ALERT !
+    Apparently, js just does not have casting. One of the most fucking basic things in existence. You just cannot do clean polymorphism, one of the basic things you learn in fucking first year CS.
+    So, what do you do when you get an object on the fly, like a Municipality from an api, and you need to cast the Object to Municipality? well in ts, you just use `as`.
+    But guess what. Tsc just straight up ignores that. because it cannot cast. What is the solution to casting, then?
+    Well, you make a constructor that takes a generic object. Then, if you want things to be proper, you have a shitload of checks to ensure the `Object` is properly formed for a safe cast. (of course you dont actually bother, just assume and allow unsafe casting because fuck it)
+    
+    Solved, right? NO because neither js or ts support multiple constructors. The general consensus for multiple constructors in ts is, and i shit you not, the following:
+      Say you want `constructor(obj: Object)`, and a second `constructor(name:string, altName:string, [and so on...])`.
+      What you do is `constructor(obj_or_name: Object|string, standard?: string [and the rest are all also optional])`
+    
+    "muh TS makes oop and clean patterns in the web so easy now" no. Shut the hell up. This sucks. I just want a fucking cast, now i have to make the entire constructor optional???
+    So, instead I'm doing a static method that returns a properly copied/assigned Municipality instance from a generic object.
+  
+    _ inb4 static methods dont exist either, they probably dont because this is isnt a fleshed out programming language its a mutant of a simple cobbled together scripting-format _
+    */
+    static fromObject(obj) {
+        const r = new Municipality("", null, null, null, null, null, null, null, null, null, null, "", "", null);
+        Object.assign(r, obj);
+        return r;
+    }
+    /*
+    @param date: the day we want the opening times for. If we want opening times today, pass a `new Date()`.
+    @param holidays: an array of Holiday-objects.
+    */
+    getStringForDate(date, holidays) {
+        if (date.getDay() === 0) {
+            return "stengt";
+        }
+        const nextDay = new Date(date.getTime() + ONE_DAY_MS); //get unix time stamp,
+        return "TEST";
     }
 }

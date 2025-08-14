@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -9,6 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 //for the first pass, I'm writing this in the same style i like to write C
+import { Municipality } from "./lib.js";
+import { Holiday } from "./lib.js";
 //defines/macros
 //#define TODAY_IDX 0;
 const TODAY_IDX = 0;
@@ -21,31 +22,9 @@ const WEEKDAYABBREVS = [
     "fre",
     "lør",
 ];
-//classes
-class Municipality {
-    constructor(kommuneNavn, altNavn, electionday, forstejuledag, forstenyttarsdag, forstepinsedag, grunnlovsdag, kristihimmelfartsdag, offentlighoytidsdag, skjertorsdag, forstepaskedag, standard, saturday, palmesondag) {
-        this.kommuneNavn = kommuneNavn;
-        this.altNavn = altNavn;
-        this.electionday = electionday;
-        this.forstejuledag = forstejuledag;
-        this.forstenyttarsdag = forstenyttarsdag;
-        this.forstepinsedag = forstepinsedag;
-        this.grunnlovsdag = grunnlovsdag;
-        this.kristihimmelfartsdag = kristihimmelfartsdag;
-        this.offentlighoytidsdag = offentlighoytidsdag;
-        this.skjertorsdag = skjertorsdag;
-        this.forstepaskedag = forstepaskedag;
-        this.standard = standard;
-        this.saturday = saturday;
-        this.palmesondag = palmesondag;
-    }
-    getStringForDate(date) {
-        return "00-24";
-    }
-}
 /*global ui state variables
  */
-const holidayPromise = fetch("https://https://webapi.no/api/v1/holidays/" + new Date().getFullYear()).then(() => console.log("holidays fulfilled"), () => console.log("holidays failed"));
+let holidays = [];
 let weekTimes = [
     "mantim...",
     "tirtim...",
@@ -117,15 +96,8 @@ function changeMunicipality(name) {
         if (!res.ok) {
             throw new Error("bad api call: " + res.statusText);
         }
-        const test = yield res.json();
-        const t2 = test;
-        //const munic = (await res.json()) as Municipality;
-        //console.log(munic.kommuneNavn);
-        console.log(t2);
-        console.log(t2.kommuneNavn);
-        console.log(typeof t2);
-        //let todayStr = munic.getStringForDate(new Date());
-        let tstr = t2.getStringForDate(new Date());
+        const munic = Municipality.fromObject(yield res.json());
+        let todayStr = munic.getStringForDate(new Date(), []);
     });
 }
 function toggleComingWeekTable() {
@@ -143,11 +115,27 @@ function toggleComingWeekTable() {
         nextWeekTable.style.display = "none";
     }
 }
-const setEventListeners = () => {
+function setEventListeners() {
     var _a;
     (_a = document
         .getElementById("comingWeekButton")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", toggleComingWeekTable);
-};
+}
+function fetchHolidays() {
+    return __awaiter(this, void 0, void 0, function* () {
+        fetch("./data/" + new Date().getFullYear() + ".json").then((res) => {
+            res.json().then((data) => {
+                holidays = data.map(Holiday.fromObject);
+                console.log("fetchholidays finished execution");
+            }, (err_data) => {
+                console.error(err_data);
+                alert("Noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator.");
+            });
+        }, (err_res) => {
+            console.error(err_res);
+            alert("Noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator.");
+        });
+    });
+}
 const main = () => {
     //add event listeners
     setEventListeners();
@@ -160,6 +148,9 @@ const main = () => {
      *
      * after all spawned, wait on number 1. When 1 completes, call backend with kommune-navn
      */
+    fetchHolidays();
+    console.log("fetchholidays initiated");
+    //!testing
     changeMunicipality("Oslo");
     //setMainDisplay();
     //setNextWeek();
