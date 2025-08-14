@@ -22,9 +22,21 @@ const WEEKDAYABBREVS = [
     "fre",
     "lør",
 ];
-/*global ui state variables
+const ONE_DAY_MS = 86400000;
+/*global ui state variables and promises
  */
 let holidays = [];
+const holidayPromise = fetch("./data/" + new Date().getFullYear() + ".json").then((res) => {
+    res.json().then((data) => {
+        holidays = data.map(Holiday.fromObject);
+    }, (err_data) => {
+        console.error(err_data);
+        alert("Noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator.");
+    });
+}, (err_res) => {
+    console.error(err_res);
+    alert("Noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator.");
+});
 let weekTimes = [
     "mantim...",
     "tirtim...",
@@ -73,7 +85,7 @@ const setNextWeek = () => {
     for (let i = 1; i < weekTimes.length; i++) {
         //start at 1, because we dont want today in the table. thats in the big header element.
         let currentString = weekTimes[i];
-        let currentAbbr = WEEKDAYABBREVS[(currentWeekdayIdx + i) % WEEKDAYABBREVS.length];
+        let currentAbbr = WEEKDAYABBREVS[(currentWeekdayIdx + i) % WEEKDAYABBREVS.length]; //currentWeekdayIdx is the index of the abbreviation for today. By adding i and modding length, we wrap around. This means that if today is tuesday, aka IDX 2, we get weektimes[0] and abbrevs[2]
         let keyTD = document.createElement("td");
         keyTD.innerText = currentAbbr;
         let valTD = document.createElement("td");
@@ -97,7 +109,15 @@ function changeMunicipality(name) {
             throw new Error("bad api call: " + res.statusText);
         }
         const munic = Municipality.fromObject(yield res.json());
-        let todayStr = munic.getStringForDate(new Date(), []);
+        yield holidayPromise; //cant get string until we have holidays
+        weekTimes[0] = munic.getStringForDate(new Date(), holidays); //we know holidays is set because we awaited the promise. in theory
+        setMainDisplay(); //first we calculate today and set the main display.
+        //then, calculate rest of the week, and set the table.
+        const todayUnixTimestamp = new Date().getTime();
+        for (let numDaysInFuture = 1; numDaysInFuture < weekTimes.length; numDaysInFuture++) {
+            weekTimes[numDaysInFuture] = munic.getStringForDate(new Date(todayUnixTimestamp + ONE_DAY_MS * numDaysInFuture), holidays);
+        }
+        setNextWeek();
     });
 }
 function toggleComingWeekTable() {
@@ -119,40 +139,22 @@ function setEventListeners() {
     var _a;
     (_a = document
         .getElementById("comingWeekButton")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", toggleComingWeekTable);
+    //TODO more listeners for the other buttons
 }
-function fetchHolidays() {
-    return __awaiter(this, void 0, void 0, function* () {
-        fetch("./data/" + new Date().getFullYear() + ".json").then((res) => {
-            res.json().then((data) => {
-                holidays = data.map(Holiday.fromObject);
-                console.log("fetchholidays finished execution");
-            }, (err_data) => {
-                console.error(err_data);
-                alert("Noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator.");
-            });
-        }, (err_res) => {
-            console.error(err_res);
-            alert("Noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator.");
-        });
-    });
-}
-const main = () => {
-    //add event listeners
-    setEventListeners();
-    /*
-     * the plan here:
-     * spawn 3 jobs async:
-     * 1. get user location
-     * 2. get all kommune-names from backend
-     * 3. get holidays.
-     *
-     * after all spawned, wait on number 1. When 1 completes, call backend with kommune-navn
-     */
-    fetchHolidays();
-    console.log("fetchholidays initiated");
-    //!testing
-    changeMunicipality("Oslo");
-    //setMainDisplay();
-    //setNextWeek();
-};
-main();
+//this is where actual execution starts:
+//TODO move functions out to lib?
+//add event listeners
+setEventListeners();
+/*
+ * the plan here:
+ * spawn 3 jobs async:
+ * 1. get user location
+ * 2. get all kommune-names from backend
+ * 3. get holidays.
+ *
+ * after all spawned, wait on number 1. When 1 completes, call backend with kommune-navn
+ */
+//!testing
+changeMunicipality("Oslo");
+//setMainDisplay();
+//setNextWeek();

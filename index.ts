@@ -14,10 +14,34 @@ const WEEKDAYABBREVS: Array<string> = [
   "fre",
   "lør",
 ];
+const ONE_DAY_MS: number = 86400000;
 
-/*global ui state variables
+/*global ui state variables and promises
  */
 let holidays: Array<Holiday> = [];
+const holidayPromise: Promise<void> = fetch(
+  "./data/" + new Date().getFullYear() + ".json"
+).then(
+  (res) => {
+    res.json().then(
+      (data) => {
+        holidays = data.map(Holiday.fromObject);
+      },
+      (err_data) => {
+        console.error(err_data);
+        alert(
+          "Noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator."
+        );
+      }
+    );
+  },
+  (err_res) => {
+    console.error(err_res);
+    alert(
+      "Noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator."
+    );
+  }
+);
 
 let weekTimes: Array<string> = [
   "mantim...",
@@ -75,8 +99,7 @@ const setNextWeek = () => {
     //start at 1, because we dont want today in the table. thats in the big header element.
     let currentString: string = weekTimes[i];
     let currentAbbr: string =
-      WEEKDAYABBREVS[(currentWeekdayIdx + i) % WEEKDAYABBREVS.length];
-
+      WEEKDAYABBREVS[(currentWeekdayIdx + i) % WEEKDAYABBREVS.length]; //currentWeekdayIdx is the index of the abbreviation for today. By adding i and modding length, we wrap around. This means that if today is tuesday, aka IDX 2, we get weektimes[0] and abbrevs[2]
     let keyTD: HTMLTableCellElement = document.createElement("td");
     keyTD.innerText = currentAbbr;
     let valTD: HTMLTableCellElement = document.createElement("td");
@@ -101,7 +124,22 @@ async function changeMunicipality(name: string): Promise<void> {
   }
 
   const munic = Municipality.fromObject(await res.json());
-  let todayStr = munic.getStringForDate(new Date(), []);
+  await holidayPromise; //cant get string until we have holidays
+  weekTimes[0] = munic.getStringForDate(new Date(), holidays); //we know holidays is set because we awaited the promise. in theory
+  setMainDisplay(); //first we calculate today and set the main display.
+  //then, calculate rest of the week, and set the table.
+  const todayUnixTimestamp = new Date().getTime();
+  for (
+    let numDaysInFuture: number = 1;
+    numDaysInFuture < weekTimes.length;
+    numDaysInFuture++
+  ) {
+    weekTimes[numDaysInFuture] = munic.getStringForDate(
+      new Date(todayUnixTimestamp + ONE_DAY_MS * numDaysInFuture),
+      holidays
+    );
+  }
+  setNextWeek();
 }
 
 function toggleComingWeekTable(): void {
@@ -127,51 +165,23 @@ function setEventListeners() {
   //TODO more listeners for the other buttons
 }
 
-async function fetchHolidays() {
-  fetch("./data/" + new Date().getFullYear() + ".json").then(
-    (res) => {
-      res.json().then(
-        (data) => {
-          holidays = data.map(Holiday.fromObject);
-        },
-        (err_data) => {
-          console.error(err_data);
-          alert(
-            "Noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator."
-          );
-        }
-      );
-    },
-    (err_res) => {
-      console.error(err_res);
-      alert(
-        "Noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator."
-      );
-    }
-  );
-}
+//this is where actual execution starts:
+//TODO move functions out to lib?
+//add event listeners
+setEventListeners();
 
-const main = () => {
-  //add event listeners
-  setEventListeners();
+/*
+ * the plan here:
+ * spawn 3 jobs async:
+ * 1. get user location
+ * 2. get all kommune-names from backend
+ * 3. get holidays.
+ *
+ * after all spawned, wait on number 1. When 1 completes, call backend with kommune-navn
+ */
 
-  /*
-   * the plan here:
-   * spawn 3 jobs async:
-   * 1. get user location
-   * 2. get all kommune-names from backend
-   * 3. get holidays.
-   *
-   * after all spawned, wait on number 1. When 1 completes, call backend with kommune-navn
-   */
+//!testing
+changeMunicipality("Oslo");
 
-  fetchHolidays();
-
-  //!testing
-  changeMunicipality("Oslo");
-
-  //setMainDisplay();
-  //setNextWeek();
-};
-
-main();
+//setMainDisplay();
+//setNextWeek();
