@@ -5,7 +5,7 @@ const ONE_DAY_MS: number = 86400000;
 
 export class Holiday {
   readonly date: Date;
-  readonly description: String;
+  readonly description: string;
 
   constructor(date: Date | string | number, description: string) {
     this.description = description;
@@ -25,6 +25,8 @@ export class Holiday {
 }
 
 export class Municipality {
+  [key: string]: string | null | Function;
+
   readonly kommuneNavn: string;
   readonly altNavn: string | null;
   readonly electionday: string | null;
@@ -118,8 +120,40 @@ export class Municipality {
     if (date.getDay() === 0) {
       return "stengt";
     }
-    const nextDay: Date = new Date(date.getTime() + ONE_DAY_MS); //get unix time stamp,
 
-    return "TEST";
+    const todayString: string = date.toDateString();
+    const tomorrow: Date = new Date(date.getTime() + ONE_DAY_MS);
+    const tomorrowString: string = tomorrow.toDateString(); //get unix time stamp,
+
+    for (const holiday of holidays) {
+      const holidayString: string = holiday.date.toDateString();
+      if (holidayString == todayString) {
+        //today is holiday
+        return "stengt";
+      }
+      if (holidayString == tomorrowString) {
+        //tomorrow is holiday, but today is not
+        const holidayName: string = holiday.description;
+        console.log(this[holidayName]);
+        console.log(holidayName);
+        return (
+          //so, this whole shape means: return
+          (this[holidayName] as string) ?? //the value stored if it is not null. If it is null we follow standard times
+          (date.getDay() === 6 ? this.saturday : this.standard) //so this.saturday if today is sat, otherwise this.standard.
+        );
+      }
+    }
+
+    //special jan 1. case
+    if (tomorrow.getDate() === 1 && tomorrow.getMonth() === 1) {
+      return (
+        this.forstenyttarsdag ??
+        (date.getDay() === 6 ? this.saturday : this.standard)
+      );
+    }
+
+    //by this point: it is not sunday, today is not a holiday and neither is tomorrow.
+    //at that point, we just do sat or standard
+    return date.getDay() === 6 ? this.saturday : this.standard;
   }
 }

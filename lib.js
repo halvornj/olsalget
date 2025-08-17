@@ -60,10 +60,38 @@ export class Municipality {
     @param holidays: an array of Holiday-objects.
     */
     getStringForDate(date, holidays) {
+        var _a, _b;
         if (date.getDay() === 0) {
             return "stengt";
         }
-        const nextDay = new Date(date.getTime() + ONE_DAY_MS); //get unix time stamp,
-        return "TEST";
+        const todayString = date.toDateString();
+        const tomorrow = new Date(date.getTime() + ONE_DAY_MS);
+        const tomorrowString = tomorrow.toDateString(); //get unix time stamp,
+        for (const holiday of holidays) {
+            const holidayString = holiday.date.toDateString();
+            if (holidayString == todayString) {
+                //today is holiday
+                return "stengt";
+            }
+            console.log("ay carmab");
+            if (holidayString == tomorrowString) {
+                //tomorrow is holiday, but today is not
+                console.log("ay kebaber");
+                const holidayName = holiday.description;
+                console.log(this[holidayName]);
+                console.log(holidayName);
+                return (
+                //so, this whole shape means: return
+                (_a = this[holidayName]) !== null && _a !== void 0 ? _a : (date.getDay() === 6 ? this.saturday : this.standard) //so this.saturday if today is sat, otherwise this.standard.
+                );
+            }
+        }
+        //special jan 1. case
+        if (tomorrow.getDate() === 1 && tomorrow.getMonth() === 1) {
+            return ((_b = this.forstenyttarsdag) !== null && _b !== void 0 ? _b : (date.getDay() === 6 ? this.saturday : this.standard));
+        }
+        //by this point: it is not sunday, today is not a holiday and neither is tomorrow.
+        //at that point, we just do sat or standard
+        return date.getDay() === 6 ? this.saturday : this.standard;
     }
 }

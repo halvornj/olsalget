@@ -28,7 +28,9 @@ const ONE_DAY_MS = 86400000;
 let holidays = [];
 const holidayPromise = fetch("./data/" + new Date().getFullYear() + ".json").then((res) => {
     res.json().then((data) => {
-        holidays = data.map(Holiday.fromObject);
+        holidays = data.map((it) => {
+            return new Holiday(it.date, it.description);
+        });
     }, (err_data) => {
         console.error(err_data);
         alert("Noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator.");
@@ -110,10 +112,12 @@ function changeMunicipality(name) {
         }
         const munic = Municipality.fromObject(yield res.json());
         yield holidayPromise; //cant get string until we have holidays
-        weekTimes[0] = munic.getStringForDate(new Date(), holidays); //we know holidays is set because we awaited the promise. in theory
+        //const today: Date = new Date();
+        const today = new Date("2025-04-18");
+        weekTimes[0] = munic.getStringForDate(today, holidays); //we know holidays is set because we awaited the promise. in theory
         setMainDisplay(); //first we calculate today and set the main display.
         //then, calculate rest of the week, and set the table.
-        const todayUnixTimestamp = new Date().getTime();
+        const todayUnixTimestamp = today.getTime();
         for (let numDaysInFuture = 1; numDaysInFuture < weekTimes.length; numDaysInFuture++) {
             weekTimes[numDaysInFuture] = munic.getStringForDate(new Date(todayUnixTimestamp + ONE_DAY_MS * numDaysInFuture), holidays);
         }
@@ -155,6 +159,6 @@ setEventListeners();
  * after all spawned, wait on number 1. When 1 completes, call backend with kommune-navn
  */
 //!testing
-changeMunicipality("Oslo");
+changeMunicipality("Trondheim");
 //setMainDisplay();
 //setNextWeek();

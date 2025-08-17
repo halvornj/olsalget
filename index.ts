@@ -25,7 +25,9 @@ const holidayPromise: Promise<void> = fetch(
   (res) => {
     res.json().then(
       (data) => {
-        holidays = data.map(Holiday.fromObject);
+        holidays = data.map((it: any) => {
+          return new Holiday(it.date, it.description);
+        });
       },
       (err_data) => {
         console.error(err_data);
@@ -125,10 +127,14 @@ async function changeMunicipality(name: string): Promise<void> {
 
   const munic = Municipality.fromObject(await res.json());
   await holidayPromise; //cant get string until we have holidays
-  weekTimes[0] = munic.getStringForDate(new Date(), holidays); //we know holidays is set because we awaited the promise. in theory
+
+  //const today: Date = new Date();
+  const today: Date = new Date("2025-04-18");
+
+  weekTimes[0] = munic.getStringForDate(today, holidays); //we know holidays is set because we awaited the promise. in theory
   setMainDisplay(); //first we calculate today and set the main display.
   //then, calculate rest of the week, and set the table.
-  const todayUnixTimestamp = new Date().getTime();
+  const todayUnixTimestamp = today.getTime();
   for (
     let numDaysInFuture: number = 1;
     numDaysInFuture < weekTimes.length;
@@ -181,7 +187,7 @@ setEventListeners();
  */
 
 //!testing
-changeMunicipality("Oslo");
+changeMunicipality("Trondheim");
 
 //setMainDisplay();
 //setNextWeek();
