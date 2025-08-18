@@ -1,18 +1,19 @@
 //for the first pass, I'm writing this in the same style i like to write C
 import { Municipality } from "./lib.js";
 import { Holiday } from "./lib.js";
-
+import { CacheData } from "./lib.js";
+import { Coordinate } form "./lib.js";
 //defines/macros
 //#define TODAY_IDX 0;
 const TODAY_IDX: number = 0;
 const WEEKDAYABBREVS: Array<string> = [
-  "søn",
-  "man",
-  "tir",
-  "ons",
-  "tor",
-  "fre",
-  "lør",
+    "søn",
+    "man",
+    "tir",
+    "ons",
+    "tor",
+    "fre",
+    "lør",
 ];
 const ONE_DAY_MS: number = 86400000;
 
@@ -20,97 +21,139 @@ const ONE_DAY_MS: number = 86400000;
  */
 let holidays: Array<Holiday> = [];
 const holidayPromise: Promise<void> = fetch(
-  "./data/" + new Date().getFullYear() + ".json"
+    "./data/" + new Date().getFullYear() + ".json"
 ).then(
-  (res) => {
-    res.json().then(
-      (data) => {
-        holidays = data.map((it: any) => {
-          return new Holiday(it.date, it.description);
-        });
-      },
-      (err_data) => {
-        console.error(err_data);
-        alert(
-          "Noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator."
+    (res) => {
+        res.json().then(
+            (data) => {
+                holidays = data.map((it: any) => {
+                    return new Holiday(it.date, it.description);
+                });
+            },
+            (err_data) => {
+                console.error(err_data);
+                alert(
+                    "Noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator."
+                );
+            }
         );
-      }
-    );
-  },
-  (err_res) => {
-    console.error(err_res);
-    alert(
-      "Noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator."
-    );
-  }
+    },
+    (err_res) => {
+        console.error(err_res);
+        alert(
+            "Noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator."
+        );
+    }
 );
 
+
+let allKommuneNavn: Array<string> = []
+const namePromise: Promise<void> = fetch("https://api.olsalget.no/municipalities/names").then(
+    (res) => {
+        res.json().then(
+            (data) => {
+                //TODO dont set a global var, just set a datalist-thingy directly here.
+                allKommuneNavn = data;
+            },
+            (err_data) => {
+                console.error(err_data);
+                alert("noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator")
+            })
+    },
+    (err_res) => {
+        console.error(err_res);
+        alert("noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator")
+    });
+
+
+
+//let location
+async function geoLocSuccess(location: GeolocationPosition) {
+
+}
+
+async function geoLocError(error: GeolocationPositionError) {
+
+}
+
+
+
+
+
 let weekTimes: Array<string> = [
-  "mantim...",
-  "tirtim...",
-  "onsm...",
-  "torm...",
-  "frem...",
-  "lørm...",
-  "sønm...",
+    "mantim...",
+    "tirtim...",
+    "onsm...",
+    "torm...",
+    "frem...",
+    "lørm...",
+    "sønm...",
 ];
 
 //alkoholloven
 let currentMunicipality: Municipality = new Municipality( //no named arguments?? really...
-  "ukjent", // kommuneNavn
-  null, // altNavn
-  null, // electionday
-  "08-15", // forstejuledag
-  "08-15", // forstenyttarsdag
-  "08-15", // forstepinsedag
-  null, // grunnlovsdag
-  null, // kristihimmelfartsdag
-  null, // offentlighoytidsdag
-  "08-15", // skjertorsdag
-  "08-15", // forstepaskedag
-  "08-18", // standard
-  "08-15", // saturday
-  "08-15" // palmesondag
+    "ukjent", // kommuneNavn
+    null, // altNavn
+    null, // electionday
+    "08-15", // forstejuledag
+    "08-15", // forstenyttarsdag
+    "08-15", // forstepinsedag
+    null, // grunnlovsdag
+    null, // kristihimmelfartsdag
+    null, // offentlighoytidsdag
+    "08-15", // skjertorsdag
+    "08-15", // forstepaskedag
+    "08-18", // standard
+    "08-15", // saturday
+    "08-15" // palmesondag
 );
 
 /*getters and setters? for ui states
  */
 const setMainDisplay = () => {
-  console.log("setmain called");
-  let salesTimesContainer: HTMLElement | null =
-    document.getElementById("salesTimes");
-  if (salesTimesContainer == null) {
-    throw new ReferenceError("error: element #salesTimes not found.");
-  }
-  salesTimesContainer.innerText = weekTimes[0];
+    console.log("setmain called");
+    let salesTimesContainer: HTMLElement | null =
+        document.getElementById("salesTimes");
+    if (salesTimesContainer == null) {
+        throw new ReferenceError("error: element #salesTimes not found.");
+    }
+    if (weekTimes[0] === null || weekTimes[0] === "stengt") {
+        salesTimesContainer.innerText = `I ${currentMunicipality.kommuneNavn} er ølsalget stengt i dag`;
+    }
+    let flavourTextContainer: HTMLElement | null = document.getElementById("salesTimesFlavourText");
+    if (flavourTextContainer == null) {
+        throw new ReferenceError("error: element #salesTimesFlavourText not found.")
+    }
+    flavourTextContainer.innerText = `I ${currentMunicipality.kommuneNavn} er ølsalget åpent fra `;
+    salesTimesContainer.innerText = weekTimes[0];
 };
 
 const setNextWeek = () => {
-  let nextWeekTable: HTMLElement | null =
-    document.getElementById("comingWeekTable");
-  if (nextWeekTable == null) {
-    throw new ReferenceError("error: element #comingWeekTable not found.");
-  }
-  //empty table
-  nextWeekTable.replaceChildren(); //should remove all child nodes - rebuild new table.
+    let nextWeekTable: HTMLElement | null =
+        document.getElementById("comingWeekTable");
+    if (nextWeekTable == null) {
+        throw new ReferenceError("error: element #comingWeekTable not found.");
+    }
+    //empty table
+    nextWeekTable.replaceChildren(); //should remove all child nodes - rebuild new table.
 
-  let currentWeekdayIdx: number = new Date().getDay();
+    let currentWeekdayIdx: number = new Date().getDay();
 
-  //fill table
-  for (let i: number = 1; i < weekTimes.length; i++) {
-    //start at 1, because we dont want today in the table. thats in the big header element.
-    let currentString: string = weekTimes[i];
-    let currentAbbr: string =
-      WEEKDAYABBREVS[(currentWeekdayIdx + i) % WEEKDAYABBREVS.length]; //currentWeekdayIdx is the index of the abbreviation for today. By adding i and modding length, we wrap around. This means that if today is tuesday, aka IDX 2, we get weektimes[0] and abbrevs[2]
-    let keyTD: HTMLTableCellElement = document.createElement("td");
-    keyTD.innerText = currentAbbr;
-    let valTD: HTMLTableCellElement = document.createElement("td");
-    valTD.innerText = currentString;
-    let row: HTMLTableRowElement = document.createElement("tr");
-    row.appendChild(keyTD);
-    row.appendChild(valTD);
-    nextWeekTable.appendChild(row);
-  }
+    //fill table
+    for (let i: number = 1; i < weekTimes.length; i++) {
+        //start at 1, because we dont want today in the table. thats in the big header element.
+        let currentString: string = weekTimes[i];
+        let currentAbbr: string =
+            WEEKDAYABBREVS[(currentWeekdayIdx + i) % WEEKDAYABBREVS.length]; //currentWeekdayIdx is the index of the abbreviation for today. By adding i and modding length, we wrap around. This means that if today is tuesday, aka IDX 2, we get weektimes[0] and abbrevs[2]
+        let keyTD: HTMLTableCellElement = document.createElement("td");
+        keyTD.innerText = currentAbbr;
+        let valTD: HTMLTableCellElement = document.createElement("td");
+        valTD.innerText = currentString;
+        let row: HTMLTableRowElement = document.createElement("tr");
+        row.appendChild(keyTD);
+        row.appendChild(valTD);
+        nextWeekTable.appendChild(row);
+    }
 };
 
 /*
@@ -120,55 +163,69 @@ const setNextWeek = () => {
  * These two scenarios should behave the same.
  */
 async function changeMunicipality(name: string): Promise<void> {
-  const res = await fetch("https://api.olsalget.no/municipalities/" + name);
-  if (!res.ok) {
-    throw new Error("bad api call: " + res.statusText);
-  }
+    const res = await fetch("https://api.olsalget.no/municipalities/" + name);
+    if (!res.ok) {
+        throw new Error("bad api call: " + res.statusText);
+    }
 
-  const munic = Municipality.fromObject(await res.json());
-  await holidayPromise; //cant get string until we have holidays
+    const munic = Municipality.fromObject(await res.json());
+    await holidayPromise; //cant get string until we have holidays
 
-  //const today: Date = new Date();
-  const today: Date = new Date("2025-04-18");
+    //const today: Date = new Date();
+    const today: Date = new Date("2025-04-18");
 
-  weekTimes[0] = munic.getStringForDate(today, holidays); //we know holidays is set because we awaited the promise. in theory
-  setMainDisplay(); //first we calculate today and set the main display.
-  //then, calculate rest of the week, and set the table.
-  const todayUnixTimestamp = today.getTime();
-  for (
-    let numDaysInFuture: number = 1;
-    numDaysInFuture < weekTimes.length;
-    numDaysInFuture++
-  ) {
-    weekTimes[numDaysInFuture] = munic.getStringForDate(
-      new Date(todayUnixTimestamp + ONE_DAY_MS * numDaysInFuture),
-      holidays
-    );
-  }
-  setNextWeek();
+    weekTimes[0] = munic.getStringForDate(today, holidays); //we know holidays is set because we awaited the promise. in theory
+    setMainDisplay(); //first we calculate today and set the main display.
+    //then, calculate rest of the week, and set the table.
+    const todayUnixTimestamp = today.getTime();
+    for (
+        let numDaysInFuture: number = 1;
+        numDaysInFuture < weekTimes.length;
+        numDaysInFuture++
+    ) {
+        weekTimes[numDaysInFuture] = munic.getStringForDate(
+            new Date(todayUnixTimestamp + ONE_DAY_MS * numDaysInFuture),
+            holidays
+        );
+    }
+    setNextWeek();
 }
 
 function toggleComingWeekTable(): void {
-  console.log("toggle called");
-  //get reference
-  let nextWeekTable: HTMLElement | null =
-    document.getElementById("comingWeekDiv");
-  if (nextWeekTable == null) {
-    throw new ReferenceError("element #comingWeekTable not found");
-  }
-  //simple toggle
-  if (nextWeekTable.style.display == "none") {
-    nextWeekTable.style.display = "block";
-  } else {
-    nextWeekTable.style.display = "none";
-  }
+    console.log("toggle called");
+    //get reference
+    let nextWeekTable: HTMLElement | null =
+        document.getElementById("comingWeekDiv");
+    if (nextWeekTable == null) {
+        throw new ReferenceError("element #comingWeekTable not found");
+    }
+    //simple toggle
+    if (nextWeekTable.style.display == "none") {
+        nextWeekTable.style.display = "block";
+    } else {
+        nextWeekTable.style.display = "none";
+    }
 }
 
+
+
 function setEventListeners() {
-  document
-    .getElementById("comingWeekButton")
-    ?.addEventListener("click", toggleComingWeekTable);
-  //TODO more listeners for the other buttons
+    document
+        .getElementById("comingWeekButton")
+        ?.addEventListener("click", toggleComingWeekTable);
+    //TODO more listeners for the other buttons
+}
+
+async function sendCachedRequest() {
+    let cached_data: CacheData;
+    const cached_data_str = localStorage.getItem("cache");
+    if (cached_data_str == null) {
+        cached_data = new CacheData("Oslo", new Coordinate(59.91745924838579, 10.727435739549525))
+        localStorage.setItem("cache", JSON.stringify(cached_data)) //set the default.
+    } else {
+        cached_data = JSON.parse(cached_data_str);
+    }
+    changeMunicipality(cached_data.kommunenavn);
 }
 
 //this is where actual execution starts:
@@ -185,9 +242,17 @@ setEventListeners();
  *
  * after all spawned, wait on number 1. When 1 completes, call backend with kommune-navn
  */
+//start cached search
+sendCachedRequest()
 
-//!testing
-changeMunicipality("Trondheim");
+//then, actually get position.
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(geoLocSuccess, geoLocError);
+} else {
+    alert(
+        "denne nettleseren støtter ikke geolokasjon, så vi antar at du er i Oslo. Du kan søke på en annen kommune i søkefeltet."
+    );
+}
 
 //setMainDisplay();
 //setNextWeek();
