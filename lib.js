@@ -1,6 +1,18 @@
 //defines
 const ONE_DAY_MS = 86400000;
+export class Coordinate {
+    constructor(lat, lon) {
+        this.lat = lat;
+        this.lon = lon;
+    }
+}
 //classes
+export class CacheData {
+    constructor(kommunenavn, position) {
+        this.kommunenavn = kommunenavn;
+        this.position = position;
+    }
+}
 export class Holiday {
     constructor(date, description) {
         this.description = description;
@@ -73,10 +85,8 @@ export class Municipality {
                 //today is holiday
                 return "stengt";
             }
-            console.log("ay carmab");
             if (holidayString == tomorrowString) {
                 //tomorrow is holiday, but today is not
-                console.log("ay kebaber");
                 const holidayName = holiday.description;
                 console.log(this[holidayName]);
                 console.log(holidayName);

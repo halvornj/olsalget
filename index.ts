@@ -2,7 +2,7 @@
 import { Municipality } from "./lib.js";
 import { Holiday } from "./lib.js";
 import { CacheData } from "./lib.js";
-import { Coordinate } form "./lib.js";
+import { Coordinate } from "./lib.js";
 //defines/macros
 //#define TODAY_IDX 0;
 const TODAY_IDX: number = 0;
@@ -47,13 +47,21 @@ const holidayPromise: Promise<void> = fetch(
 );
 
 
-let allKommuneNavn: Array<string> = []
 const namePromise: Promise<void> = fetch("https://api.olsalget.no/municipalities/names").then(
     (res) => {
         res.json().then(
             (data) => {
                 //TODO dont set a global var, just set a datalist-thingy directly here.
-                allKommuneNavn = data;
+                const datalistEl: HTMLElement | null = document.getElementById("kommunenavnListe");
+                if (datalistEl == null) {
+                    throw new ReferenceError("error: element #kommunenavnListe not found.")
+                }
+                for (const name of data) {
+                    //todo this does not handle altNavn, as altnavn is not returned by the server.
+                    const option = document.createElement("option");
+                    option.value = name;
+                    datalistEl.appendChild(option);
+                }
             },
             (err_data) => {
                 console.error(err_data);
@@ -69,7 +77,22 @@ const namePromise: Promise<void> = fetch("https://api.olsalget.no/municipalities
 
 //let location
 async function geoLocSuccess(location: GeolocationPosition) {
+    const res = await fetch("https://api.kartverket.no/kommuneinfo/v1//punkt?nord=" +
+        location.coords.latitude +
+        "&koordsys=4326&ost=" +
+        location.coords.longitude).catch((err) => {
+            console.error(err);
+            alert("fant ikke din posisjon");
+        });
+    if (res == null) {
+        throw new Error("bad response from kartverket");
+        alert("noe gikk galt")
+    }
+    const data = await res.json()
+    //set cached data
+    localStorage.setItem("cache", JSON.stringify(new CacheData(data.kommunenavn, new Coordinate(location.coords.latitude, location.coords.longitude))));
 
+    changeMunicipality(data.kommunenavn);
 }
 
 async function geoLocError(error: GeolocationPositionError) {
@@ -89,6 +112,7 @@ let weekTimes: Array<string> = [
     "lørm...",
     "sønm...",
 ];
+let currentMunicName: string = "ukjent";
 
 //alkoholloven
 let currentMunicipality: Municipality = new Municipality( //no named arguments?? really...
@@ -118,15 +142,16 @@ const setMainDisplay = () => {
         throw new ReferenceError("error: element #salesTimes not found.");
     }
     if (weekTimes[0] === null || weekTimes[0] === "stengt") {
-        salesTimesContainer.innerText = `I ${currentMunicipality.kommuneNavn} er ølsalget stengt i dag`;
+        salesTimesContainer.innerText = `I ${currentMunicName} er ølsalget stengt i dag`;
     }
     let flavourTextContainer: HTMLElement | null = document.getElementById("salesTimesFlavourText");
     if (flavourTextContainer == null) {
         throw new ReferenceError("error: element #salesTimesFlavourText not found.")
     }
-    flavourTextContainer.innerText = `I ${currentMunicipality.kommuneNavn} er ølsalget åpent fra `;
+    flavourTextContainer.innerText = `I ${currentMunicName} er ølsalget åpent fra `;
     salesTimesContainer.innerText = weekTimes[0];
 };
+
 
 const setNextWeek = () => {
     let nextWeekTable: HTMLElement | null =
@@ -169,10 +194,12 @@ async function changeMunicipality(name: string): Promise<void> {
     }
 
     const munic = Municipality.fromObject(await res.json());
+    currentMunicName = name;
+
     await holidayPromise; //cant get string until we have holidays
 
     //const today: Date = new Date();
-    const today: Date = new Date("2025-04-18");
+    const today: Date = new Date();
 
     weekTimes[0] = munic.getStringForDate(today, holidays); //we know holidays is set because we awaited the promise. in theory
     setMainDisplay(); //first we calculate today and set the main display.
@@ -225,6 +252,9 @@ async function sendCachedRequest() {
     } else {
         cached_data = JSON.parse(cached_data_str);
     }
+    console.log("use cached data:");
+    console.log(cached_data.kommunenavn);
+
     changeMunicipality(cached_data.kommunenavn);
 }
 

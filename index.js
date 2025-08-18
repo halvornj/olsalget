@@ -10,6 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 //for the first pass, I'm writing this in the same style i like to write C
 import { Municipality } from "./lib.js";
 import { Holiday } from "./lib.js";
+import { CacheData } from "./lib.js";
+import { Coordinate } from "./lib.js";
 //defines/macros
 //#define TODAY_IDX 0;
 const TODAY_IDX = 0;
@@ -39,6 +41,36 @@ const holidayPromise = fetch("./data/" + new Date().getFullYear() + ".json").the
     console.error(err_res);
     alert("Noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator.");
 });
+const namePromise = fetch("https://api.olsalget.no/municipalities/names").then((res) => {
+    res.json().then((data) => {
+        //TODO dont set a global var, just set a datalist-thingy directly here.
+        const datalistEl = document.getElementById("kommunenavnListe");
+        if (datalistEl == null) {
+            throw new ReferenceError("error: element #kommunenavnListe not found.");
+        }
+        for (const name of data) {
+            //todo this does not handle altNavn, as altnavn is not returned by the server.
+            const option = document.createElement("option");
+            option.value = name;
+            datalistEl.appendChild(option);
+        }
+    }, (err_data) => {
+        console.error(err_data);
+        alert("noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator");
+    });
+}, (err_res) => {
+    console.error(err_res);
+    alert("noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator");
+});
+//let location
+function geoLocSuccess(location) {
+    return __awaiter(this, void 0, void 0, function* () {
+    });
+}
+function geoLocError(error) {
+    return __awaiter(this, void 0, void 0, function* () {
+    });
+}
 let weekTimes = [
     "mantim...",
     "tirtim...",
@@ -48,6 +80,7 @@ let weekTimes = [
     "lørm...",
     "sønm...",
 ];
+let currentMunicName = "ukjent";
 //alkoholloven
 let currentMunicipality = new Municipality(//no named arguments?? really...
 "ukjent", // kommuneNavn
@@ -73,6 +106,14 @@ const setMainDisplay = () => {
     if (salesTimesContainer == null) {
         throw new ReferenceError("error: element #salesTimes not found.");
     }
+    if (weekTimes[0] === null || weekTimes[0] === "stengt") {
+        salesTimesContainer.innerText = `I ${currentMunicName} er ølsalget stengt i dag`;
+    }
+    let flavourTextContainer = document.getElementById("salesTimesFlavourText");
+    if (flavourTextContainer == null) {
+        throw new ReferenceError("error: element #salesTimesFlavourText not found.");
+    }
+    flavourTextContainer.innerText = `I ${currentMunicName} er ølsalget åpent fra `;
     salesTimesContainer.innerText = weekTimes[0];
 };
 const setNextWeek = () => {
@@ -111,9 +152,10 @@ function changeMunicipality(name) {
             throw new Error("bad api call: " + res.statusText);
         }
         const munic = Municipality.fromObject(yield res.json());
+        currentMunicName = name;
         yield holidayPromise; //cant get string until we have holidays
         //const today: Date = new Date();
-        const today = new Date("2025-04-18");
+        const today = new Date();
         weekTimes[0] = munic.getStringForDate(today, holidays); //we know holidays is set because we awaited the promise. in theory
         setMainDisplay(); //first we calculate today and set the main display.
         //then, calculate rest of the week, and set the table.
@@ -145,6 +187,22 @@ function setEventListeners() {
         .getElementById("comingWeekButton")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", toggleComingWeekTable);
     //TODO more listeners for the other buttons
 }
+function sendCachedRequest() {
+    return __awaiter(this, void 0, void 0, function* () {
+        let cached_data;
+        const cached_data_str = localStorage.getItem("cache");
+        if (cached_data_str == null) {
+            cached_data = new CacheData("Oslo", new Coordinate(59.91745924838579, 10.727435739549525));
+            localStorage.setItem("cache", JSON.stringify(cached_data)); //set the default.
+        }
+        else {
+            cached_data = JSON.parse(cached_data_str);
+        }
+        console.log("use cached data:");
+        console.log(cached_data.kommunenavn);
+        changeMunicipality(cached_data.kommunenavn);
+    });
+}
 //this is where actual execution starts:
 //TODO move functions out to lib?
 //add event listeners
@@ -158,7 +216,14 @@ setEventListeners();
  *
  * after all spawned, wait on number 1. When 1 completes, call backend with kommune-navn
  */
-//!testing
-changeMunicipality("Trondheim");
+//start cached search
+sendCachedRequest();
+//then, actually get position.
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(geoLocSuccess, geoLocError);
+}
+else {
+    alert("denne nettleseren støtter ikke geolokasjon, så vi antar at du er i Oslo. Du kan søke på en annen kommune i søkefeltet.");
+}
 //setMainDisplay();
 //setNextWeek();
