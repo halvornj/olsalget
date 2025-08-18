@@ -65,10 +65,39 @@ const namePromise = fetch("https://api.olsalget.no/municipalities/names").then((
 //let location
 function geoLocSuccess(location) {
     return __awaiter(this, void 0, void 0, function* () {
+        //    const newLocation: Coordinate = new Coordinate(location.coords.latitude, location.coords.longitude);
+        //!TESTING
+        const newLocation = new Coordinate(63.43028202211008, 10.3940199423931);
+        console.log("in geolocSuccess");
+        const old_data_str = localStorage.getItem("cache");
+        if (old_data_str != null) {
+            const old_data = JSON.parse(old_data_str);
+            if (Math.abs(old_data.position.lat - newLocation.lat) < 0.001 && Math.abs(old_data.position.lon - newLocation.lon) < 0.001) {
+                //new location is so close to cached location, we guessed right with our cached guess
+                return;
+            }
+        }
+        const res = yield fetch("https://api.kartverket.no/kommuneinfo/v1//punkt?nord=" +
+            newLocation.lat +
+            "&koordsys=4326&ost=" +
+            newLocation.lon).catch((err) => {
+            console.error(err);
+            alert("fant ikke din posisjon");
+        });
+        if (res == null) {
+            throw new Error("bad response from kartverket");
+            alert("noe gikk galt");
+        }
+        const data = yield res.json();
+        //set cached data
+        localStorage.setItem("cache", JSON.stringify(new CacheData(data.kommunenavn, newLocation)));
+        changeMunicipality(data.kommunenavn);
     });
 }
 function geoLocError(error) {
     return __awaiter(this, void 0, void 0, function* () {
+        console.error(error);
+        alert("Noe gikk galt, vennligst prøv på nytt eller søk på din kommune");
     });
 }
 let weekTimes = [
@@ -220,6 +249,7 @@ setEventListeners();
 sendCachedRequest();
 //then, actually get position.
 if (navigator.geolocation) {
+    console.log("browser supports nav");
     navigator.geolocation.getCurrentPosition(geoLocSuccess, geoLocError);
 }
 else {

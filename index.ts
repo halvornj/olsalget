@@ -77,10 +77,25 @@ const namePromise: Promise<void> = fetch("https://api.olsalget.no/municipalities
 
 //let location
 async function geoLocSuccess(location: GeolocationPosition) {
+    //    const newLocation: Coordinate = new Coordinate(location.coords.latitude, location.coords.longitude);
+
+    //!TESTING
+    const newLocation: Coordinate = new Coordinate(63.43028202211008, 10.3940199423931);
+    console.log("in geolocSuccess");
+
+    const old_data_str: string | null = localStorage.getItem("cache");
+    if (old_data_str != null) {
+        const old_data: CacheData = JSON.parse(old_data_str) as CacheData
+        if (Math.abs(old_data.position.lat - newLocation.lat) < 0.001 && Math.abs(old_data.position.lon - newLocation.lon) < 0.001) {
+            //new location is so close to cached location, we guessed right with our cached guess
+            return;
+        }
+    }
+
     const res = await fetch("https://api.kartverket.no/kommuneinfo/v1//punkt?nord=" +
-        location.coords.latitude +
+        newLocation.lat +
         "&koordsys=4326&ost=" +
-        location.coords.longitude).catch((err) => {
+        newLocation.lon).catch((err) => {
             console.error(err);
             alert("fant ikke din posisjon");
         });
@@ -90,13 +105,14 @@ async function geoLocSuccess(location: GeolocationPosition) {
     }
     const data = await res.json()
     //set cached data
-    localStorage.setItem("cache", JSON.stringify(new CacheData(data.kommunenavn, new Coordinate(location.coords.latitude, location.coords.longitude))));
+    localStorage.setItem("cache", JSON.stringify(new CacheData(data.kommunenavn, newLocation)));
 
     changeMunicipality(data.kommunenavn);
 }
 
 async function geoLocError(error: GeolocationPositionError) {
-
+    console.error(error);
+    alert("Noe gikk galt, vennligst prøv på nytt eller søk på din kommune");
 }
 
 
@@ -104,13 +120,13 @@ async function geoLocError(error: GeolocationPositionError) {
 
 
 let weekTimes: Array<string> = [
-    "mantim...",
-    "tirtim...",
-    "onsm...",
-    "torm...",
-    "frem...",
-    "lørm...",
-    "sønm...",
+    "loading...",
+    "loading...",
+    "loading...",
+    "loading...",
+    "loading...",
+    "loading...",
+    "loading...",
 ];
 let currentMunicName: string = "ukjent";
 
@@ -277,6 +293,7 @@ sendCachedRequest()
 
 //then, actually get position.
 if (navigator.geolocation) {
+    console.log("browser supports nav");
     navigator.geolocation.getCurrentPosition(geoLocSuccess, geoLocError);
 } else {
     alert(
