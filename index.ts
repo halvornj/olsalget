@@ -46,7 +46,7 @@ const holidayPromise: Promise<void> = fetch(
     }
 );
 
-
+let allMunicNames: Array<string> = [];
 const namePromise: Promise<void> = fetch("https://api.olsalget.no/municipalities/names").then(
     (res) => {
         res.json().then(
@@ -62,6 +62,7 @@ const namePromise: Promise<void> = fetch("https://api.olsalget.no/municipalities
                     option.value = name;
                     datalistEl.appendChild(option);
                 }
+                allMunicNames = data.map((el: string) => { return el.toLowerCase() })
             },
             (err_data) => {
                 console.error(err_data);
@@ -77,17 +78,18 @@ const namePromise: Promise<void> = fetch("https://api.olsalget.no/municipalities
 
 //let location
 async function geoLocSuccess(location: GeolocationPosition) {
-    //    const newLocation: Coordinate = new Coordinate(location.coords.latitude, location.coords.longitude);
-
+    const newLocation: Coordinate = new Coordinate(location.coords.latitude, location.coords.longitude);
+    console.timeEnd("geo")
+    console.log("in geoLcoSuccess")
     //!TESTING
-    const newLocation: Coordinate = new Coordinate(63.43028202211008, 10.3940199423931);
-    console.log("in geolocSuccess");
+    // const newLocation: Coordinate = new Coordinate(63.43028202211008, 10.3940199423931); // trondheim
 
     const old_data_str: string | null = localStorage.getItem("cache");
     if (old_data_str != null) {
         const old_data: CacheData = JSON.parse(old_data_str) as CacheData
         if (Math.abs(old_data.position.lat - newLocation.lat) < 0.001 && Math.abs(old_data.position.lon - newLocation.lon) < 0.001) {
             //new location is so close to cached location, we guessed right with our cached guess
+            console.log("old location was close to new, aborting...")
             return;
         }
     }
@@ -257,6 +259,42 @@ function setEventListeners() {
         .getElementById("comingWeekButton")
         ?.addEventListener("click", toggleComingWeekTable);
     //TODO more listeners for the other buttons
+
+    const forms: HTMLCollectionOf<HTMLFormElement> | null = document.forms;
+    let form: HTMLFormElement | null = null
+    if (forms[0].name != "kommunenavnListeForm") {
+        throw new Error("first form is not #kommunenavnListeForm. Typescript does not support named gets of forms because it sucks.")
+    }
+    form = forms[0]
+    //    const form: HTMLFormElement | null = document.getElementById("kommunenavnListeForm");
+    if (form === null) {
+        throw new ReferenceError("error: #kommunenavnListeForm not found")
+    }
+    const input: HTMLElement | null = document.getElementById("kommunenavnInput");
+    if (input === null) {
+        throw new ReferenceError("error: #kommunenavnInput not found");
+    }
+
+    form.addEventListener("submit", async (e: SubmitEvent) => {
+        e.preventDefault();
+        if (e === null) { return; }
+        console.log(e);
+        const formData = new FormData(form);
+        const enteredName = formData.get("kommunenavnInput");
+
+        if (enteredName === null) { throw new Error("entered form value is null") }
+        if (enteredName === "") { throw new Error("entered form value is empty") }
+        await namePromise;
+        if (allMunicNames.indexOf(enteredName.toString().toLowerCase()) < 0) {
+            console.log(allMunicNames);
+            console.log("enteredname not in array")
+            return;
+        }
+        console.log(`changing munic to ${enteredName}`);
+        changeMunicipality(enteredName.toString());
+
+    });
+
 }
 
 async function sendCachedRequest() {
@@ -294,7 +332,11 @@ sendCachedRequest()
 //then, actually get position.
 if (navigator.geolocation) {
     console.log("browser supports nav");
-    navigator.geolocation.getCurrentPosition(geoLocSuccess, geoLocError);
+    console.time("geo");
+    navigator.geolocation.getCurrentPosition(geoLocSuccess, geoLocError, {
+        enableHighAccuracy: false,
+        maximumAge: 600000 //600 seconds, 10 minutes
+    });
 } else {
     alert(
         "denne nettleseren støtter ikke geolokasjon, så vi antar at du er i Oslo. Du kan søke på en annen kommune i søkefeltet."
