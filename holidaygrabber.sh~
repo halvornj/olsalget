@@ -1,0 +1,4 @@
+#!/bin/bash
+YEAR=2026
+
+data = $(curl https://webapi.no/api/v1/holidays/
