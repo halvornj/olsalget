@@ -113,7 +113,7 @@ getMunicipality conn = do
 
 getAllNames :: Connection -> ActionM ()
 getAllNames conn = do
-    res <- (liftIO $ query_ conn "SELECT municipalities.kommunenavn FROM municipalities") :: ActionM [Only String]
+    res <- (liftIO $ query_ conn "SELECT CASE WHEN (altnavn) IS NULL THEN kommunenavn ELSE CONCAT_WS('/',kommunenavn, altnavn) END FROM municipalities") :: ActionM [Only String]
     let names = [name | Only name <- res]
     case names of
 	[] -> do
