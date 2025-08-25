@@ -19,6 +19,7 @@ import Data.Aeson
 import Network.HTTP.Types.Status (status200, status400)
 import Network.Wai.Middleware.Cors
 import Data.Monoid ((<>))
+import Data.Char (toLower)
 
 data Municipality = Municipality{ -- because of stupid norwegian laws (and my database design) some holidays do not have special rules. I've set these to null in db, and its a bad backend that doesn't support nulls but relies on the database storing empty strings!
     kommuneNavn          :: String,
@@ -100,7 +101,7 @@ getAllMunicipalities conn = do
 getMunicipality :: Connection -> ActionM ()
 getMunicipality conn = do
     _kommuneNavn <- param "name" :: ActionM String
-    let res = query conn "SELECT * FROM municipalities WHERE kommunenavn = ?" (Only _kommuneNavn)
+    let res = query conn "SELECT * FROM municipalities WHERE LOWER(kommunenavn) = ? OR LOWER(altnavn) = ?" (map toLower _kommuneNavn, map toLower _kommuneNavn)
     munic <- liftIO res :: ActionM [Municipality]
     case munic of
 	[] -> do
