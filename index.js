@@ -64,7 +64,6 @@ const namePromise = fetch("https://api.olsalget.no/municipalities/names").then((
     console.error(err_res);
     alert("noe gikk galt. Vennligst prøv på nytt, eller kontakt administrator");
 });
-//let location
 function geoLocSuccess(location) {
     return __awaiter(this, void 0, void 0, function* () {
         const newLocation = new Coordinate(location.coords.latitude, location.coords.longitude);
@@ -264,8 +263,7 @@ function setEventListeners() {
                     if (enteredName == altname.toLowerCase()) {
                         found = true;
                         console.log("found multiname");
-                        enteredName = multinames[0]; // we get the canonical name, which comes first before the concat, as teh server only accepts the canonical kommunenavn. It could easily be updated to accept altnames.
-                        //TODO make `municipalities/:name` accept altnames. something like `WHERE kommunenavn=? OR altnavn=?`
+                        enteredName = multinames[0]; // we get the canonical name, which comes first before the concat.
                         break; // i want to do a kotlin-y break@outer, but i dont think that is a thing. And that is sad.
                     }
                 }
@@ -282,6 +280,13 @@ function setEventListeners() {
         if (!found) {
             throw new Error(`Entered name not found: ${enteredName}`);
         }
+        //trying to zero out text-field
+        formData.set("kommunenavnInput", ""); //this does not change the actual text-field value so is probably not neccessary, but still here
+        const input_field = document.getElementById("kommunenavnInput");
+        if (input_field == null) {
+            throw new ReferenceError("error: could not find element #kommunenavnInput");
+        }
+        input_field.innerHTML = ""; //does what formData.set should do
         console.log(`changing munic to ${enteredName}`);
         changeMunicipality(enteredName.toString());
     }));

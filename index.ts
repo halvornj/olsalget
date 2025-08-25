@@ -76,7 +76,7 @@ const namePromise: Promise<void> = fetch("https://api.olsalget.no/municipalities
 
 
 
-//let location
+
 async function geoLocSuccess(location: GeolocationPosition) {
     const newLocation: Coordinate = new Coordinate(location.coords.latitude, location.coords.longitude);
     console.timeEnd("geo")
@@ -314,6 +314,14 @@ function setEventListeners() {
         if (!found) {
             throw new Error(`Entered name not found: ${enteredName}`)
         }
+
+        //trying to zero out text-field
+        // neither of these aproaches work... will continue tomorrow.
+        formData.set("kommunenavnInput", ""); //this does not change the actual text-field value so is probably not neccessary, but still here
+
+        const input_field: HTMLElement | null = document.getElementById("kommunenavnInput");
+        if (input_field == null) { throw new ReferenceError("error: could not find element #kommunenavnInput") }
+        input_field.innerHTML = "";
 
 
         console.log(`changing munic to ${enteredName}`);
