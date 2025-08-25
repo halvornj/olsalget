@@ -280,16 +280,42 @@ function setEventListeners() {
         if (e === null) { return; }
         console.log(e);
         const formData = new FormData(form);
-        const enteredName = formData.get("kommunenavnInput");
+        let enteredName: string | undefined = formData.get("kommunenavnInput")?.toString();
 
         if (enteredName === null) { throw new Error("entered form value is null") }
+        if (enteredName === undefined) { throw new Error("entered form value is undefined") }
         if (enteredName === "") { throw new Error("entered form value is empty") }
-        await namePromise;
-        if (allMunicNames.indexOf(enteredName.toString().toLowerCase()) < 0) {
-            console.log(allMunicNames);
-            console.log("enteredname not in array")
-            return;
+        if (enteredName.includes("/")) { enteredName = enteredName.split("/")[0] }
+        enteredName = enteredName.toLowerCase();
+        await namePromise; // we need to ensure the names have arrived (pretty much guaranteed at this point), so we can do basic name catching here
+
+        let found: boolean = false;
+        for (const name of allMunicNames) {
+            if (name.includes("/")) { // has altname, was concatted by the server for ez transfer
+                const multinames: Array<string> = name.split("/");
+                for (const altname of multinames) {
+                    if (enteredName == altname.toLowerCase()) {
+                        found = true;
+                        console.log("found multiname")
+                        enteredName = multinames[0]; // we get the canonical name, which comes first before the concat.
+                        break; // i want to do a kotlin-y break@outer, but i dont think that is a thing. And that is sad.
+                    }
+                }
+            } else {//not multiname
+                if (enteredName == name.toLowerCase()) {
+                    found = true;
+                }
+            }
+            if (found) {//we found it in a multiname
+                break; //this is the break@outer
+            }
+
         }
+        if (!found) {
+            throw new Error(`Entered name not found: ${enteredName}`)
+        }
+
+
         console.log(`changing munic to ${enteredName}`);
         changeMunicipality(enteredName.toString());
 
