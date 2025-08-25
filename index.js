@@ -234,24 +234,53 @@ function setEventListeners() {
         throw new ReferenceError("error: #kommunenavnInput not found");
     }
     form.addEventListener("submit", (e) => __awaiter(this, void 0, void 0, function* () {
+        var _a;
         e.preventDefault();
         if (e === null) {
             return;
         }
         console.log(e);
         const formData = new FormData(form);
-        const enteredName = formData.get("kommunenavnInput");
+        let enteredName = (_a = formData.get("kommunenavnInput")) === null || _a === void 0 ? void 0 : _a.toString();
         if (enteredName === null) {
             throw new Error("entered form value is null");
+        }
+        if (enteredName === undefined) {
+            throw new Error("entered form value is undefined");
         }
         if (enteredName === "") {
             throw new Error("entered form value is empty");
         }
-        yield namePromise;
-        if (allMunicNames.indexOf(enteredName.toString().toLowerCase()) < 0) {
-            console.log(allMunicNames);
-            console.log("enteredname not in array");
-            return;
+        if (enteredName.includes("/")) {
+            enteredName = enteredName.split("/")[0];
+        }
+        enteredName = enteredName.toLowerCase();
+        yield namePromise; // we need to ensure the names have arrived (pretty much guaranteed at this point), so we can do basic name catching here
+        let found = false;
+        for (const name of allMunicNames) {
+            if (name.includes("/")) { // has altname, was concatted by the server for ez transfer
+                const multinames = name.split("/");
+                for (const altname of multinames) {
+                    if (enteredName == altname.toLowerCase()) {
+                        found = true;
+                        console.log("found multiname");
+                        enteredName = multinames[0]; // we get the canonical name, which comes first before the concat, as teh server only accepts the canonical kommunenavn. It could easily be updated to accept altnames.
+                        //TODO make `municipalities/:name` accept altnames. something like `WHERE kommunenavn=? OR altnavn=?`
+                        break; // i want to do a kotlin-y break@outer, but i dont think that is a thing. And that is sad.
+                    }
+                }
+            }
+            else { //not multiname
+                if (enteredName == name.toLowerCase()) {
+                    found = true;
+                }
+            }
+            if (found) { //we found it in a multiname
+                break; //this is the break@outer
+            }
+        }
+        if (!found) {
+            throw new Error(`Entered name not found: ${enteredName}`);
         }
         console.log(`changing munic to ${enteredName}`);
         changeMunicipality(enteredName.toString());
