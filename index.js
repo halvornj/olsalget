@@ -238,9 +238,12 @@ function setEventListeners() {
         if (e === null) {
             return;
         }
+        console.log("event:");
         console.log(e);
         const formData = new FormData(form);
         let enteredName = (_a = formData.get("kommunenavnInput")) === null || _a === void 0 ? void 0 : _a.toString();
+        console.log("form:");
+        console.log(form);
         if (enteredName === null) {
             throw new Error("entered form value is null");
         }
@@ -281,12 +284,16 @@ function setEventListeners() {
             throw new Error(`Entered name not found: ${enteredName}`);
         }
         //trying to zero out text-field
-        formData.set("kommunenavnInput", ""); //this does not change the actual text-field value so is probably not neccessary, but still here
-        const input_field = document.getElementById("kommunenavnInput");
+        // neither of these aproaches work... will continue tomorrow.
+        formData.set("kommunenavnInput", ""); //this does not change the actual text-field value so is probably not neccessary, but still here for now
+        let input_field = document.getElementById("kommunenavnInput");
         if (input_field == null) {
             throw new ReferenceError("error: could not find element #kommunenavnInput");
         }
-        input_field.innerHTML = ""; //does what formData.set should do
+        input_field.textContent = "";
+        input_field.value = "";
+        //document.querySelector("#kommunenavnInput").value = "";
+        //e.target.reset()
         console.log(`changing munic to ${enteredName}`);
         changeMunicipality(enteredName.toString());
     }));

@@ -265,11 +265,14 @@ function setEventListeners() {
     if (forms[0].name != "kommunenavnListeForm") {
         throw new Error("first form is not #kommunenavnListeForm. Typescript does not support named gets of forms because it sucks.")
     }
+
     form = forms[0]
     //    const form: HTMLFormElement | null = document.getElementById("kommunenavnListeForm");
     if (form === null) {
         throw new ReferenceError("error: #kommunenavnListeForm not found")
     }
+
+
     const input: HTMLElement | null = document.getElementById("kommunenavnInput");
     if (input === null) {
         throw new ReferenceError("error: #kommunenavnInput not found");
@@ -278,9 +281,13 @@ function setEventListeners() {
     form.addEventListener("submit", async (e: SubmitEvent) => {
         e.preventDefault();
         if (e === null) { return; }
+        console.log("event:")
         console.log(e);
         const formData = new FormData(form);
         let enteredName: string | undefined = formData.get("kommunenavnInput")?.toString();
+
+        console.log("form:")
+        console.log(form)
 
         if (enteredName === null) { throw new Error("entered form value is null") }
         if (enteredName === undefined) { throw new Error("entered form value is undefined") }
@@ -316,13 +323,9 @@ function setEventListeners() {
         }
 
         //trying to zero out text-field
-        // neither of these aproaches work... will continue tomorrow.
-        formData.set("kommunenavnInput", ""); //this does not change the actual text-field value so is probably not neccessary, but still here
-
-        const input_field: HTMLElement | null = document.getElementById("kommunenavnInput");
+        let input_field: HTMLInputElement | null = document.getElementById("kommunenavnInput") as HTMLInputElement;
         if (input_field == null) { throw new ReferenceError("error: could not find element #kommunenavnInput") }
-        input_field.innerHTML = "";
-
+        input_field.value = "";
 
         console.log(`changing munic to ${enteredName}`);
         changeMunicipality(enteredName.toString());
