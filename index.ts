@@ -5,7 +5,6 @@ import { CacheData } from "./lib.js";
 import { Coordinate } from "./lib.js";
 //defines/macros
 //#define TODAY_IDX 0;
-const TODAY_IDX: number = 0;
 const WEEKDAYABBREVS: Array<string> = [
     "søn",
     "man",
@@ -62,7 +61,7 @@ const namePromise: Promise<void> = fetch("https://api.olsalget.no/municipalities
                     option.value = name;
                     datalistEl.appendChild(option);
                 }
-                allMunicNames = data.map((el: string) => { return el.toLowerCase() })
+                allMunicNames = data.map((el: string) => { return el.toLowerCase() }) //we need the list for doing some basic rejection on the client side if they search a name that does not exist.
             },
             (err_data) => {
                 console.error(err_data);
@@ -79,8 +78,7 @@ const namePromise: Promise<void> = fetch("https://api.olsalget.no/municipalities
 
 async function geoLocSuccess(location: GeolocationPosition) {
     const newLocation: Coordinate = new Coordinate(location.coords.latitude, location.coords.longitude);
-    console.timeEnd("geo")
-    console.log("in geoLcoSuccess")
+
     //!TESTING
     // const newLocation: Coordinate = new Coordinate(63.43028202211008, 10.3940199423931); // trondheim
 
@@ -89,7 +87,6 @@ async function geoLocSuccess(location: GeolocationPosition) {
         const old_data: CacheData = JSON.parse(old_data_str) as CacheData
         if (Math.abs(old_data.position.lat - newLocation.lat) < 0.001 && Math.abs(old_data.position.lon - newLocation.lon) < 0.001) {
             //new location is so close to cached location, we guessed right with our cached guess
-            console.log("old location was close to new, aborting...")
             return;
         }
     }
@@ -103,10 +100,10 @@ async function geoLocSuccess(location: GeolocationPosition) {
         });
     if (res == null) {
         throw new Error("bad response from kartverket");
-        alert("noe gikk galt")
     }
     const data = await res.json()
     //set cached data
+    //should have more error handling here
     localStorage.setItem("cache", JSON.stringify(new CacheData(data.kommunenavn, newLocation)));
 
     changeMunicipality(data.kommunenavn);
@@ -132,28 +129,9 @@ let weekTimes: Array<string> = [
 ];
 let currentMunicName: string = "ukjent";
 
-//alkoholloven
-let currentMunicipality: Municipality = new Municipality( //no named arguments?? really...
-    "ukjent", // kommuneNavn
-    null, // altNavn
-    null, // electionday
-    "08-15", // forstejuledag
-    "08-15", // forstenyttarsdag
-    "08-15", // forstepinsedag
-    null, // grunnlovsdag
-    null, // kristihimmelfartsdag
-    null, // offentlighoytidsdag
-    "08-15", // skjertorsdag
-    "08-15", // forstepaskedag
-    "08-18", // standard
-    "08-15", // saturday
-    "08-15" // palmesondag
-);
-
 /*getters and setters? for ui states
  */
 const setMainDisplay = () => {
-    console.log("setmain called");
     let salesTimesContainer: HTMLElement | null =
         document.getElementById("salesTimes");
     if (salesTimesContainer == null) {
@@ -237,7 +215,7 @@ async function changeMunicipality(name: string): Promise<void> {
 }
 
 function toggleComingWeekTable(): void {
-    console.log("toggle called");
+
     //get reference
     let nextWeekTable: HTMLElement | null =
         document.getElementById("comingWeekDiv");
@@ -255,10 +233,10 @@ function toggleComingWeekTable(): void {
 
 
 function setEventListeners() {
+    //coming week expander:
     document
         .getElementById("comingWeekButton")
         ?.addEventListener("click", toggleComingWeekTable);
-    //TODO more listeners for the other buttons
 
     const forms: HTMLCollectionOf<HTMLFormElement> | null = document.forms;
     let form: HTMLFormElement | null = null
@@ -266,28 +244,19 @@ function setEventListeners() {
         throw new Error("first form is not #kommunenavnListeForm. Typescript does not support named gets of forms because it sucks.")
     }
 
+
     form = forms[0]
-    //    const form: HTMLFormElement | null = document.getElementById("kommunenavnListeForm");
     if (form === null) {
         throw new ReferenceError("error: #kommunenavnListeForm not found")
     }
-
-
-    const input: HTMLElement | null = document.getElementById("kommunenavnInput");
-    if (input === null) {
-        throw new ReferenceError("error: #kommunenavnInput not found");
-    }
-
+    //search submit listener
     form.addEventListener("submit", async (e: SubmitEvent) => {
         e.preventDefault();
         if (e === null) { return; }
-        console.log("event:")
-        console.log(e);
+
+
         const formData = new FormData(form);
         let enteredName: string | undefined = formData.get("kommunenavnInput")?.toString();
-
-        console.log("form:")
-        console.log(form)
 
         if (enteredName === null) { throw new Error("entered form value is null") }
         if (enteredName === undefined) { throw new Error("entered form value is undefined") }
@@ -303,7 +272,6 @@ function setEventListeners() {
                 for (const altname of multinames) {
                     if (enteredName == altname.toLowerCase()) {
                         found = true;
-                        console.log("found multiname")
                         enteredName = multinames[0]; // we get the canonical name, which comes first before the concat.
                         break; // i want to do a kotlin-y break@outer, but i dont think that is a thing. And that is sad.
                     }
@@ -322,7 +290,6 @@ function setEventListeners() {
             throw new Error(`Entered name not found: ${enteredName}`)
         }
 
-        //trying to zero out text-field
         let input_field: HTMLInputElement | null = document.getElementById("kommunenavnInput") as HTMLInputElement;
         if (input_field == null) { throw new ReferenceError("error: could not find element #kommunenavnInput") }
         input_field.value = "";
@@ -343,8 +310,6 @@ async function sendCachedRequest() {
     } else {
         cached_data = JSON.parse(cached_data_str);
     }
-    console.log("use cached data:");
-    console.log(cached_data.kommunenavn);
 
     changeMunicipality(cached_data.kommunenavn);
 }
@@ -368,8 +333,6 @@ sendCachedRequest()
 
 //then, actually get position.
 if (navigator.geolocation) {
-    console.log("browser supports nav");
-    console.time("geo");
     navigator.geolocation.getCurrentPosition(geoLocSuccess, geoLocError, {
         enableHighAccuracy: false,
         maximumAge: 600000 //600 seconds, 10 minutes
