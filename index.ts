@@ -190,7 +190,7 @@ async function changeMunicipality(name: string): Promise<void> {
     }
 
     const munic = Municipality.fromObject(await res.json());
-    currentMunicName = name;
+    currentMunicName = name[0].toUpperCase() + name.slice(1);
 
     await holidayPromise; //cant get string until we have holidays
 

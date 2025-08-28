@@ -162,7 +162,7 @@ function changeMunicipality(name) {
             throw new Error("bad api call: " + res.statusText);
         }
         const munic = Municipality.fromObject(yield res.json());
-        currentMunicName = name;
+        currentMunicName = name[0].toUpperCase() + name.slice(1);
         yield holidayPromise; //cant get string until we have holidays
         //const today: Date = new Date();
         const today = new Date();
