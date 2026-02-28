@@ -1367,6 +1367,22 @@
     "Palmesondag": "08-18"
   },
   {
+    "kommuneNavn": "Haram",
+    "utvidet": true,
+    "Electionday": "08-20",
+    "Forstejuledag": "08-18",
+    "Forstenyttarsdag": "08-18",
+    "Forstepinsedag": "08-18",
+    "Grunnlovsdag": "standard",
+    "Kristihimmelfartsdag": "08-20",
+    "Offentlighoytidsdag": "standard",
+    "Skjertorsdag": "08-18",
+    "Forstepaskedag": "08-18",
+    "default": "08-20",
+    "sat": "08-18",
+    "Palmesondag": "08-18"
+  },
+  {
     "kommuneNavn": "Hareid",
     "utvidet": true,
     "Electionday": "none",
@@ -2105,6 +2121,7 @@
   },
   {
     "kommuneNavn": "Levanger",
+    "altNavn": "Levangke",
     "utvidet": true,
     "Electionday": "none",
     "Forstejuledag": "08-16",
@@ -3026,6 +3043,7 @@
   },
   {
     "kommuneNavn": "Rana",
+    "altNavn": "Raane",
     "utvidet": true,
     "Electionday": "none",
     "Forstejuledag": "08-18",
@@ -3725,6 +3743,7 @@
   },
   {
     "kommuneNavn": "Steinkjer",
+    "altNavn": "Stïentjen tjïelte",
     "utvidet": true,
     "Electionday": "none",
     "Forstejuledag": "08-16",
@@ -3949,6 +3968,7 @@
   },
   {
     "kommuneNavn": "Sørfold",
+    "altNavn": "Fuolldá",
     "utvidet": true,
     "Electionday": "none",
     "Forstejuledag": "08-18",
