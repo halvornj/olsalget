@@ -2121,6 +2121,7 @@
   },
   {
     "kommuneNavn": "Levanger",
+    "altNavn": "Levangke",
     "utvidet": true,
     "Electionday": "none",
     "Forstejuledag": "08-16",
@@ -3042,6 +3043,7 @@
   },
   {
     "kommuneNavn": "Rana",
+    "altNavn": "Raane",
     "utvidet": true,
     "Electionday": "none",
     "Forstejuledag": "08-18",
@@ -3741,6 +3743,7 @@
   },
   {
     "kommuneNavn": "Steinkjer",
+    "altNavn": "Stïentjen tjïelte",
     "utvidet": true,
     "Electionday": "none",
     "Forstejuledag": "08-16",
@@ -3965,6 +3968,7 @@
   },
   {
     "kommuneNavn": "Sørfold",
+    "altNavn": "Fuolldá",
     "utvidet": true,
     "Electionday": "none",
     "Forstejuledag": "08-18",
