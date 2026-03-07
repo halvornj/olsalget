@@ -123,6 +123,12 @@ const setMainDisplay = () => {
     if (flavourTextContainer == null) {
         throw new ReferenceError("error: element #salesTimesFlavourText not found.");
     }
+    let comingWeekButton = document.getElementById("comingWeekButton");
+    if (comingWeekButton == null) {
+        throw new ReferenceError("error: element #comingWeekButton not found.");
+    }
+    salesTimesContainer.classList.remove("loading");
+    comingWeekButton.disabled = false;
     flavourTextContainer.innerText = `I ${currentMunicName} er ølsalget åpent fra `;
     salesTimesContainer.innerText = weekTimes[0];
 };
@@ -206,13 +212,13 @@ function setEventListeners() {
     }
     //search submit listener
     form.addEventListener("submit", (e) => __awaiter(this, void 0, void 0, function* () {
-        var _a;
+        var _b;
         e.preventDefault();
         if (e === null) {
             return;
         }
         const formData = new FormData(form);
-        let enteredName = (_a = formData.get("kommunenavnInput")) === null || _a === void 0 ? void 0 : _a.toString();
+        let enteredName = (_b = formData.get("kommunenavnInput")) === null || _b === void 0 ? void 0 : _b.toString();
         if (enteredName === null) {
             throw new Error("entered form value is null");
         }

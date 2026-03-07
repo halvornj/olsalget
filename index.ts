@@ -144,6 +144,12 @@ const setMainDisplay = () => {
     if (flavourTextContainer == null) {
         throw new ReferenceError("error: element #salesTimesFlavourText not found.")
     }
+    let comingWeekButton: HTMLElement | null = document.getElementById("comingWeekButton");
+    if (comingWeekButton == null) {
+        throw new ReferenceError("error: element #comingWeekButton not found.")
+    }
+    salesTimesContainer.classList.remove("loading");
+    comingWeekButton.disabled = false;
     flavourTextContainer.innerText = `I ${currentMunicName} er ølsalget åpent fra `;
     salesTimesContainer.innerText = weekTimes[0];
 };

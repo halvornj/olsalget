@@ -3,6 +3,8 @@
   --offBlack: #1c1c1c;
   --offWhite: #f0f0f0;
   --buttonColor: #0a7637;
+  --disabledBackgroundColor: #8e8e8e;
+  --disabledColor: #dedede;
 }
 
 * {
@@ -16,12 +18,18 @@ body {
   display: flex;
 }
 
-@keyframes entrance {
+@keyframes loadingAnimation {
   0% {
-    transform: scale(0%);
+    content: "Laster inn.";
+  }
+  33% {
+    content: "Laster inn..";
+  }
+  66% {
+    content: "Laster inn...";
   }
   100% {
-    transform: scale(100%);
+    content: "Laster inn.";
   }
 }
 
@@ -43,6 +51,10 @@ body {
   display: block;
   color: var(--offBlack);
 }
+.loading::after {
+  animation: loadingAnimation 2s infinite;
+  content: "Laster inn,"
+}
 #salesTimesFlavourText {
   font-size: 2.5em;
   text-align: center;
@@ -62,15 +74,21 @@ button {
   width: var(--buttonWidth);
 }
 
-button:hover {
+button:not(:disabled):hover {
   background-color: #085b2a;
   cursor: pointer;
 }
 
-button:active {
+button:not(:disabled):active {
   transform: translate(3px, 3px);
   box-shadow: #b5b5b5 0px 0px;
 }
+
+button:disabled {
+  color: var(--disabledColor);
+  background-color: var(--disabledBackgroundColor);
+}
+
 #comingWeekTable {
   border-collapse: collapse;
 }
