@@ -123,19 +123,40 @@ const setMainDisplay = () => {
     if (flavourTextContainer == null) {
         throw new ReferenceError("error: element #salesTimesFlavourText not found.");
     }
+    salesTimesContainer.classList.remove("loading");
+    flavourTextContainer.innerText = `I ${currentMunicName} er ølsalget åpent fra `;
+    salesTimesContainer.innerText = weekTimes[0];
+};
+const setTemporaryMainDisplay = (type) => {
+    let salesTimesContainer = document.getElementById("salesTimes");
+    if (salesTimesContainer == null) {
+        throw new ReferenceError("error: element #salesTimes not found.");
+    }
+    let flavourTextContainer = document.getElementById("salesTimesFlavourText");
+    if (flavourTextContainer == null) {
+        throw new ReferenceError("error: element #salesTimesFlavourText not found.");
+    }
     let comingWeekButton = document.getElementById("comingWeekButton");
     if (comingWeekButton == null) {
         throw new ReferenceError("error: element #comingWeekButton not found.");
     }
-    salesTimesContainer.classList.remove("loading");
-    comingWeekButton.disabled = false;
-    flavourTextContainer.innerText = `I ${currentMunicName} er ølsalget åpent fra `;
-    salesTimesContainer.innerText = weekTimes[0];
+    if (type === "disable") {
+        comingWeekButton.disabled = true;
+    }
+    else if (type === "write") {
+        flavourTextContainer.innerText = `I ${currentMunicName} er ølsalget åpent fra `;
+        salesTimesContainer.innerText = "";
+        salesTimesContainer.classList.add("loading");
+    }
 };
 const setNextWeek = () => {
     let nextWeekTable = document.getElementById("comingWeekTable");
     if (nextWeekTable == null) {
         throw new ReferenceError("error: element #comingWeekTable not found.");
+    }
+    let comingWeekButton = document.getElementById("comingWeekButton");
+    if (comingWeekButton == null) {
+        throw new ReferenceError("error: element #comingWeekButton not found.");
     }
     //empty table
     nextWeekTable.replaceChildren(); //should remove all child nodes - rebuild new table.
@@ -154,6 +175,7 @@ const setNextWeek = () => {
         row.appendChild(valTD);
         nextWeekTable.appendChild(row);
     }
+    comingWeekButton.disabled = false;
 };
 /*
  *this function should be called whenever a new municipality is selected. This happens 2 main ways:
@@ -163,12 +185,14 @@ const setNextWeek = () => {
  */
 function changeMunicipality(name) {
     return __awaiter(this, void 0, void 0, function* () {
+        setTemporaryMainDisplay("disable");
         const res = yield fetch("https://api.olsalget.no/municipalities/" + name);
         if (!res.ok) {
             throw new Error("bad api call: " + res.statusText);
         }
         const munic = Municipality.fromObject(yield res.json());
         currentMunicName = name[0].toUpperCase() + name.slice(1);
+        setTemporaryMainDisplay("write");
         yield holidayPromise; //cant get string until we have holidays
         //const today: Date = new Date();
         const today = new Date();
@@ -262,7 +286,6 @@ function setEventListeners() {
             throw new ReferenceError("error: could not find element #kommunenavnInput");
         }
         input_field.value = "";
-        console.log(`changing munic to ${enteredName}`);
         changeMunicipality(enteredName.toString());
     }));
 }

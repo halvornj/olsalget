@@ -144,22 +144,43 @@ const setMainDisplay = () => {
     if (flavourTextContainer == null) {
         throw new ReferenceError("error: element #salesTimesFlavourText not found.")
     }
-    let comingWeekButton: HTMLElement | null = document.getElementById("comingWeekButton");
-    if (comingWeekButton == null) {
-        throw new ReferenceError("error: element #comingWeekButton not found.")
-    }
     salesTimesContainer.classList.remove("loading");
-    comingWeekButton.disabled = false;
     flavourTextContainer.innerText = `I ${currentMunicName} er ølsalget åpent fra `;
     salesTimesContainer.innerText = weekTimes[0];
 };
 
+const setTemporaryMainDisplay = (type: "disable" | "write") => {
+    let salesTimesContainer: HTMLElement | null =
+        document.getElementById("salesTimes");
+    if (salesTimesContainer == null) {
+        throw new ReferenceError("error: element #salesTimes not found.");
+    }
+    let flavourTextContainer: HTMLElement | null = document.getElementById("salesTimesFlavourText");
+    if (flavourTextContainer == null) {
+        throw new ReferenceError("error: element #salesTimesFlavourText not found.")
+    }
+    let comingWeekButton: HTMLButtonElement | null = document.getElementById("comingWeekButton") as HTMLButtonElement;
+    if (comingWeekButton == null) {
+        throw new ReferenceError("error: element #comingWeekButton not found.")
+    }
+    if (type === "disable") {
+      comingWeekButton.disabled = true
+    } else if (type === "write") {
+      flavourTextContainer.innerText = `I ${currentMunicName} er ølsalget åpent fra `;
+      salesTimesContainer.innerText = "";
+      salesTimesContainer.classList.add("loading");
+    }
+};
 
 const setNextWeek = () => {
     let nextWeekTable: HTMLElement | null =
         document.getElementById("comingWeekTable");
     if (nextWeekTable == null) {
         throw new ReferenceError("error: element #comingWeekTable not found.");
+    }
+    let comingWeekButton: HTMLButtonElement | null = document.getElementById("comingWeekButton") as HTMLButtonElement;
+    if (comingWeekButton == null) {
+        throw new ReferenceError("error: element #comingWeekButton not found.")
     }
     //empty table
     nextWeekTable.replaceChildren(); //should remove all child nodes - rebuild new table.
@@ -181,6 +202,7 @@ const setNextWeek = () => {
         row.appendChild(valTD);
         nextWeekTable.appendChild(row);
     }
+    comingWeekButton.disabled = false;
 };
 
 /*
@@ -190,6 +212,7 @@ const setNextWeek = () => {
  * These two scenarios should behave the same.
  */
 async function changeMunicipality(name: string): Promise<void> {
+    setTemporaryMainDisplay("disable")
     const res = await fetch("https://api.olsalget.no/municipalities/" + name);
     if (!res.ok) {
         throw new Error("bad api call: " + res.statusText);
@@ -197,6 +220,7 @@ async function changeMunicipality(name: string): Promise<void> {
 
     const munic = Municipality.fromObject(await res.json());
     currentMunicName = name[0].toUpperCase() + name.slice(1);
+    setTemporaryMainDisplay("write")
 
     await holidayPromise; //cant get string until we have holidays
 
@@ -300,7 +324,6 @@ function setEventListeners() {
         if (input_field == null) { throw new ReferenceError("error: could not find element #kommunenavnInput") }
         input_field.value = "";
 
-        console.log(`changing munic to ${enteredName}`);
         changeMunicipality(enteredName.toString());
 
     });
