@@ -255,7 +255,7 @@ function setEventListeners() {
         if (e === null) { return; }
 
 
-        const formData = new FormData(form);
+        const formData = new FormData(form as HTMLFormElement);
         let enteredName: string | undefined = formData.get("kommunenavnInput")?.toString();
 
         if (enteredName === null) { throw new Error("entered form value is null") }
