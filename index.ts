@@ -262,8 +262,6 @@ function toggleComingWeekTable(): void {
     }
 }
 
-
-
 function setEventListeners() {
     //coming week expander:
     document
@@ -290,9 +288,19 @@ function setEventListeners() {
         const formData = new FormData(form as HTMLFormElement);
         let enteredName: string | undefined = formData.get("kommunenavnInput")?.toString();
 
-        if (enteredName === null) { throw new Error("entered form value is null") }
-        if (enteredName === undefined) { throw new Error("entered form value is undefined") }
-        if (enteredName === "") { throw new Error("entered form value is empty") }
+        // Prefer not to throw non-critical errors to end users
+        if (enteredName === null) {
+            if(!isDevMode()) return;
+            throw new Error("entered form value is null")
+        }
+        if (enteredName === undefined) {
+            if(!isDevMode()) return;
+            throw new Error("entered form value is undefined")
+        }
+        if (enteredName === "") {
+            if(!isDevMode()) return;
+            throw new Error("entered form value is empty")
+        }
         if (enteredName.includes("/")) { enteredName = enteredName.split("/")[0] }
         enteredName = enteredName.toLowerCase();
         await namePromise; // we need to ensure the names have arrived (pretty much guaranteed at this point), so we can do basic name catching here
@@ -318,7 +326,7 @@ function setEventListeners() {
             }
 
         }
-        if (!found) {
+        if (!found && isDevMode()) {
             throw new Error(`Entered name not found: ${enteredName}`)
         }
 
@@ -343,6 +351,15 @@ async function sendCachedRequest() {
     }
 
     changeMunicipality(cached_data.kommunenavn);
+}
+
+/**
+ * If the page URL includes the string "olsalget.no"
+ * it is most likely an end user, and not active development
+ */
+function isDevMode(): boolean {
+    const url: string = window.location.href;
+    return url.toLowerCase().includes("olsalget.no");
 }
 
 //this is where actual execution starts:

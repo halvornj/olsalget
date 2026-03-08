@@ -246,13 +246,20 @@ function setEventListeners() {
         }
         const formData = new FormData(form);
         let enteredName = (_b = formData.get("kommunenavnInput")) === null || _b === void 0 ? void 0 : _b.toString();
+        // Prefer not to throw non-critical errors to end users
         if (enteredName === null) {
+            if (!isDevMode())
+                return;
             throw new Error("entered form value is null");
         }
         if (enteredName === undefined) {
+            if (!isDevMode())
+                return;
             throw new Error("entered form value is undefined");
         }
         if (enteredName === "") {
+            if (!isDevMode())
+                return;
             throw new Error("entered form value is empty");
         }
         if (enteredName.includes("/")) {
@@ -281,7 +288,7 @@ function setEventListeners() {
                 break; //this is the break@outer
             }
         }
-        if (!found) {
+        if (!found && isDevMode()) {
             throw new Error(`Entered name not found: ${enteredName}`);
         }
         let input_field = document.getElementById("kommunenavnInput");
@@ -305,6 +312,14 @@ function sendCachedRequest() {
         }
         changeMunicipality(cached_data.kommunenavn);
     });
+}
+/**
+ * If the page URL includes the string "olsalget.no"
+ * it is most likely an end user, and not active development
+ */
+function isDevMode() {
+    const url = window.location.href;
+    return url.toLowerCase().includes("olsalget.no");
 }
 //this is where actual execution starts:
 //TODO move functions out to lib?
