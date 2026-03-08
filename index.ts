@@ -137,16 +137,18 @@ const setMainDisplay = () => {
     if (salesTimesContainer == null) {
         throw new ReferenceError("error: element #salesTimes not found.");
     }
-    if (weekTimes[0] === null || weekTimes[0] === "stengt") {
-        salesTimesContainer.innerText = `I ${currentMunicName} er ølsalget stengt i dag`;
-    }
     let flavourTextContainer: HTMLElement | null = document.getElementById("salesTimesFlavourText");
     if (flavourTextContainer == null) {
         throw new ReferenceError("error: element #salesTimesFlavourText not found.")
     }
     salesTimesContainer.classList.remove("loading");
-    flavourTextContainer.innerText = `I ${currentMunicName} er ølsalget åpent fra `;
-    salesTimesContainer.innerText = weekTimes[0];
+    if (weekTimes[0] === null || weekTimes[0] === "stengt") {
+        flavourTextContainer.innerText = ``;
+        salesTimesContainer.innerText = `I ${currentMunicName} er ølsalget stengt i dag`;
+    } else {
+        flavourTextContainer.innerText = `I ${currentMunicName} er ølsalget åpent fra `;
+        salesTimesContainer.innerText = weekTimes[0];
+  }
 };
 
 const setTemporaryMainDisplay = (type: "disable" | "write") => {
